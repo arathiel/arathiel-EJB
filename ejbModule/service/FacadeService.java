@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 
 import clientServeur.IFacadeService;
 import service.competence.FacadeServiceCompetence;
+import service.trait.TraitFacade;
 
 /**
  * Cette classe implémente clientServeur.IFacadeService.class
@@ -20,7 +21,10 @@ import service.competence.FacadeServiceCompetence;
 @Remote(IFacadeService.class)
 public class FacadeService implements IFacadeService {
 
+	// Attributs de classe
 	@EJB
 	private FacadeServiceCompetence servComp;
+	@EJB
+	private TraitFacade				servTrait;
 	
 }

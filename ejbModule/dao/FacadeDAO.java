@@ -5,6 +5,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import dao.competence.FacadeDaoCompetence;
+import dao.trait.TraitFacade;
 
 /**
  * Cette classe est la facade de la couche DAO.
@@ -21,7 +22,10 @@ import dao.competence.FacadeDaoCompetence;
 @Singleton
 public class FacadeDAO {
 
+	// Attributs de classe
 	@EJB
 	private FacadeDaoCompetence daoComp;
+	@EJB
+	private TraitFacade			daoTrait;
 	
 }

@@ -5,6 +5,18 @@ import javax.persistence.Id;
 
 import clientServeur.bonus.IBonussable;
 
+/** 
+ * Classe 
+ * 
+ * N.B. cette classe qui doit pourvoir être modifiable par la suite dans l'appli web n'est pour le moment pas
+ * éditable. 
+ * La table, crée au moment du lancement du serveur sera complétée "à la main"
+ * 
+ * 
+ * @author François Georgel
+ *
+ */
+
 @Entity
 public class Caracteristique implements IBonussable{
 	

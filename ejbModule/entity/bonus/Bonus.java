@@ -2,6 +2,14 @@ package entity.bonus;
 
 import clientServeur.bonus.IBonussable;
 
+/**
+ * Classe qui servira de fabrique aux différents bonus
+ * 
+ * 
+ * @author Afpa
+ *
+ */
+
 public abstract class Bonus {
 	
 	private int valeurBonus;
@@ -26,19 +34,13 @@ public abstract class Bonus {
 		return valeurBonus;
 	}
 
-
-
 	public void setValeurBonus(int valeurBonus) {
 		this.valeurBonus = valeurBonus;
 	}
 
-
-
 	public int getCoutXp() {
 		return coutXp;
 	}
-
-
 
 	public void setCoutXp(int coutXp) {
 		this.coutXp = coutXp;

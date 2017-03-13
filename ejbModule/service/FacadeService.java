@@ -1,14 +1,26 @@
 package service;
 
+import javax.ejb.EJB;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+
+import clientServeur.IFacadeService;
+import service.competence.FacadeServiceCompetence;
+
 /**
- * Implémentation de clientServeur.IFacadeService.class
+ * Cette classe implémente clientServeur.IFacadeService.class
  * 
- * Configuration de toutes les méthodes disponibles pour le serveur web.
+ * Liste et aiguillage de toutes les méthodes disponibles pour le serveur web.
  * 
  * @author Groupe
  * @version 20170313
  *
  */
-public class FacadeService {
+@Stateless
+@Remote(IFacadeService.class)
+public class FacadeService implements IFacadeService {
 
+	@EJB
+	private FacadeServiceCompetence servComp;
+	
 }

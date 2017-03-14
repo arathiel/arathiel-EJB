@@ -2,9 +2,7 @@ package entity.trait.comportement;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
 /**
@@ -12,8 +10,7 @@ import javax.persistence.Version;
  * @author Jonathan Fuentes
  *
  */
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public abstract class Technique extends Comportement implements Serializable{
 
 	

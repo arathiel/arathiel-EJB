@@ -5,6 +5,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import dao.competence.FacadeDaoCompetence;
+import dao.magie.FacadeDaoMagie;
+import dao.passion.FacadeDaoPassion;
 import dao.trait.TraitFacade;
 
 /**
@@ -27,5 +29,10 @@ public class FacadeDAO {
 	private FacadeDaoCompetence daoComp;
 	@EJB
 	private TraitFacade			daoTrait;
+	@EJB
+	private FacadeDaoMagie facDaoMagie;
+	@EJB
+	private FacadeDaoPassion facDaoPassion;
+	
 	
 }

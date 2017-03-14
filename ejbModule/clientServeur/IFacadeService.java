@@ -1,5 +1,6 @@
 package clientServeur;
 
+
 /**
  * Interface pour service.FacadeService.class
  * 
@@ -11,4 +12,7 @@ package clientServeur;
  */
 public interface IFacadeService {
 
-}
+//====================================================================== Fonctionnalité Trait (Jonathan)
+
+	
+}// Fin classe

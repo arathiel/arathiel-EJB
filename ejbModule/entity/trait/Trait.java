@@ -7,12 +7,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
 import entity.trait.comportement.Comportement;
@@ -35,6 +37,7 @@ public class Trait implements Serializable{
 	// Attributs de classe
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name="seqTrait", sequenceName="trait_SEQ")
 	@Column(name = "tr_id", length = 5)
 	private int				id;
 	
@@ -50,7 +53,7 @@ public class Trait implements Serializable{
 	@Column(name = "tr_malus", nullable = false)
 	private boolean			malus;
 	
-	@ManyToMany(cascade= {CascadeType.PERSIST})
+	@ManyToMany(cascade= {CascadeType.PERSIST}, fetch = FetchType.EAGER)
 	@JoinTable(	name				= "trait_comp",
 				joinColumns			= @JoinColumn(name = "id_trait"),
 				inverseJoinColumns	= @JoinColumn(name = "id_comp"))			
@@ -59,5 +62,68 @@ public class Trait implements Serializable{
 	@Embedded
 	@Column(name = "tr_desc", nullable = true)
 	private Description 	description;
+	
+	/**
+	 * Constructeur avec Id pour manipulation en sorti de BDD
+	 * @param id
+	 * @param libelle
+	 * @param visiPublic
+	 * @param dispoCrea
+	 * @param malus
+	 * @param listComp
+	 * @param description
+	 */
+	public Trait(int id, String libelle, boolean visiPublic, boolean dispoCrea, boolean malus,
+			Collection<Comportement> listComp, Description description) {
+		super();
+		this.id = id;
+		this.libelle = libelle;
+		this.visiPublic = visiPublic;
+		this.dispoCrea = dispoCrea;
+		this.malus = malus;
+		this.listComp = listComp;
+		this.description = description;
+	}
+
+	/**
+	 * Constructeur de persistance complet sans ID (Id auto généré par Hibernate)
+	 * @param libelle
+	 * @param visiPublic
+	 * @param dispoCrea
+	 * @param malus
+	 * @param listComp
+	 * @param description
+	 */
+	public Trait(String libelle, boolean visiPublic, boolean dispoCrea, boolean malus,
+			Collection<Comportement> listComp, Description description) {
+		super();
+		this.libelle = libelle;
+		this.visiPublic = visiPublic;
+		this.dispoCrea = dispoCrea;
+		this.malus = malus;
+		this.listComp = listComp;
+		this.description = description;
+	}
+
+	/**
+	 * Constructeur de persistance sans description (optionnel à la création) et sans ID (Id auto généré par Hibernate)
+	 * @param libelle
+	 * @param visiPublic
+	 * @param dispoCrea
+	 * @param malus
+	 * @param listComp
+	 */
+	public Trait(String libelle, boolean visiPublic, boolean dispoCrea, boolean malus,
+			Collection<Comportement> listComp) {
+		super();
+		this.libelle = libelle;
+		this.visiPublic = visiPublic;
+		this.dispoCrea = dispoCrea;
+		this.malus = malus;
+		this.listComp = listComp;
+	}
+	
+	
+	
 
 }// Fin classe

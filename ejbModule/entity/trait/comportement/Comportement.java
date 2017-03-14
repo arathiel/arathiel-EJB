@@ -3,10 +3,12 @@ package entity.trait.comportement;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
@@ -15,7 +17,8 @@ import javax.persistence.Version;
  * @author Jonathan Fuentes
  *
  */
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Comportement implements Serializable{
 
 	// Attribut de classe un simple ID. Les classes filles possèderont un attribut supplémentaire les définissant

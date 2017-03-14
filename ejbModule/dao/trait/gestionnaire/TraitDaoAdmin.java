@@ -5,8 +5,10 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import entity.trait.Trait;
+
 /**
- * Classe permmetant de faire les requêtes d'adminitration d'un Trait
+ * Classe permmetant de faire les requêtes DAO d'adminitration d'un Trait
  * @author Jonathan Fuentes
  *
  */
@@ -19,7 +21,13 @@ public class TraitDaoAdmin {
 	@PersistenceContext()
 	private EntityManager em;
 
-
+	
+	/**
+	 * Permet de persister un trait dans la BDD
+	 * @param trait
+	 */
+	public void add(Trait trait) {
+	}
 
 
 }// Fin classe

@@ -1,10 +1,10 @@
 package entity.trait;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Version;
 
 /**
  * Classe de persistance de Description associée à Trait
@@ -12,15 +12,13 @@ import javax.persistence.Id;
  *
  */
 @Embeddable
-public class Description {
+public class Description implements Serializable{
 
 	// Attributs de classe
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "descr_id", length = 5)
-	private int 	id;
+	@Version
+	private static final long serialVersionUID = 1L;
 	
-	@Column(name = "descr_cont", length = 250)
+	@Column(name = "tr_descr", length = 250)
 	private String 	contenu;
 
 	
@@ -29,26 +27,10 @@ public class Description {
 	 * @param id
 	 * @param contenu
 	 */
-	public Description(int id, String contenu) {
-		this.id 		= id;
+	public Description(String contenu) {
 		this.contenu 	= contenu;
 	}
 
-	/**
-	 * Retourne l'Id de Description
-	 * @return
-	 */
-	public int getId() {
-		return id;
-	}
-	
-	/**
-	 * Modifie l'Id de Description
-	 * @param id
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	/**
 	 * Retourne le contenu de la description
@@ -71,8 +53,7 @@ public class Description {
 	 */
 	@Override
 	public String toString() {
-		return "Description [id=" + id + ", contenu=" + contenu + "]";
+		return "Description [contenu=" + contenu + "]";
 	}
 	
-	
-}
+}// Fin classe

@@ -1,12 +1,21 @@
 package entity.trait;
 
+import java.io.Serializable;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Version;
 
+import entity.trait.comportement.Comportement;
 import technic.trait.Comportements;
 
 /**
@@ -15,8 +24,14 @@ import technic.trait.Comportements;
  *
  */
 @Entity
-public class Trait {
+public class Trait implements Serializable{
 	
+	/**
+	 * 
+	 */
+	@Version
+	private static final long serialVersionUID = 1L;
+
 	// Attributs de classe
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,11 +50,14 @@ public class Trait {
 	@Column(name = "tr_malus", nullable = false)
 	private boolean			malus;
 	
-	@Column(name = "tr_comp")
-	private Comportements	listComp;
+	@ManyToMany(cascade= {CascadeType.PERSIST})
+	@JoinTable(	name				= "trait_comp",
+				joinColumns			= @JoinColumn(name = "id_trait"),
+				inverseJoinColumns	= @JoinColumn(name = "id_comp"))			
+	private Collection<Comportement> listComp = new Comportements();
 	
 	@Embedded
 	@Column(name = "tr_desc", nullable = true)
-	private Description		description;
+	private Description 	description;
 
-}
+}// Fin classe

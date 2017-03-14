@@ -2,7 +2,7 @@ package entity.bonus;
 
 
 import entity.trait.Trait;
-import parametres.ParamBonus;
+import parametres.bonus.ParamBonus;
 
 
 /**

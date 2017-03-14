@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 import clientServeur.bonus.IPackable;
 import entity.bonus.Bonus;
-import parametres.race.Param;
+import parametres.bonus.ParamIPackable;
 
 
 @Entity
@@ -17,7 +17,7 @@ public class Race implements IPackable {
 	private int id;
 	private String nom;
 	private boolean dispo;
-	private int coutXp = Param.COUT_XP_RACE;
+	private int coutXp = ParamIPackable.COUT_XP_RACE;
 	private ArrayList<Bonus> listeBonus;
 	
 	

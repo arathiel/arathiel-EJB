@@ -1,7 +1,5 @@
 package entity.bonus;
 
-import clientServeur.bonus.IBonussable;
-
 /**
  * Classe qui servira de fabrique aux différents bonus
  * 
@@ -12,23 +10,21 @@ import clientServeur.bonus.IBonussable;
 
 public abstract class Bonus {
 	
+	private String idBonus;
 	private int valeurBonus;
 	private int coutXp;
 	
 
+	public Bonus(){		
+	}
 	
-	public Bonus creerBonus(IBonussable bonussable, int valeurBonus, int coutXp, boolean acad){
-		
-		//TODO switch des instanceOf du bonussable	
-		
-		Bonus bonus = new BonusCarac();
-		bonus.setValeurBonus(valeurBonus);
-		bonus.setCoutXp(coutXp);
-		return bonus;
-		
+	public String getIdBonus() {
+		return idBonus;
 	}
 
-
+	public void setIdBonus(String idBonus) {
+		this.idBonus = idBonus;
+	}
 
 	public int getValeurBonus() {
 		return valeurBonus;
@@ -44,5 +40,9 @@ public abstract class Bonus {
 
 	public void setCoutXp(int coutXp) {
 		this.coutXp = coutXp;
+	}
+	
+	public void calculerCoutXp() {
+		this.coutXp = 0;
 	}
 }

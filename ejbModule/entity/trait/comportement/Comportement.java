@@ -11,11 +11,35 @@ import javax.persistence.Id;
  * @author Jonathan Fuentes
  *
  */
-@Entity
 public abstract class Comportement {
 
+	// Attribut de classe un simple ID. Les classes filles possèderont un attribut supplémentaire les définissant
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "comp_id", length = 5)
-	private int id;
-}
+	protected int id;
+
+	@Column(name = "comp_effet", length = 250)
+	protected String effet;
+	
+	
+//	/**
+//	 * Constructeur sans ID pour premièr ajout dans la BDD
+//	 * @param effet
+//	 */
+//	public Comportement(String effet) {
+//		this.effet	= effet;
+//	}
+//	
+//	/**
+//	 * Constructeur avec Id pour manipulation en sorti de BDD
+//	 * @param id
+//	 * @param effet
+//	 */
+//	public Comportement(int id, String effet) {
+//		this.id 	= id;
+//		this.effet	= effet;
+//	}
+
+
+}// Fin classe

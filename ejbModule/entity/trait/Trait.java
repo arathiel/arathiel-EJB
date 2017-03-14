@@ -39,7 +39,7 @@ public class Trait {
 	private Comportements	listComp;
 	
 	@Embedded
-	@Column(name = "tr_desc")
+	@Column(name = "tr_desc", nullable = true)
 	private Description		description;
 
 }

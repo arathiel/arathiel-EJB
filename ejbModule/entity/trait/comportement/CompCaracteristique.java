@@ -14,17 +14,6 @@ public class CompCaracteristique extends Technique {
 
 	// Attribut de classe
 	private Caracteristique caracteristique;
-
-
-	/**
-	 * Constructeur avec Id pour manipulation en sorti de BDD
-	 * @param id
-	 * @param effet
-	 */
-	public CompCaracteristique(int id, String effet) {
-		super(id, effet);
-		// TODO Auto-generated constructor stub
-	}
 	
 	
 	// Getters & Setters

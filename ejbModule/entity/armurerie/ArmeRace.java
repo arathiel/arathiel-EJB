@@ -83,8 +83,12 @@ public class ArmeRace implements Serializable{
 		getIdArmeRace().setIdArme(arme.getIdArme());
 		getIdArmeRace().setIdRace(race.getId());
 
-		this.arme = arme;
-		this.race = race;
+		this.setArme(arme);
+		this.setRace(race);
+		
+		arme.getRaces().add(this);
+		race.getArmes().add(this);
+
 	}
 
 // getters et setters d ela classe ArmeRace

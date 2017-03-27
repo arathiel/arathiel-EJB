@@ -1,11 +1,11 @@
 package entity.carriere;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.*;
 
-import clientServeur.bonus.IPackable;
-import entity.bonus.Bonus;
+import clientServeur.race_bonus_carac.interfaces.IPackable;
+import entity.race_bonus_carac.bonus.Bonus;
 import parametres.bonus.ParamIPackable;
 
 @Entity
@@ -27,94 +27,85 @@ public class Carriere implements IPackable
 	
 
 	@Override
-	public void setId(int id) 
-	{
+	public void setId(int id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setNom(String nom) 
-	{
+	public void setNom(String nom) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setDispo(boolean dispo) 
-	{
+	public void setDispo(boolean dispo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setCoutXp(int coutXp) 
-	{
+	public void setCoutXp(int coutXp) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setListeBonus(ArrayList<Bonus> listeBonus)
-	{
+	public void setListeBonus(Collection<Bonus> listeBonus) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public int getId() 
-	{
+	public int getId() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public String getNom() 
-	{
+	public String getNom() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean getDispo() 
-	{
+	public boolean getDispo() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public int getCoutXp() 
-	{
+	public int getCoutXp() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public ArrayList<Bonus> getListeBonus() 
-	{
+	public Collection<Bonus> getListeBonus() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void calculRenduXp()
-	{
+	public int calculRenduXp() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void ajouterBonus(Bonus bonus) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void ajouterBonus(Bonus bonus) 
-	{
+	public void enleverBonus(Bonus bonus) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
-	@Override
-	public void enleverBonus(Bonus bonus)
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import entity.caracteristique.Caracteristique;
+import entity.race_bonus_carac.caracteristique.Caracteristique;
 
 /**
  * Classe permettant la gestion de comportement influençant les caractéristiques
@@ -19,7 +19,7 @@ import entity.caracteristique.Caracteristique;
  *
  */
 @Entity
-@AttributeOverride(name="id", 	 column=@Column(name="compCar_id"	))
+@AttributeOverride(name="id", column=@Column(name="compCar_id"	))
 @Table(name = "comp_car")
 public class CompCaracteristique extends Technique implements Serializable{
 
@@ -30,26 +30,38 @@ public class CompCaracteristique extends Technique implements Serializable{
 	@Version
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER) // Récupère la PK en FK dans la table
 	@JoinColumn(name = "carac_FK", nullable = true)
 	private Caracteristique caracteristique;
 		
+	// Constructeur
+	/**
+	 * Constructeur par défaut
+	 */
+	public CompCaracteristique() {
+	}
+	
 	/**
 	 * Constructeur avec Id pour manipulation en sorti de BDD
 	 * @param id
+	 * @param libelle
 	 * @param effet
 	 */
-	public CompCaracteristique(int id, String effet) {
-		super(id, effet);
+	public CompCaracteristique(int id, String libelle, Caracteristique caracteristique) {
+		super(id, libelle);
+		this.caracteristique = caracteristique;
 	}
 	
 	/**
 	 * Constructeur sans ID pour premier ajout dans la BDD (Id auto généré par Hibernate)
+	 * @param libelle
 	 * @param effet
 	 */
-	public CompCaracteristique(String effet) {
-		super(effet);
+	public CompCaracteristique(String libelle, Caracteristique caracteristique) {
+		super(libelle);
+		this.caracteristique = caracteristique;
 	}
+	
 	
 	// Getters & Setters
 
@@ -74,9 +86,13 @@ public class CompCaracteristique extends Technique implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "CompCaracteristique [caracteristique=" + caracteristique + "]";
+		return super.toString() 
+			+(caracteristique != null ? ", Caracteristique  = " + caracteristique.getNomCarac() : "");
 	}
-		
+	
+
+
+	
 }// Fin classe
 
 

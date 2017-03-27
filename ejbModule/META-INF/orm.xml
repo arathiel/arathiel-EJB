@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<entity-mappings version="1.0" xmlns="http://java.sun.com/xml/ns/persistence/orm" 
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+
+
+<!-- ********************************************************************************************************* Jonathan -->
+
+<!-- REQUETES TRAIT --> 
+	
+	<named-query name = "getTraitByLib">
+		<query> select t from Trait t where lower(trim(t.libelle)) = lower(trim(:lib)) </query>				
+	</named-query>
+
+	<named-query name = "getAllTrait">
+		<query> select t from Trait t order by t.id </query>
+	</named-query>
+
+<!-- REQUETES COMPORTEMENT --> 
+
+	<named-query name = "getCompByLib">
+		<query> select c from Comportement c where lower(trim(c.libelle)) = lower(trim(:lib)) </query>				
+	</named-query>
+
+	<named-query name = "getAllComp">
+		<query> select c from Comportement c order by c.id </query>
+	</named-query>
+	
+	<named-query name = "deleteAllComp">
+		<query> delete from Comportement </query>
+	</named-query>
+	
+	
+<!-- REQUETES CARACTERISTIQUE --> 
+
+	<named-query name = "getCarByLib">
+		<query> select c from Caracteristique c where lower(trim(c.nomCarac)) = lower(trim(:lib)) </query>				
+	</named-query>
+
+	<named-query name = "getAllCar">
+		<query> select c from Caracteristique c order by c.nomCarac </query>
+	</named-query>
+
+</entity-mappings>

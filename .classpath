@@ -15,5 +15,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernateMain"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jUnitHamcrest"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/wildFlyClientLog4J"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/WildFlyClientLog4J"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

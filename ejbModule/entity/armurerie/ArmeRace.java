@@ -10,7 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import entity.race.Race;
+import entity.race_bonus_carac.race.Race;
 
 /**
  * Cette classe contient la jointure entre Arme et Race.

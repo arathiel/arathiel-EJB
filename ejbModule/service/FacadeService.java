@@ -8,15 +8,14 @@ import javax.ejb.Stateless;
 
 import clientServeur.IFacadeService;
 import clientServeur.exception.UserException;
-import dao.trait.exception.IdNullException;
-import dao.trait.exception.LibelleNullException;
-import dao.trait.exception.LibelleVideException;
-import dao.trait.exception.ObjetInexistantException;
-import dao.trait.ressources.Erreur;
+import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
+import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
+import entity.race_bonus_carac.race.Race;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import service.competence.FacadeServiceCompetence;
+import service.race_bonus_carac.FacadeServiceRBC;
 import service.trait.FacadeTraitServ;
 import technic.trait.Comportements;
 import technic.trait.Traits;
@@ -44,7 +43,9 @@ public class FacadeService implements IFacadeService {
 	@EJB
 	private FacadeServiceCompetence servComp;
 
-	
+	//--------------------------------------- Francois
+	@EJB
+	private FacadeServiceRBC		servRBC;
 	
 //-------------------------------------------------------------------------------------------- Jonathan
 	
@@ -241,5 +242,164 @@ public class FacadeService implements IFacadeService {
 	public ArrayList<Caracteristique> getAllCar() {
 		return servTrait.getAllCar();
 	}
+
 	
+	//-------------------------------------------------------------------------------------------- Francois
+
+	/* ========================================== */ 
+	/*  				RACE					  */
+	/* ========================================== */
+	/**
+	 * Enregistre une nouvelle Race
+	 * 
+	 * @param race
+	 * @throws UserExceptionRBC
+	 */
+	@Override
+	public void enregistrerRace(Race race) throws UserExceptionRBC {
+		servRBC.enregistrerRace(race);	
+	}
+
+	/**
+	 * Supprime une Race
+	 * 
+	 * @param race
+	 * @throws UserExceptionRBC
+	 */
+	@Override
+	public void supprimerRace(Race race) throws UserExceptionRBC {
+		servRBC.supprimerRace(race);
+	}
+
+	/**
+	 * Modifie une Race
+	 * 
+	 * @param race
+	 * @throws UserExceptionRBC
+	 */
+	@Override
+	public void modifierRace(Race race) throws UserExceptionRBC {
+		servRBC.modifierRace(race);	
+	}
+
+	/**
+	 * Renvoie la liste de toutes les races
+	 * 
+	 * @return la liste de toutes les races enregistrees
+	 */
+	@Override
+	public ArrayList<Race> listeToutesRaces() {
+		return servRBC.listeToutesRaces();
+	}
+
+	/**
+	 * Renvoie la liste des races accessibles au joueur
+	 * 
+	 * @return la liste des races accessibles pour un joueur
+	 */	
+	@Override
+	public ArrayList<Race> listeRacesJouables() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * Renvoie une race recherchee par son nom
+	 * 
+	 * @param nom
+	 * @return race correspondant au nom choisi en parametre
+	 */
+	@Override
+	public Race RechRaceParNom(String nom) throws UserExceptionRBC {
+		return servRBC.RechRaceParNom(nom);
+	}
+
+	/**
+	 * Renvoie une race recherchee par son identifiant
+	 * 
+	 * @param id identifiant de type numeraire
+	 * @return race correspondant à l'identifiant choisi en parametre
+	 */
+	@Override
+	public Race RechRaceParId(int id) throws UserExceptionRBC {
+		return servRBC.RechRaceParId(id);
+	}
+
+	
+	/* ========================================== */ 
+	/*  				BONUS					  */
+	/* ========================================== */
+	
+	/**
+	 * Enregistre un nouveau bonus
+	 * 
+	 * @param bonus
+	 * @throws UserExceptionRBC
+	 */
+	@Override
+	public void insertBonus(Bonus bonus) throws UserExceptionRBC {
+		servRBC.insertBonus(bonus);
+	}
+
+	/**
+	 * Renvoie la liste de tous les bonus
+	 * 
+	 * @return la liste des bonus
+	 */	
+	@Override
+	public ArrayList<Bonus> listeTousBonus() {
+		return servRBC.listeTousBonus();
+	}
+
+	
+	/**
+	 * Supprime un Bonus
+	 * 
+	 * @param bonus
+	 * @throws UserExceptionRBC
+	 */
+	@Override
+	public void deleteBonus(Bonus bonus) throws UserExceptionRBC {
+		servRBC.deleteBonus(bonus);		
+	}
+
+	
+	/* ========================================== */ 
+	/*  			CARACTERISTIQUE				  */
+	/* ========================================== */
+	
+	/**
+	 * Enregistre une nouvelle Caracteristique
+	 * 
+	 * @param carac
+	 * @throws UserExceptionRBC
+	 */
+	@Override
+	public void insertCarac(Caracteristique carac) {
+		servRBC.insertCarac(carac);		
+	}
+
+	/**
+	 * Supprime une Caracteristique
+	 * 
+	 * @param carac
+	 * @throws UserExceptionRBC
+	 */
+	@Override
+	public void deleteCarac(Caracteristique carac) {
+		servRBC.deleteCarac(carac);
+	}
+
+	/**
+	 * Renvoie la liste de toutes les Caracteristiques de la base
+	 * 
+	 * @return la liste des caracteristiques
+	 */
+	@Override
+	public ArrayList<Caracteristique> listeCarac() {
+		return servRBC.listeCarac();
+	}
+	
+	
+	//-------------------------------------------------------------------------------------------- Suivant
 }

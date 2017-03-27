@@ -3,9 +3,8 @@ package service.race_bonus_carac;
 import java.util.ArrayList;
 
 import javax.ejb.EJB;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-
+import javax.ejb.LocalBean;
+import javax.ejb.Singleton;
 import clientServeur.race_bonus_carac.interfaces.IFacadeServiceRBC;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBCMsg;
@@ -20,19 +19,18 @@ import service.race_bonus_carac.race.gestion.RaceServiceGestion;
 import service.race_bonus_carac.race.lister.RaceServiceConsultation;
 
 /**
- * Session Bean implements {@link}IFacadeServiceRBC
+ * 
  * 
  * Cette Facade regroupe les accès:
  * 	- à la couche Service Gestion et Consultation pour les Races
  * 	- directement aux couches DAO uniques pour Bonus et Caracteristique
  *  
- *  @author Francois Georgel
- *  
+ *  @author Francois Georgel 
  *  
  */
 
-@Stateless
-@Remote(IFacadeServiceRBC.class)
+@LocalBean
+@Singleton
 public class FacadeServiceRBC implements IFacadeServiceRBC{
 	
 	@EJB

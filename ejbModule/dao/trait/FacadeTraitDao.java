@@ -1,4 +1,4 @@
-package dao;
+package dao.trait;
 
 import java.util.ArrayList;
 
@@ -6,52 +6,40 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
-import clientServeur.exception.UserException;
-import dao.competence.FacadeDaoCompetence;
-import dao.magie.FacadeDaoMagie;
-import dao.passion.FacadeDaoPassion;
-import dao.trait.FacadeTraitDao;
+import dao.trait.consultation.Consult;
 import dao.trait.exception.DoublonException;
 import dao.trait.exception.IdNullException;
 import dao.trait.exception.LibelleNullException;
 import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
+import dao.trait.gestionnaire.Admin;
 import entity.caracteristique.Caracteristique;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import technic.trait.Comportements;
 import technic.trait.Traits;
 
+
 /**
- * Cette classe est la facade de la couche DAO.
- * 
- * Liste et aiguillage des méthodes interragissant avec l'unité de persistance.
- * Elle est instanciée par le serveur d'application à l'appel des différentes classes du package service.
- * Une fois créé, le même objet est utilisé.
- * 
- * @author Groupe
- * @version 20170313
+ * Classe controllant les flux DAO pour la fonctionnalité Trait
+ * @author Jonathan Fuentes
  *
  */
 @LocalBean
 @Singleton
-public class FacadeDAO {
-
+public class FacadeTraitDao {
+	
 	// Attributs de classe
+	@EJB
+	private Admin 			daoAdmin;	
+	@EJB
+	private Consult 		daoConsult;
 	
-	//--------------------------------------- Jonathan
-	@EJB
-	private FacadeTraitDao			daoTrait;
-	
-	//--------------------------------------- ???
-	@EJB
-	private FacadeDaoCompetence 	daoComp;
-	@EJB
-	private FacadeDaoMagie 			facDaoMagie;
-	@EJB
-	private FacadeDaoPassion 		facDaoPassion;
-	
+	private Trait  			traitOut;
+	private Traits 			listeTraitOut;	
+	private Comportement	compOut;
+
 	
 	/* ========================================== */ 
 	/*  				TRAIT					  */
@@ -60,177 +48,189 @@ public class FacadeDAO {
 	// Administration
 	
 	/**
-	 * Persiste un trait
-	 * 
-	 * @param trait
-	 * @throws UserException
-	 * @throws LibelleVideException
-	 * @throws LibelleNullException
-	 * @throws DoublonException
-	 * @throws ObjetNullException
+	 * Persiste un trait dans DAO
+	 * @throws ObjetNullException 
+	 * @throws DoublonException 
+	 * @throws TraitNullException 
+	 * @throws LibelleNullException 
+	 * @throws IdNullException 
+	 * @throws DoublonTraitException 
+	 * @throws LibelleVideException 
 	 */
 	public void ajouterTrait(Trait trait) throws LibelleVideException, LibelleNullException, DoublonException, ObjetNullException {
-		daoTrait.ajouterTrait(trait);	
+		daoAdmin.addTrait(trait);
 	}
-	
+
 	/**
-	 * Modifie un trait de la BDD
-	 * 
-	 * @param trait
-	 * @throws UserException
-	 * @throws ObjetInexistantException
-	 * @throws IdNullException
-	 * @throws LibelleNullException
-	 * @throws ObjetNullException
-	 * @throws LibelleVideException
+	 * Modifie un trait de la DAO
+	 * @throws ObjetNullException 
+	 * @throws ObjetInexistantException 
+	 * @throws LibelleNullException 
+	 * @throws TraitNullException 
+	 * @throws LibelleVideException 
+	 * @throws IdNullException 
+	 * @throws AucunTraitException 
+	 * @throws DoublonTraitException 
 	 */
 	public void modiferTrait(Trait trait) throws ObjetInexistantException, IdNullException, LibelleNullException, ObjetNullException, LibelleVideException {
-		daoTrait.modiferTrait(trait);
+		daoAdmin.updateTrait(trait);
 	}
-	
+
 	/**
-	 * Supprime un trait via son ID
-	 * 
-	 * @param id
-	 * @throws UserException
-	 * @throws ObjetNullException
-	 * @throws IdNullException
+	 * Supprime un trait de la DAO
+	 * @throws ObjetNullException 
+	 * @throws IdNullException 
+	 * @throws AucunTraitException 
 	 */
 	public void supprimerTrait(int id) throws ObjetNullException, IdNullException {
-		daoTrait.supprimerTrait(id);
+		daoAdmin.deleteTrait(id);
+
 	}
 	
 	/**
-	 * Vide la table de trait de la BDD
-	 * 
-	 * @throws UserException
+	 * Vide la table de Trait
+	 * @throws AucunTraitException 
 	 */
 	public void reinitialiserTrait() {
-		daoTrait.reinitialiserTrait();
+		daoAdmin.deleteAllTrait();
 	}
-	
-	// Consultation
-	
+
+	//Consultation
 	/**
-	 * Retourne un trait via son ID
-	 * 
-	 * @param id
-	 * @return
-	 * @throws UserException
-	 * @throws IdNullException
-	 * @throws ObjetInexistantException
+	 * Retourne un trait via son id
+	 * @throws ObjetInexistantException 
+	 * @throws IdNullException 
+	 * @throws AucunTraitException 
 	 */
 	public Trait consulterTraitById(int id) throws IdNullException, ObjetInexistantException {
-		return daoTrait.consulterTraitById(id);
+		//Réinitialisation
+		traitOut = null;
+		
+		//Recherche du trait
+		traitOut = daoConsult.getTraitById(id);
+		
+		//Si le trait n'est pas null, on le convertit en objet prêt pour la couche service
+		if (traitOut != null) traitOut = traitOut.getDto();
+		else {
+			traitOut = null;
+		};
+		return traitOut;
 	}
-	
+
 	/**
 	 * Retourne un trait via son libellé
-	 * 
-	 * @param libelle
-	 * @return
-	 * @throws UserException
-	 * @throws ObjetInexistantException
-	 * @throws LibelleNullException
+	 * @throws ObjetInexistantException 
+	 * @throws LibelleNullException 
+	 * @throws IdNullException 
+	 * @throws AucunTraitException 
 	 */
-	public Trait consulterTraitByLib(String libelle) throws ObjetInexistantException, LibelleNullException {
-		return daoTrait.consulterTraitByLib(libelle);
+	public Trait consulterTraitByLib(String libelle) throws ObjetInexistantException, LibelleNullException {	
+		//Réinitialisation
+		traitOut = null;
+		
+		//Recherche du trait
+		traitOut = daoConsult.getTraitByLib(libelle);
+	
+		//Si non null, on le convertir pour la couche service
+		if (traitOut != null) traitOut = traitOut.getDto();
+
+		return traitOut;
 	}
 	
 	/**
-	 * Retourne la liste complète de trait de la BDD
-	 * @return
+	 * Retourne la liste des traits
 	 */
 	public Traits consulterListTrait() {
-		return daoTrait.consulterListTrait();
+		listeTraitOut = new Traits();
+		
+		for (Trait t : daoConsult.getAllTrait()) {   
+			listeTraitOut.add(t.getDto());
+		}
+		
+		return listeTraitOut;
 	}
-	
+
 	
 	/* ========================================== */ 
 	/*  			COMPORTEMENT				  */
 	/* ========================================== */
 	
-	// Administration
+	//Administration
 	
 	/**
-	 * Persiste un comportement dans la BDD
-	 * 
+	 * Persiste un comporement
 	 * @param comportement
-	 * @throws UserException
+	 * @throws ObjetNullException 
+	 * @throws LibelleNullException 
+	 * @throws LibelleVideException 
 	 * @throws DoublonException
-	 * @throws LibelleVideException
-	 * @throws LibelleNullException
-	 * @throws ObjetNullException
+	 * @throws IdNullException
 	 */
 	public void ajouterComp(Comportement comportement) throws DoublonException, LibelleVideException, LibelleNullException, ObjetNullException {
-		daoTrait.ajouterComp(comportement);
+		daoAdmin.addComp(comportement);
 	}
-	
+
 	/**
-	 * Modifie un comportement de la BDD
-	 * 
+	 * Met à jour un comportement
 	 * @param comportement
-	 * @throws UserException
 	 * @throws IdNullException
 	 * @throws ObjetInexistantException
 	 */
 	public void modifierComp(Comportement comportement) throws IdNullException, ObjetInexistantException {
-		daoTrait.modifierComp(comportement);
+		daoAdmin.updateComp(comportement);
 	}
-	
+
 	/**
-	 * Supprime un comportement de la BDD via son ID
-	 * 
+	 * Supprime un comportement de la BDD
 	 * @param id
-	 * @throws UserException
 	 * @throws ObjetInexistantException
 	 * @throws IdNullException
 	 */
 	public void supprimerComp(int id) throws ObjetInexistantException, IdNullException {
-		daoTrait.supprimerComp(id);
+		daoAdmin.deletecomp(id);
 	}
 	
 	/**
-	 * Vide tous les comportements de la BDD
-	 * @throws UserException
-	 * @throws ObjetInexistantException 
+	 * Vide les tables de comportement
+	 * @throws ObjetInexistantException
 	 */
 	public void reinitialiserComp() throws ObjetInexistantException {
-		daoTrait.reinitialiserComp();
+		daoAdmin.deleteAllComp();
 	}
-	
-	// Consultation
+
+	//Consultation
 	/**
 	 * Retourne un comportement via son ID
-	 * 
 	 * @param id
 	 * @return
-	 * @throws IdNullException 
+	 * @throws IdNullException
 	 * @throws ObjetInexistantException 
 	 */
-	public Comportement consulterCompById(int id) throws IdNullException, ObjetInexistantException  {
-		return daoTrait.consulterCompById(id);
+	public Comportement consulterCompById(int id) throws IdNullException, ObjetInexistantException {
+		return daoConsult.getCompById(id);
 	}
-	
+
 	/**
 	 * Retourne un comportement via son libellé
-	 * 
 	 * @param libelle
 	 * @return
-	 * @throws IdNullException 
+	 * @throws IdNullException
 	 * @throws LibelleVideException 
 	 */
-	public Comportement consulterCompByLib(String libelle) throws IdNullException, LibelleVideException  {
-		return daoTrait.consulterCompByLib(libelle);
+	public Comportement consulterCompByLib(String libelle) throws IdNullException, LibelleVideException {
+		try {
+			compOut = daoConsult.getCompByLib(libelle);
+		} catch (ObjetInexistantException e) {
+		}
+		return compOut;
 	}
-	
+
 	/**
-	 * Retourne la liste complète des comportements
-	 * 
+	 * Retourne la liste complète des compotements de la BDD
 	 * @return
 	 */
 	public Comportements consulterListComp() {
-		return daoTrait.consulterListComp();
+		return daoConsult.getAllComp();
 	}
 	
 	
@@ -247,7 +247,7 @@ public class FacadeDAO {
 	 * @throws ObjetInexistantException 
 	 */
 	public Caracteristique getCarByLib(int id) throws IdNullException, ObjetInexistantException {
-		return daoTrait.getCarByLib(id);
+		return daoConsult.getCarByLib(id);
 	}
 	
 	/**
@@ -260,7 +260,7 @@ public class FacadeDAO {
 	 * @throws LibelleNullException 
 	 */
 	public Caracteristique getCarByLib(String nomCarac) throws ObjetInexistantException, LibelleVideException, LibelleNullException {
-		return daoTrait.getCarByLib(nomCarac);
+		return daoConsult.getCarByLib(nomCarac);
 	}
 	
 	/**
@@ -268,7 +268,7 @@ public class FacadeDAO {
 	 * @return
 	 */
 	public ArrayList<Caracteristique> getAllCar() {
-		return daoTrait.getAllCar();
+		return daoConsult.getAllCar();
 	}
-	
-}
+
+}// Fin classe

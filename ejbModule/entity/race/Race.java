@@ -1,11 +1,16 @@
 package entity.race;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import clientServeur.bonus.IPackable;
+import entity.armurerie.ArmeRace;
 import entity.bonus.Bonus;
 import parametres.bonus.ParamIPackable;
 
@@ -19,8 +24,17 @@ public class Race implements IPackable {
 	private boolean dispo;
 	private int coutXp = ParamIPackable.COUT_XP_RACE;
 	private ArrayList<Bonus> listeBonus;
-	
-	
+//--------------------------------OlivB, creation ArrayList<ArmeRace> pour table d'association------------------	
+	@OneToMany(mappedBy="race", cascade= {CascadeType.ALL}, fetch=FetchType.LAZY)
+	private Collection <ArmeRace> armes = new ArrayList<ArmeRace>();
+	//getter et setter de la collection
+	public Collection<ArmeRace> getArmes() {
+		return armes;
+	}
+	public void setArmes(Collection<ArmeRace> armes) {
+		this.armes = armes;
+	}
+	//--------------------------------fin OlivB---------------------------------------------------------------------	
 	public Race(){
 	}
 	

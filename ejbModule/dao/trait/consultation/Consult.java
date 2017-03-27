@@ -14,7 +14,7 @@ import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.ressources.Erreur;
 import dao.util.Parameter;
-import entity.caracteristique.Caracteristique;
+import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import technic.trait.Comportements;

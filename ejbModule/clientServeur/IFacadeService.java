@@ -1,6 +1,12 @@
 package clientServeur;
 
+import java.util.ArrayList;
+
 import clientServeur.exception.UserException;
+import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
+import entity.race_bonus_carac.bonus.Bonus;
+import entity.race_bonus_carac.caracteristique.Caracteristique;
+import entity.race_bonus_carac.race.Race;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import technic.trait.Comportements;
@@ -135,7 +141,42 @@ public interface IFacadeService {
 	 * @return
 	 */
 	public Comportements consulterListComp	();
-
+	
+	
+	//--------------------------------------------------------------------------------------------  Francois
+	
+	/* ========================================== */ 
+	/*  				RACE					  */
+	/* ========================================== */
+	public void enregistrerRace (Race race) throws UserExceptionRBC;
+	public void supprimerRace(Race race) throws UserExceptionRBC;
+	public void modifierRace(Race race) throws UserExceptionRBC;
+	public ArrayList<Race> listeToutesRaces();
+	public ArrayList<Race> listeRacesJouables();
+	public Race RechRaceParNom(String nom) throws UserExceptionRBC;
+	public Race RechRaceParId(int id) throws UserExceptionRBC;
+	
+	
+	/* ========================================== */ 
+	/*  			CARACTERISTIQUE				  */
+	/* ========================================== */
+	public void insertBonus (Bonus bonus) throws UserExceptionRBC;
+	public ArrayList<Bonus> listeTousBonus();
+	public void deleteBonus(Bonus bonus) throws UserExceptionRBC;
+	
+		
+	
+	/* ========================================== */ 
+	/*  				BONUS					  */
+	/* ========================================== */
+	public void insertCarac (Caracteristique carac);
+	public void deleteCarac(Caracteristique carac);	
+	public ArrayList<Caracteristique> listeCarac();
+	
+	
+	
+	
+	
 
 	//-------------------------------------------------------------------------------------------- SUIVANT
 	

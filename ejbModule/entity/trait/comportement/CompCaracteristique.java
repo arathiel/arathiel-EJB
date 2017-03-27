@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import entity.caracteristique.Caracteristique;
+import entity.race_bonus_carac.caracteristique.Caracteristique;
 
 /**
  * Classe permettant la gestion de comportement influençant les caractéristiques

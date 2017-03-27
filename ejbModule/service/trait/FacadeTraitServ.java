@@ -1,12 +1,11 @@
 package service.trait;
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
-import javax.ejb.Remote;
 import javax.ejb.Singleton;
-import javax.ejb.Stateless;
 
-import clientServeur.IFacadeService;
 import clientServeur.exception.UserException;
 import dao.trait.exception.DoublonException;
 import dao.trait.exception.IdNullException;
@@ -15,6 +14,7 @@ import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
 import dao.trait.ressources.Erreur;
+import entity.caracteristique.Caracteristique;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import service.trait.consultation.TraitServConsult;
@@ -44,6 +44,7 @@ public class FacadeTraitServ {
 	
 	private Trait  				traitOut;
 	private Comportement		compOut;
+	private Caracteristique		carOut;
 	
 	
 	/* ========================================== */ 
@@ -55,8 +56,6 @@ public class FacadeTraitServ {
 	/**
 	 * Persiste un trait dans DAO
 	 * @throws UserException 
-	 * @throws TraitNullException 
-	 * @throws LibelleNullException 
 	 */
 	public void ajouterTrait(Trait trait) throws UserException  {
 		
@@ -237,8 +236,9 @@ public class FacadeTraitServ {
 		
 		try {
 			compOut = servConsult.consulterCompById(id);
-		} catch (IdNullException e) {
-			if (e instanceof IdNullException)	throw new UserException(Erreur.COMP_IDNULL.getMessage());
+		} catch (IdNullException | ObjetInexistantException e) {
+			if (e instanceof IdNullException)			throw new UserException(Erreur.COMP_IDNULL.getMessage());
+			if (e instanceof ObjetInexistantException)	throw new UserException(Erreur.COMP_INEXISTANT.getMessage());
 		}
 		
 		return compOut;
@@ -249,13 +249,69 @@ public class FacadeTraitServ {
 		
 		try {
 			compOut = servConsult.consulterCompByLib(libelle);
-		} catch (IdNullException e) {
-			if (e instanceof IdNullException)	throw new UserException(Erreur.COMP_LIBNULL.getMessage());
+		} catch (IdNullException | LibelleVideException e) {
+			if (e instanceof IdNullException)		throw new UserException(Erreur.COMP_LIBNULL.getMessage());
+			if (e instanceof LibelleVideException)	throw new UserException(Erreur.COMP_LIBVIDE.getMessage());
 		}
 		return compOut;
 	}
 
 	public Comportements consulterListComp() {
 		return servConsult.consulterListComp();
+	}
+	
+	
+	/* ========================================== */ 
+	/*  			CARACTERISTIQUE				  */
+	/* ========================================== */
+	
+	/**
+	 * Retourne une Caractéristique via le nom (Aucun contrôle)
+	 * @param nomCarac
+	 * @return
+	 * @author Jonathan
+	 * @throws UserException 
+	 */
+	public Caracteristique getCarByLib(int id) throws UserException {
+		carOut = null;
+				
+		try {
+			carOut = servConsult.getCarByLib(id);
+		} catch (IdNullException | ObjetInexistantException e) {
+			if (e instanceof IdNullException)			throw new UserException(Erreur.CAR_IDNULL.getMessage());
+			if (e instanceof ObjetInexistantException)	throw new UserException(Erreur.CAR_INEXISTANT.getMessage());
+		}
+				
+		return carOut = null
+;
+	}
+	
+	/**
+	 * Retourne une Caractéristique via le nom (Aucun contrôle)
+	 * @param nomCarac
+	 * @return
+	 * @author Jonathan
+	 * @throws UserException 
+	 */
+	public Caracteristique getCarByLib(String nomCarac) throws UserException {
+		carOut = null;
+		
+		try {
+			carOut = servConsult.getCarByLib(nomCarac);
+		} catch (ObjetInexistantException | LibelleVideException | LibelleNullException e) {
+			if (e instanceof LibelleVideException)		throw new UserException(Erreur.CAR_LIBVIDE.getMessage());
+			if (e instanceof LibelleNullException)		throw new UserException(Erreur.CAR_LIBNULL.getMessage());
+			if (e instanceof ObjetInexistantException)	throw new UserException(Erreur.CAR_INEXISTANT.getMessage());
+		}
+				
+		return carOut;
+	}
+	
+	/**
+	 * Retourne la liste complète des caractéristiques de la BDD
+	 * @return
+	 */
+	public ArrayList<Caracteristique> getAllCar() {
+		return servConsult.getAllCar();
 	}
 }

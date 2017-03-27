@@ -126,7 +126,11 @@ public class Admin {
 											
 													//On vérifie que le comportement possède un e caractéristique avant de chercher en base
 													if(carIn != null) {
-														carHib	= daoConsult.getCarByLib(carIn.getNomCarac());
+														try {
+															carHib	= daoConsult.getCarByLib(carIn.getNomCarac());
+														} catch (ObjetInexistantException e) {
+															System.out.println(e + "" + e.getMessage());
+														}
 														((CompCaracteristique) comp).setCaracteristique(carHib);
 													}
 												}
@@ -416,7 +420,11 @@ public class Admin {
 							carIn 	= ((CompCaracteristique) comportement).getCaracteristique();
 							
 							if (carIn != null) {
-								carHib	= daoConsult.getCarByLib(carIn.getNomCarac());
+								try {
+									carHib	= daoConsult.getCarByLib(carIn.getNomCarac());
+								} catch (ObjetInexistantException e) {
+									System.out.println(e + "" + e.getMessage());
+								}
 								((CompCaracteristique) comportement).setCaracteristique(carHib);
 							}
 							
@@ -470,7 +478,11 @@ public class Admin {
 					carIn 	= ((CompCaracteristique) comportement).getCaracteristique();
 					
 					if (carIn != null) {
-						carHib	= daoConsult.getCarByLib(carIn.getNomCarac());
+						try {
+							carHib	= daoConsult.getCarByLib(carIn.getNomCarac());
+						} catch (LibelleVideException | LibelleNullException e) {
+							System.out.println(e + "" + e.getMessage());
+						}
 						((CompCaracteristique) comportement).setCaracteristique(carHib);
 					}
 					

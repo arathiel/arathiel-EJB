@@ -1,5 +1,7 @@
 package dao.trait;
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
@@ -12,6 +14,7 @@ import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
 import dao.trait.gestionnaire.Admin;
+import entity.caracteristique.Caracteristique;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import technic.trait.Comportements;
@@ -201,8 +204,9 @@ public class FacadeTraitDao {
 	 * @param id
 	 * @return
 	 * @throws IdNullException
+	 * @throws ObjetInexistantException 
 	 */
-	public Comportement consulterCompById(int id) throws IdNullException {
+	public Comportement consulterCompById(int id) throws IdNullException, ObjetInexistantException {
 		return daoConsult.getCompById(id);
 	}
 
@@ -211,8 +215,9 @@ public class FacadeTraitDao {
 	 * @param libelle
 	 * @return
 	 * @throws IdNullException
+	 * @throws LibelleVideException 
 	 */
-	public Comportement consulterCompByLib(String libelle) throws IdNullException {
+	public Comportement consulterCompByLib(String libelle) throws IdNullException, LibelleVideException {
 		try {
 			compOut = daoConsult.getCompByLib(libelle);
 		} catch (ObjetInexistantException e) {
@@ -226,6 +231,44 @@ public class FacadeTraitDao {
 	 */
 	public Comportements consulterListComp() {
 		return daoConsult.getAllComp();
+	}
+	
+	
+	/* ========================================== */ 
+	/*  			CARACTERISTIQUE				  */
+	/* ========================================== */
+	
+	/**
+	 * Retourne une Caractéristique via le nom (Aucun contrôle)
+	 * @param nomCarac
+	 * @return
+	 * @author Jonathan
+	 * @throws IdNullException 
+	 * @throws ObjetInexistantException 
+	 */
+	public Caracteristique getCarByLib(int id) throws IdNullException, ObjetInexistantException {
+		return daoConsult.getCarByLib(id);
+	}
+	
+	/**
+	 * Retourne une Caractéristique via le nom (Aucun contrôle)
+	 * @param nomCarac
+	 * @return
+	 * @author Jonathan
+	 * @throws ObjetInexistantException 
+	 * @throws LibelleVideException 
+	 * @throws LibelleNullException 
+	 */
+	public Caracteristique getCarByLib(String nomCarac) throws ObjetInexistantException, LibelleVideException, LibelleNullException {
+		return daoConsult.getCarByLib(nomCarac);
+	}
+	
+	/**
+	 * Retourne la liste complète des caractéristiques de la BDD
+	 * @return
+	 */
+	public ArrayList<Caracteristique> getAllCar() {
+		return daoConsult.getAllCar();
 	}
 
 }// Fin classe

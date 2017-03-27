@@ -1,11 +1,19 @@
 package service;
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import clientServeur.IFacadeService;
 import clientServeur.exception.UserException;
+import dao.trait.exception.IdNullException;
+import dao.trait.exception.LibelleNullException;
+import dao.trait.exception.LibelleVideException;
+import dao.trait.exception.ObjetInexistantException;
+import dao.trait.ressources.Erreur;
+import entity.caracteristique.Caracteristique;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import service.competence.FacadeServiceCompetence;
@@ -32,6 +40,7 @@ public class FacadeService implements IFacadeService {
 	@EJB
 	private FacadeTraitServ			servTrait;
 	
+	//--------------------------------------- Suivant
 	@EJB
 	private FacadeServiceCompetence servComp;
 
@@ -199,5 +208,38 @@ public class FacadeService implements IFacadeService {
 		return servTrait.consulterListComp();
 	}
 
+	/* ========================================== */ 
+	/*  			CARACTERISTIQUE				  */
+	/* ========================================== */
+	
+	/**
+	 * Retourne une Caractéristique via le nom (Aucun contrôle)
+	 * @param nomCarac
+	 * @return
+	 * @author Jonathan
+	 * @throws UserException 
+	 */
+	public Caracteristique getCarByLib(int id) throws UserException {
+		return servTrait.getCarByLib(id);
+	}
+	
+	/**
+	 * Retourne une Caractéristique via le nom (Aucun contrôle)
+	 * @param nomCarac
+	 * @return
+	 * @author Jonathan
+	 * @throws UserException 
+	 */
+	public Caracteristique getCarByLib(String nomCarac) throws UserException {
+		return servTrait.getCarByLib(nomCarac);
+	}
+	
+	/**
+	 * Retourne la liste complète des caractéristiques de la BDD
+	 * @return
+	 */
+	public ArrayList<Caracteristique> getAllCar() {
+		return servTrait.getAllCar();
+	}
 	
 }

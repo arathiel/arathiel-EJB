@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
-import clientServeur.race_bonus_carac.interfaces.IFacadeServiceRBC;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBCMsg;
 import dao.race_bonus_carac.bonus.DaoBonus;
@@ -31,7 +30,7 @@ import service.race_bonus_carac.race.lister.RaceServiceConsultation;
 
 @LocalBean
 @Singleton
-public class FacadeServiceRBC implements IFacadeServiceRBC{
+public class FacadeServiceRBC{
 	
 	@EJB
 	RaceServiceGestion	sRaceGestion;
@@ -47,45 +46,37 @@ public class FacadeServiceRBC implements IFacadeServiceRBC{
 
 	
 	//Méthodes de gestion des Races
-	@Override
 	public void enregistrerRace(Race race) throws UserExceptionRBC {
 		sRaceGestion.enregistrerRace(race);
 	}
 
-	@Override
 	public void supprimerRace(Race race) throws UserExceptionRBC {
 		sRaceGestion.supprimerRace(race);
 	}
 
-	@Override
 	public void modifierRace(Race race) throws UserExceptionRBC {
 		sRaceGestion.modifierRace(race);
 	}
 
 	//Méthodes de consultation des Races
-	@Override
 	public ArrayList<Race> listeToutesRaces() {
 		return sRaceConsult.listeToutesRaces();
 	}
 
-	@Override
 	public ArrayList<Race> listeRacesJouables() {
 		return sRaceConsult.listeRacesJouables();
 	}
 
-	@Override
 	public Race RechRaceParNom(String nom) throws UserExceptionRBC {
 		System.out.println("rechrace par nom facade service Rbc");
 		return sRaceConsult.RechRaceParNom(nom);
 	}
 
-	@Override
 	public Race RechRaceParId(int id) throws UserExceptionRBC {
 		return sRaceConsult.RechRaceParId(id);
 	}
 
 	//Méthodes de Gestion et Consultation des Bonus
-	@Override
 	public void insertBonus(Bonus bonus) throws UserExceptionRBC   {
 		try {
 			dBonus.insertBonus(bonus);
@@ -95,12 +86,10 @@ public class FacadeServiceRBC implements IFacadeServiceRBC{
 		}	
 	}
 
-	@Override
 	public ArrayList<Bonus> listeTousBonus() {
 		return dBonus.listeTousBonus();
 	}
 
-	@Override
 	public void deleteBonus(Bonus bonus) throws UserExceptionRBC {
 		try {
 			dBonus.deleteBonus(bonus);
@@ -115,17 +104,14 @@ public class FacadeServiceRBC implements IFacadeServiceRBC{
 	
 	
 	//Méthodes de Gestion et Consultation des Caractéristiques
-	@Override
 	public void insertCarac(Caracteristique carac) {
 		dCarac.insertCarac(carac);
 	}
 
-	@Override
 	public void deleteCarac(Caracteristique carac) {
 		dCarac.deleteCarac(carac);
 	}
 
-	@Override
 	public ArrayList<Caracteristique> listeCarac() {
 		return dCarac.listeCarac();
 	}   

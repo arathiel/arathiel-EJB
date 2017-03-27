@@ -8,8 +8,8 @@ import javax.ejb.Singleton;
 
 import clientServeur.exception.UserException;
 import dao.competence.FacadeDaoCompetence;
-import dao.magie.FacadeDaoMagie;
-import dao.passion.FacadeDaoPassion;
+//import dao.magie.FacadeDaoMagie;
+//import dao.passion.FacadeDaoPassion;
 import dao.trait.FacadeTraitDao;
 import dao.trait.exception.DoublonException;
 import dao.trait.exception.IdNullException;
@@ -47,10 +47,10 @@ public class FacadeDAO {
 	//--------------------------------------- ???
 	@EJB
 	private FacadeDaoCompetence 	daoComp;
-	@EJB
-	private FacadeDaoMagie 			facDaoMagie;
-	@EJB
-	private FacadeDaoPassion 		facDaoPassion;
+//	@EJB
+//	private FacadeDaoMagie 			facDaoMagie;
+//	@EJB
+//	private FacadeDaoPassion 		facDaoPassion;
 	
 	
 	/* ========================================== */ 

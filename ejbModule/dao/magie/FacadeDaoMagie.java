@@ -18,8 +18,8 @@ import entity.magie.MotDePouvoir;
  */
 @LocalBean
 @Singleton
-public class FacadeDaoMagie {
-
+public class FacadeDaoMagie 
+{
 	@EJB
 	private MagieDaoGestion magieGestion;
 	@EJB

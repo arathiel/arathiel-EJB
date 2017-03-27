@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import dao.race_bonus_carac.param.Requetes;
+import dao.util.Parameter;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 
 /**
@@ -20,7 +21,7 @@ import entity.race_bonus_carac.caracteristique.Caracteristique;
 @Singleton
 public class DaoCarac {
 
-	@PersistenceContext(unitName="A1Persistence")
+	@PersistenceContext(unitName=Parameter.UNITNAME_JUNONARATHIEL)
 	EntityManager em;
 	
 

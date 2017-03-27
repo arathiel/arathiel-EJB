@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import dao.race_bonus_carac.exception.DaoExceptionRBCMsg;
 import dao.race_bonus_carac.param.Requetes;
+import dao.util.Parameter;
 import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import entity.race_bonus_carac.race.Race;
 
@@ -30,7 +31,7 @@ import entity.race_bonus_carac.race.Race;
 @Singleton
 public class RaceDaoConsultation {
 	
-	@PersistenceContext(unitName="A1Persistence")
+	@PersistenceContext(unitName=Parameter.UNITNAME_JUNONARATHIEL)
 	EntityManager em;
 	
 	/**

@@ -13,6 +13,7 @@ import dao.race_bonus_carac.param.Requetes;
 import dao.race_bonus_carac.bonus.DaoBonus;
 import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import dao.race_bonus_carac.race.consultation.RaceDaoConsultation;
+import dao.util.Parameter;
 import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.race.Race;
 
@@ -40,7 +41,7 @@ public class RaceDaoGestion {
 	DaoBonus daoBonus;
 	
 	
-	@PersistenceContext(unitName="A1Persistence")
+	@PersistenceContext(unitName=Parameter.UNITNAME_JUNONARATHIEL)
 	EntityManager em;
 	
 	/**

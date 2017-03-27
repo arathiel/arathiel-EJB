@@ -21,7 +21,7 @@ import service.race_bonus_carac.race.lister.RaceServiceConsultation;
 /**
  * 
  * 
- * Cette Facade regroupe les accès:
+ * Cette Facade regroupe les acces:
  * 	- à la couche Service Gestion et Consultation pour les Races
  * 	- directement aux couches DAO uniques pour Bonus et Caracteristique
  *  

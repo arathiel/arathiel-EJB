@@ -21,6 +21,7 @@ import clientServeur.bonus.IBonussable;
 public class Caracteristique implements IBonussable{
 	
 	@Id
+	private String nomCarac;
 	private String idCarac;
 	private String aspect;
 	private String qualite;
@@ -45,5 +46,10 @@ public class Caracteristique implements IBonussable{
 		this.qualite = qualite;
 	}
 	
-
+	public String getNomCarac() {
+		return nomCarac;
+	}
+	public void setNomCarac(String nomCarac) {
+		this.nomCarac = nomCarac;
+	}
 }

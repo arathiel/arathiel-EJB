@@ -14,12 +14,7 @@ import entity.race_bonus_carac.race.Race;
 
 
 /**
- *  Classe de contact de la couche persistence.
- *  
- *  ** ATTENTION **
- *  
- *  Cette classe est codée en remote pour tester la couche DAO,
- *  Elle devra être recodée en LocalBean quand la couche service sera implémentée 
+ *  Classe de contact de la couche persistence pour l'entity Race
  *  
  *  
  *  

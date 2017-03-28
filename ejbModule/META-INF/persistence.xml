@@ -3,10 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
+	
 	<persistence-unit name="Ahibernate">
+	
 		<!-- new provider -->
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>java:jboss/datasources/OracleDS</jta-data-source>
+		
+		<!-- ***************************************************************************************************** -->
+		<!-- ATTENTION!!!! Pensez a creer cette nouvelle Datasource dans votre repertoire WildFly - standalone.xml -->
+		<!-- ***************************************************************************************************** -->
+		<jta-data-source>java:jboss/datasources/ArathielDS</jta-data-source>
+		
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
@@ -15,5 +22,6 @@
 			<property name="hibernate.use_sql_comments" value="true" />
 			<property name="hibernate.default_schema" value="arathiel" />
 		</properties>
+		
 	</persistence-unit>
 </persistence>

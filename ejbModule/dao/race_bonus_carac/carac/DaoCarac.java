@@ -12,7 +12,7 @@ import dao.util.Parameter;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 
 /**
- * Classe qui va gérer la dao de l'entity Caracteristique 
+ * Classe qui va gérer la dao de l'entity {@link}Caracteristique 
  * 
  * @author Francois Georgel
  *

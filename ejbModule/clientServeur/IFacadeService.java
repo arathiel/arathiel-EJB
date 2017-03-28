@@ -2,6 +2,7 @@ package clientServeur;
 
 import java.util.ArrayList;
 
+
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
 import entity.race_bonus_carac.bonus.Bonus;
@@ -21,6 +22,7 @@ import technic.trait.Traits;
  * @version 2017/03/13
  *
  */
+
 public interface IFacadeService {
 
 //-------------------------------------------------------------------------------------------- Jonathan

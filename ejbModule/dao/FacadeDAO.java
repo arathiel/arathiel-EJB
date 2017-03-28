@@ -8,6 +8,10 @@ import javax.ejb.Singleton;
 
 import clientServeur.exception.UserException;
 import dao.competence.FacadeDaoCompetence;
+import dao.race_bonus_carac.bonus.DaoBonus;
+import dao.race_bonus_carac.carac.DaoCarac;
+import dao.race_bonus_carac.exception.DaoExceptionRBC;
+import dao.race_bonus_carac.race.FacadeDaoRace;
 //import dao.magie.FacadeDaoMagie;
 //import dao.passion.FacadeDaoPassion;
 import dao.trait.FacadeTraitDao;
@@ -17,7 +21,9 @@ import dao.trait.exception.LibelleNullException;
 import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
+import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
+import entity.race_bonus_carac.race.Race;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import technic.trait.Comportements;
@@ -51,6 +57,16 @@ public class FacadeDAO {
 //	private FacadeDaoMagie 			facDaoMagie;
 //	@EJB
 //	private FacadeDaoPassion 		facDaoPassion;
+	
+	//--------------------------------------- Francois
+	@EJB
+	private FacadeDaoRace	fDaoRace;
+	
+	@EJB
+	private DaoBonus dBonus;
+	
+	@EJB
+	private DaoCarac dCarac;
 	
 	
 	/* ========================================== */ 
@@ -270,5 +286,76 @@ public class FacadeDAO {
 	public ArrayList<Caracteristique> getAllCar() {
 		return daoTrait.getAllCar();
 	}
+
 	
+	//--------------------------------------------------------------------------------- Francois
+	
+	/* ========================================== */ 
+	/*  				BONUS					  */
+	/* ========================================== */
+	
+	public void insertBonus(Bonus bonus) throws DaoExceptionRBC {
+		dBonus.insertBonus(bonus);
+	}
+
+	public void deleteBonus(Bonus bonus) throws DaoExceptionRBC {
+		dBonus.deleteBonus(bonus);
+		
+	}
+
+	public ArrayList<Bonus> listeTousBonus() {
+		return dBonus.listeTousBonus();
+	}
+
+	
+	/* ========================================== */ 
+	/*  			CARACTERISTIQUE				  */
+	/* ========================================== */
+	public void insertCarac(Caracteristique carac) {
+		dCarac.insertCarac(carac);
+	}
+
+	public void deleteCarac(Caracteristique carac) {
+		dCarac.deleteCarac(carac);		
+	}
+
+	public ArrayList<Caracteristique> listeCarac() {		
+		return dCarac.listeCarac();
+	}
+	
+	/* ========================================== */ 
+	/*  				RACE					  */
+	/* ========================================== */
+	public void insertRace(Race race) throws DaoExceptionRBC {		
+		fDaoRace.insertRace(race);
+	}
+
+
+	public void deleteRace(Race race) throws DaoExceptionRBC {
+		fDaoRace.deleteRace(race);
+	} 
+
+	public void updateRace(Race race) throws DaoExceptionRBC {
+		fDaoRace.updateRace(race);
+	}
+
+
+	public ArrayList<Race> listeToutesRaces() {
+		return fDaoRace.listeToutesRaces();
+	}
+
+
+	public ArrayList<Race> listeRacesJouables() {
+		return fDaoRace.listeRacesJouables();
+	}
+
+
+	public Race RechRaceParNom(String nom) throws DaoExceptionRBC {
+		return fDaoRace.RechRaceParNom(nom);
+	}
+
+
+	public Race RechRaceParId(int id) throws DaoExceptionRBC {
+		return fDaoRace.RechRaceParId(id);
+	}	
 }

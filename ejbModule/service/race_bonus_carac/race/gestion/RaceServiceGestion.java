@@ -9,8 +9,8 @@ import javax.ejb.Singleton;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBCMsg;
 import dao.race_bonus_carac.exception.DaoExceptionRBCMsg;
+import dao.FacadeDAO;
 import dao.race_bonus_carac.exception.DaoExceptionRBC;
-import dao.race_bonus_carac.race.FacadeDaoRace;
 import entity.race_bonus_carac.race.Race;
 
 /**
@@ -28,7 +28,7 @@ public class RaceServiceGestion {
 	
 	
 	@EJB
-	FacadeDaoRace fDaoRace;
+	FacadeDAO fDao;
 
 	
 	/**
@@ -43,7 +43,7 @@ public class RaceServiceGestion {
 		testRaceValide(race);
 		
 		try {
-			fDaoRace.insertRace(race);
+			fDao.insertRace(race);
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NOM_INVALIDE.getMsg()))	{ throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NOM_INVALIDE);}
 			if (e.getMessage().equals(DaoExceptionRBCMsg.DOUBLON_ID_RACE.getMsg()))		{ throw new UserExceptionRBC(UserExceptionRBCMsg.DOUBLON_ID_RACE);}
@@ -63,7 +63,7 @@ public class RaceServiceGestion {
 	 */
 	public void supprimerRace(Race race) throws UserExceptionRBC{	
 		try {
-			fDaoRace.deleteRace(race);
+			fDao.deleteRace(race);
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) 	{ throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NO_EXIST);}
 			if (e.getMessage().equals(DaoExceptionRBCMsg.PB_DELETE_RACE.getMsg()))		{ throw new UserExceptionRBC(UserExceptionRBCMsg.PB_DELETE_RACE);}
@@ -83,7 +83,7 @@ public class RaceServiceGestion {
 	 */
 	public void modifierRace(Race race) throws UserExceptionRBC{
 		try {
-			fDaoRace.updateRace(race);
+			fDao.updateRace(race);
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST))				{ throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NO_EXIST);}
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NOM_INVALIDE.getMsg()))	{ throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NOM_INVALIDE);}

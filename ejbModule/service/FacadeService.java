@@ -338,7 +338,7 @@ public class FacadeService implements IFacadeService {
 	 */
 	@Override
 	public void insertBonus(Bonus bonus) throws UserExceptionRBC {
-		servRBC.insertBonus(bonus);
+		servRBC.ajouterBonus(bonus);
 	}
 
 	/**
@@ -360,7 +360,7 @@ public class FacadeService implements IFacadeService {
 	 */
 	@Override
 	public void deleteBonus(Bonus bonus) throws UserExceptionRBC {
-		servRBC.deleteBonus(bonus);		
+		servRBC.supprimerBonus(bonus);		
 	}
 
 	
@@ -376,7 +376,7 @@ public class FacadeService implements IFacadeService {
 	 */
 	@Override
 	public void insertCarac(Caracteristique carac) {
-		servRBC.insertCarac(carac);		
+		servRBC.ajouterCarac(carac);		
 	}
 
 	/**
@@ -387,7 +387,7 @@ public class FacadeService implements IFacadeService {
 	 */
 	@Override
 	public void deleteCarac(Caracteristique carac) {
-		servRBC.deleteCarac(carac);
+		servRBC.supprimerCarac(carac);
 	}
 
 	/**

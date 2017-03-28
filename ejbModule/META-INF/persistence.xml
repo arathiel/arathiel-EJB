@@ -8,6 +8,10 @@
 	
 		<!-- new provider -->
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		
+		<!-- ***************************************************************************************************** -->
+		<!-- ATTENTION!!!! Pensez a creer cette nouvelle Datasource dans votre repertoire WildFly - standalone.xml -->
+		<!-- ***************************************************************************************************** -->
 		<jta-data-source>java:jboss/datasources/ArathielDS</jta-data-source>
 		
 		<properties>

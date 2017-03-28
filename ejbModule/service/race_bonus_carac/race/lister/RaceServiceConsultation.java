@@ -8,9 +8,9 @@ import javax.ejb.Singleton;
 
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBCMsg;
+import dao.FacadeDAO;
 import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import dao.race_bonus_carac.exception.DaoExceptionRBCMsg;
-import dao.race_bonus_carac.race.FacadeDaoRace;
 import entity.race_bonus_carac.race.Race;
 
 
@@ -28,7 +28,7 @@ import entity.race_bonus_carac.race.Race;
 public class RaceServiceConsultation {
 
 	@EJB
-	FacadeDaoRace fDaoRace;
+	FacadeDAO fDao;
 	
 	
 	/**
@@ -37,7 +37,7 @@ public class RaceServiceConsultation {
 	 */
 	public ArrayList<Race> listeToutesRaces() {
 		ArrayList<Race> liste = new ArrayList<Race>();
-		liste = fDaoRace.listeToutesRaces();
+		liste = fDao.listeToutesRaces();
 		return liste;		
 	}
 	
@@ -49,7 +49,7 @@ public class RaceServiceConsultation {
 	 */
 	public ArrayList<Race> listeRacesJouables() {
 		ArrayList<Race> liste = new ArrayList<Race>();
-		liste = fDaoRace.listeRacesJouables();
+		liste = fDao.listeRacesJouables();
 		return liste;		
 	}
 
@@ -65,7 +65,7 @@ public class RaceServiceConsultation {
 		
 		Race race = null;
 		try {
-			race = fDaoRace.RechRaceParNom(nom);
+			race = fDao.RechRaceParNom(nom);
 			
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {
@@ -93,7 +93,7 @@ public class RaceServiceConsultation {
 		
 		Race race = null;
 		try {
-			race = fDaoRace.RechRaceParId(id);
+			race = fDao.RechRaceParId(id);
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NO_EXIST);}
 			else {throw new UserExceptionRBC(UserExceptionRBCMsg.PB_RECH_RACE);}

@@ -7,13 +7,13 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBCMsg;
-import dao.race_bonus_carac.bonus.DaoBonus;
-import dao.race_bonus_carac.carac.DaoCarac;
 import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import dao.race_bonus_carac.exception.DaoExceptionRBCMsg;
 import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.race_bonus_carac.race.Race;
+import service.race_bonus_carac.bonus.ServiceBonus;
+import service.race_bonus_carac.carac.ServiceCarac;
 import service.race_bonus_carac.race.gestion.RaceServiceGestion;
 import service.race_bonus_carac.race.lister.RaceServiceConsultation;
 
@@ -21,8 +21,8 @@ import service.race_bonus_carac.race.lister.RaceServiceConsultation;
  * 
  * 
  * Cette Facade regroupe les acces:
- * 	- à la couche Service Gestion et Consultation pour les Races
- * 	- directement aux couches DAO uniques pour Bonus et Caracteristique
+ * 	- aux classes Service Gestion et Consultation pour les Races
+ * 	- directement aux classes Service uniques pour Bonus et Caracteristique
  *  
  *  @author Francois Georgel 
  *  
@@ -39,10 +39,10 @@ public class FacadeServiceRBC{
 	RaceServiceConsultation sRaceConsult;
 	
 	@EJB
-	DaoBonus dBonus;
+	ServiceBonus sBonus;
 	
 	@EJB
-	DaoCarac dCarac;
+	ServiceCarac sCarac;
 
 	
 	//Méthodes de gestion des Races
@@ -77,9 +77,9 @@ public class FacadeServiceRBC{
 	}
 
 	//Méthodes de Gestion et Consultation des Bonus
-	public void insertBonus(Bonus bonus) throws UserExceptionRBC   {
+	public void ajouterBonus(Bonus bonus) throws UserExceptionRBC   {
 		try {
-			dBonus.insertBonus(bonus);
+			sBonus.ajouterBonus(bonus);
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.DOUBLON_BONUS.getMsg())) {throw new UserExceptionRBC(UserExceptionRBCMsg.DOUBLON_BONUS);}
 			else {throw new UserExceptionRBC(UserExceptionRBCMsg.PB_INSERT_BONUS);}
@@ -87,12 +87,12 @@ public class FacadeServiceRBC{
 	}
 
 	public ArrayList<Bonus> listeTousBonus() {
-		return dBonus.listeTousBonus();
+		return sBonus.listeTousBonus();
 	}
 
-	public void deleteBonus(Bonus bonus) throws UserExceptionRBC {
+	public void supprimerBonus(Bonus bonus) throws UserExceptionRBC {
 		try {
-			dBonus.deleteBonus(bonus);
+			sBonus.supprimerBonus(bonus);
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.BONUS_NO_EXISTS.getMsg())) {throw new UserExceptionRBC(UserExceptionRBCMsg.BONUS_NO_EXISTS);}
 			else {throw new UserExceptionRBC(UserExceptionRBCMsg.PB_DELETE_BONUS);}
@@ -104,16 +104,16 @@ public class FacadeServiceRBC{
 	
 	
 	//Méthodes de Gestion et Consultation des Caractéristiques
-	public void insertCarac(Caracteristique carac) {
-		dCarac.insertCarac(carac);
+	public void ajouterCarac(Caracteristique carac) {
+		sCarac.ajouterCarac(carac);
 	}
 
-	public void deleteCarac(Caracteristique carac) {
-		dCarac.deleteCarac(carac);
+	public void supprimerCarac(Caracteristique carac) {
+		sCarac.supprimerCarac(carac);
 	}
 
 	public ArrayList<Caracteristique> listeCarac() {
-		return dCarac.listeCarac();
+		return sCarac.listeCarac();
 	}   
     
 }

@@ -8,6 +8,8 @@ import javax.ejb.Singleton;
 
 import clientServeur.exception.UserException;
 import dao.competence.FacadeDaoCompetence;
+import dao.race_bonus_carac.bonus.DaoBonus;
+import dao.race_bonus_carac.carac.DaoCarac;
 import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import dao.race_bonus_carac.race.FacadeDaoRace;
 //import dao.magie.FacadeDaoMagie;
@@ -57,7 +59,14 @@ public class FacadeDAO {
 //	private FacadeDaoPassion 		facDaoPassion;
 	
 	//--------------------------------------- Francois
+	@EJB
 	private FacadeDaoRace	fDaoRace;
+	
+	@EJB
+	private DaoBonus dBonus;
+	
+	@EJB
+	private DaoCarac dCarac;
 	
 	
 	/* ========================================== */ 
@@ -285,38 +294,33 @@ public class FacadeDAO {
 	/*  				BONUS					  */
 	/* ========================================== */
 	
-	public void insertBonus(Bonus bonus) {
-		// TODO Auto-generated method stub
-		
+	public void insertBonus(Bonus bonus) throws DaoExceptionRBC {
+		dBonus.insertBonus(bonus);
 	}
 
-	public void deleteBonus(Bonus bonus) {
-		// TODO Auto-generated method stub
+	public void deleteBonus(Bonus bonus) throws DaoExceptionRBC {
+		dBonus.deleteBonus(bonus);
 		
 	}
 
 	public ArrayList<Bonus> listeTousBonus() {
-		// TODO Auto-generated method stub
-		return null;
+		return dBonus.listeTousBonus();
 	}
 
 	
 	/* ========================================== */ 
 	/*  			CARACTERISTIQUE				  */
 	/* ========================================== */
-	public void insertCarac() {
-		// TODO Auto-generated method stub
-		
+	public void insertCarac(Caracteristique carac) {
+		dCarac.insertCarac(carac);
 	}
 
-	public void deleteCarac() {
-		// TODO Auto-generated method stub
-		
+	public void deleteCarac(Caracteristique carac) {
+		dCarac.deleteCarac(carac);		
 	}
 
-	public ArrayList<Caracteristique> listeCarac() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Caracteristique> listeCarac() {		
+		return dCarac.listeCarac();
 	}
 	
 	/* ========================================== */ 

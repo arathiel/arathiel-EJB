@@ -27,12 +27,12 @@ public class ServiceCarac {
 	
 
 	public void ajouterCarac(Caracteristique carac) {
-		fDao.insertCarac();
+		fDao.insertCarac(carac);
 		
 	}
 
 	public void supprimerCarac(Caracteristique carac) {
-		fDao.deleteCarac();
+		fDao.deleteCarac(carac);
 		
 	}
 

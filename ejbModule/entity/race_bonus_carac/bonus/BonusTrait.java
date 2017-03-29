@@ -37,6 +37,7 @@ public class BonusTrait extends Bonus{
 	public BonusTrait (Trait trait, int valeur) {
 		this.traitAssocie = trait;
 		this.setValeurBonus(valeur);
+		this.calculerCoutXp();
 	}
 
 	

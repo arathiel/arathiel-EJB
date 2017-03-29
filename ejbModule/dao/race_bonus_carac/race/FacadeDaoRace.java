@@ -51,15 +51,8 @@ public class FacadeDaoRace {
 	}
 
 
-	public ArrayList<Race> listeToutesRaces() {
-		ArrayList<Race> listeRaces = new ArrayList<Race>();
-		
-		for (Race raceHib : rdconsult.listeToutesRaces()) {
-			Race race = raceHib.dto();
-			listeRaces.add(race);
-		}	
-		
-		return listeRaces;
+	public ArrayList<Race> listeToutesRaces() {		
+		return rdconsult.listeToutesRaces();
 	}
 
 

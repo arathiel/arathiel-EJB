@@ -150,7 +150,8 @@ public class Race implements IPackable, Serializable {
 		//On ajoute les bonus à la raceDto
 		if (this.getListeBonus() != null) {
 			ArrayList<Bonus> listeDto = new ArrayList<Bonus>();
-			for (Bonus bonus : this.getListeBonus()) {
+			for (Bonus b : this.getListeBonus()) {
+				Bonus bonus = b.dto();
 				listeDto.add(bonus);
 			}
 			raceDto.setListeBonus(listeDto);

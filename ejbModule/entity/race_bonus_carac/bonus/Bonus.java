@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import service.race_bonus_carac.bonus.FabriqueBonus;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Bonus implements Serializable {
@@ -48,6 +50,21 @@ public abstract class Bonus implements Serializable {
 	
 	public void calculerCoutXp() {
 		this.coutXp = 0;
+	}
+
+	public Bonus dto() {
+		FabriqueBonus fabBonus = new FabriqueBonus();
+		Bonus bonus = null;
+		if (this instanceof BonusCarac){
+			bonus = fabBonus.creerBonus(((BonusCarac)this).getCaracAssociee(), this.getValeurBonus());
+		}
+		if (this instanceof BonusCompetence){
+			bonus = fabBonus.creerBonus(((BonusCompetence)this).getCompAssociee(), this.getValeurBonus(),((BonusCompetence)this).isAcademique());
+		}
+		if (this instanceof BonusTrait){
+			bonus = fabBonus.creerBonus(((BonusTrait)this).getTraitAssocie(), this.getValeurBonus());
+		}
+		return bonus;
 	}
 	
 	

@@ -33,6 +33,7 @@ public class BonusCarac extends Bonus{
 	public BonusCarac(Caracteristique carac, int valeur){
 		this.caracAssociee = carac;
 		this.setValeurBonus(valeur);
+		this.calculerCoutXp();
 	}
 	
 	public Caracteristique getCaracAssociee() {

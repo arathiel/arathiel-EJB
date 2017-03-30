@@ -44,8 +44,9 @@ public class RaceDaoConsultation {
 		ArrayList<Race> liste = new ArrayList<Race>();
 		
 		for (Object r : em.createQuery(Requetes.TOUTES_RACES.getMsg()).getResultList()) {
-			if (r instanceof Race){
-				liste.add((Race) r);
+			if (r instanceof Race){				
+					Race race = ((Race) r).dto();
+					liste.add(race);
 			}
 		}
 		return liste;		

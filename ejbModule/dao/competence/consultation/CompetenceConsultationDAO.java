@@ -40,8 +40,9 @@ public class CompetenceConsultationDAO {
 		ArrayList<Competence> liste = new ArrayList<Competence>();
 		
 		for (Object c : em.createQuery(Requetes.TOUTES_COMP.getMsg()).getResultList()) {
-			if (c instanceof Competence){				
-					liste.add((Competence) c);
+			if (c instanceof Competence){
+					Competence comp =new Competence(((Competence) c).getId(), ((Competence) c).getNom());
+					liste.add(comp);
 			}
 		}
 		return liste;		

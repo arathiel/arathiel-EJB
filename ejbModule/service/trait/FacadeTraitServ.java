@@ -189,6 +189,14 @@ public class FacadeTraitServ {
 	public Traits consulterListTrait() {
 		return servConsult.consulterListTrait();
 	}
+	
+	/**
+	 * Retourne la liste des trait d'après libellé
+	 * @return
+	 */
+	public Traits consulterListTraitByLib(String libelle) {
+		return servConsult.consulterListTraitByLib(libelle);
+	}
 
 	
 	/* ========================================== */ 

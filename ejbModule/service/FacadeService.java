@@ -129,6 +129,14 @@ public class FacadeService implements IFacadeService {
 		return servTrait.consulterListTrait();
 	}
 
+	/**
+	 * Retourne la liste des trait d'après libellé
+	 * @return
+	 */
+	@Override
+	public Traits consulterListTraitByLib(String libelle) {
+		return servTrait.consulterListTraitByLib(libelle);
+	}
 	
 	/* ========================================== */ 
 	/*  			COMPORTEMENT				  */

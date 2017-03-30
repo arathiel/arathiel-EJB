@@ -149,6 +149,19 @@ public class FacadeTraitDao {
 		
 		return listeTraitOut;
 	}
+	
+	/**
+	 * Retourne la liste des traits d'après le libellé
+	 */
+	public Traits consulterListTraitByLib(String libelle) {
+		listeTraitOut = new Traits();
+		
+		for (Trait t : daoConsult.getAllTraitByLib(libelle)) {   
+			listeTraitOut.add(t.getDto());
+		}
+		
+		return listeTraitOut;
+	}
 
 	
 	/* ========================================== */ 

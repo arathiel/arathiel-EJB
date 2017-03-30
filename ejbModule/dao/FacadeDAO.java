@@ -161,6 +161,13 @@ public class FacadeDAO {
 		return daoTrait.consulterListTrait();
 	}
 	
+	/**
+	 * Retourne la liste des trait de la BDD d'après
+	 * @return
+	 */
+	public Traits consulterListTraitByLib(String libelle) {
+		return daoTrait.consulterListTraitByLib(libelle);
+	}
 	
 	/* ========================================== */ 
 	/*  			COMPORTEMENT				  */

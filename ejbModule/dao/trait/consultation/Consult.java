@@ -33,6 +33,7 @@ public class Consult {
 	@PersistenceContext(unitName = Parameter.UNITNAME_JUNONARATHIEL)
 	private EntityManager em;
 	
+	private Traits 			listTraitHib;
 	private Trait 			traitHib;
 	private Comportement	compHib;
 
@@ -107,12 +108,29 @@ public class Consult {
 	 * @return
 	 */
 	public Traits getAllTrait() {
-		Traits list = new Traits();
+		listTraitHib = new Traits();
 		
 		for (Object o : em.createNamedQuery("getAllTrait").getResultList()) {   
-			if (o instanceof Trait) list.add((Trait)o);
+			if (o instanceof Trait) listTraitHib.add((Trait)o);
 		}
-		return list;
+		return listTraitHib;
+	}
+	
+	/**
+	 * Retourne la liste des Traits d'après libellé
+	 * @param lib
+	 * @return
+	 */
+	public Traits getAllTraitByLib(String libelle) {
+		listTraitHib = new Traits();
+		
+		for (Object o : em.createNamedQuery("getAllTraitByLib")
+						  .setParameter("lib", libelle + '%')
+						  .getResultList()) {   
+			if (o instanceof Trait) listTraitHib.add((Trait)o);
+		}
+		
+		return listTraitHib;
 	}
 	
 	

@@ -17,6 +17,10 @@
 	<named-query name = "getAllTrait">
 		<query> select t from Trait t order by t.id </query>
 	</named-query>
+	
+	<named-query name = "getAllTraitByLib">
+		<query> select t from Trait t where lower(trim(t.libelle)) LIKE lower(trim(:lib)) </query>				
+	</named-query>
 
 <!-- REQUETES COMPORTEMENT --> 
 

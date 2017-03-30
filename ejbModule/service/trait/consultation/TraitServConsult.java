@@ -62,6 +62,14 @@ public class TraitServConsult {
 		return daoFacade.consulterListTrait();
 	}
 	
+	/**
+	 * Retourne la liste des trait d'après libellé
+	 * @return
+	 */
+	public Traits consulterListTraitByLib(String libelle) {
+		return daoFacade.consulterListTraitByLib(libelle);
+	}
+	
 	/* ========================================== */ 
 	/*  			COMPORTEMENT				  */
 	/* ========================================== */

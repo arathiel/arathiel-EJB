@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import clientServeur.IFacadeService;
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
+import entity.competence.Competence;
 import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.race_bonus_carac.race.Race;
@@ -46,6 +47,7 @@ public class FacadeService implements IFacadeService {
 	//--------------------------------------- Francois
 	@EJB
 	private FacadeServiceRBC		servRBC;
+	
 	
 //-------------------------------------------------------------------------------------------- Jonathan
 	
@@ -363,6 +365,15 @@ public class FacadeService implements IFacadeService {
 		servRBC.supprimerBonus(bonus);		
 	}
 
+	/**
+	 * Recupère la liste des Compétences
+	 * Codé rapidement pour les besoins de l'entité Bonus
+	 * 
+	 *@return liste de toutes les Competences
+	 */
+	public ArrayList<Competence> listeToutesComp(){
+		return servComp.listeToutesComp();
+	}
 	
 	/* ========================================== */ 
 	/*  			CARACTERISTIQUE				  */

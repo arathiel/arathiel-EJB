@@ -1,11 +1,14 @@
 package dao.competence;
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import dao.competence.consultation.CompetenceConsultationDAO;
 import dao.competence.gestionnaire.CompetenceGestionnaireDAO;
+import entity.competence.Competence;
 
 /**
  * Cette classe liste toutes les méthodes interragissant avec l'unité de persistance pour le module Compétence.
@@ -26,5 +29,9 @@ public class FacadeDaoCompetence {
 	private CompetenceConsultationDAO cd;
 	@EJB
 	private CompetenceGestionnaireDAO gd;
+	
+	public ArrayList<Competence> listeToutesComp(){
+		return cd.listeToutesComp();
+	}
 
 }

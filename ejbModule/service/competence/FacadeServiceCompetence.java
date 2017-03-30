@@ -1,9 +1,12 @@
 package service.competence;
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
+import entity.competence.Competence;
 import service.competence.consultation.CompetenceConsultationService;
 import service.competence.gestionnaire.CompetenceGestionnaireService;
 
@@ -27,4 +30,8 @@ public class FacadeServiceCompetence {
 	@EJB
 	private CompetenceGestionnaireService gestion;
 
+	
+	public ArrayList<Competence> listeToutesComp(){
+		return consult.listeToutesComp();
+	}
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
+import entity.competence.Competence;
 import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.race_bonus_carac.race.Race;
@@ -174,6 +175,8 @@ public interface IFacadeService {
 	public void insertCarac (Caracteristique carac);
 	public void deleteCarac(Caracteristique carac);	
 	public ArrayList<Caracteristique> listeCarac();
+	
+	public ArrayList<Competence> listeToutesComp();
 	
 	
 	

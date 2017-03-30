@@ -21,6 +21,7 @@ import dao.trait.exception.LibelleNullException;
 import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
+import entity.competence.Competence;
 import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.race_bonus_carac.race.Race;
@@ -67,6 +68,9 @@ public class FacadeDAO {
 	
 	@EJB
 	private DaoCarac dCarac;
+	
+	@EJB
+	private FacadeDaoCompetence dComp;
 	
 	
 	/* ========================================== */ 
@@ -307,6 +311,9 @@ public class FacadeDAO {
 		return dBonus.listeTousBonus();
 	}
 
+	public ArrayList<Competence> listeToutesComp(){
+		return dComp.listeToutesComp();
+	}
 	
 	/* ========================================== */ 
 	/*  			CARACTERISTIQUE				  */

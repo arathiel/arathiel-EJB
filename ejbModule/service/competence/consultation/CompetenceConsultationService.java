@@ -1,10 +1,13 @@
 package service.competence.consultation;
 
+import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import dao.FacadeDAO;
+import entity.competence.Competence;
 
 /**
  * Cette classe gère toute les demandes de consultation du module Compétence.
@@ -23,5 +26,9 @@ public class CompetenceConsultationService {
 
 	@EJB
 	private FacadeDAO dao;
+	
+	public ArrayList<Competence> listeToutesComp(){
+		return dao.listeToutesComp();
+	}
 	
 }

@@ -1,10 +1,13 @@
 package clientServeur;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
+//import entity.magie.MDPFondamental;
+//import entity.magie.MDPNormal;
+//import entity.passion.Passion;
 import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.race_bonus_carac.race.Race;
@@ -180,8 +183,87 @@ public interface IFacadeService {
 	
 	
 
-	//-------------------------------------------------------------------------------------------- SUIVANT
+	//-------------------------------------------------------------------------------------------- Anaïs
 	
-	
-	
+	/* ========================================== */ 
+	/*  				Passion					  */
+	/* ========================================== */
+//
+//			public void addPassion(Passion passion) throws ServiceException;
+//			
+//			public void updatePassion(Passion passion) throws ServiceException;
+//
+//			public void delPassions();
+//
+//			public void delPassion(int refPassion) throws ServiceException;
+//
+//			public void delPassion(String nom) throws ServiceException;
+//
+//			public List<Passion> getPassionsTrieNom();
+//
+//			public List<Passion> getPassionsTrieRef();
+//			
+//			public Passion getPassion(int refPassion) throws ServiceException;
+//
+//			public Passion getPassion(String nom) throws ServiceException;
+//	/* ========================================== */ 
+//	/*  				Magie					  */
+//	/* ========================================== */
+//
+//		public void addMDPFond(MDPFondamental mDPvoirfond) throws ServiceException;
+//
+//		public void addMDPNorm(MDPNormal mDPvoirNorm) throws ServiceException;
+//
+//
+//		// modification
+//		
+//		public void updateMDPFond(MDPFondamental mDPvoirfond) throws ServiceException;
+//
+//		public void updateMDPNorm(MDPNormal mDPvoirNorm) throws ServiceException;
+//
+//
+//		// suppression
+//		
+//		public void delMDPFonds();
+//
+//		public void delMDPFond(int refMDPvoirFond) throws ServiceException;
+//
+//		public void delMDPFond(MDPFondamental mDPvoirfond) throws ServiceException;
+//		
+//		public void delMDPFond(String nom) throws ServiceException;
+//
+//		public void delMDPNorms();
+//
+//		public void delMDPNorm(int refMDPvoirNorm) throws ServiceException;
+//
+//		public void delMDPNorm(MDPNormal mDPvoirNorm) throws ServiceException;
+//
+//		public void delMDPNorm(String nom) throws ServiceException;
+//		
+//
+//		// liste
+//				
+//		public List<MDPNormal> getMDPNormalTrieNom();
+//
+//		public List<MDPNormal> getMDPNormalTrieRef();
+//
+//		public List<MDPFondamental> getMDPFondamentalTrieNom();
+//
+//		public List<MDPFondamental> getMDPFondamentalTrieRef();
+//
+//		// recherche
+//
+//		public MDPFondamental getMDPFondamental(int refMDPvoirFond) throws ServiceException;
+//
+//		public MDPFondamental getMDPFondamental(String nom) throws ServiceException;
+//
+//		public MDPNormal getMDPNormal(int refMDPvoirNorm) throws ServiceException;
+//
+//		public MDPNormal getMDPNormal(String nom) throws ServiceException;
+
+
+
+
+
+
 }// Fin classe

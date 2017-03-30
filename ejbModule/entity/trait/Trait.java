@@ -41,16 +41,16 @@ public class Trait implements Serializable{
 	@Column(name = "tr_id", length = 5)
 	private int				id;
 	
-	@Column(name = "tr_lib", length = 25, nullable = true)
+	@Column(name = "tr_lib", length = 25, nullable = false)
 	private	String			libelle;
 	
-	@Column(name = "tr_pub", nullable = true)
+	@Column(name = "tr_pub", nullable = false)
 	private boolean 		visiPublic;
 	
-	@Column(name = "tr_crea", nullable = true)
+	@Column(name = "tr_crea", nullable = false)
 	private boolean			dispoCrea;
 	
-	@Column(name = "tr_malus", nullable = true)
+	@Column(name = "tr_malus", nullable = false)
 	private boolean			malus;
 	
 	// Création de la table de jointure *..*

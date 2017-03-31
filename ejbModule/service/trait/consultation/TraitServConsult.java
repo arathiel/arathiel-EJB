@@ -92,7 +92,7 @@ public class TraitServConsult {
 	 * @throws IdNullException
 	 * @throws LibelleVideException 
 	 */
-	public Comportement consulterCompByLib(String libelle) throws IdNullException, LibelleVideException {
+	public Comportement consulterCompByLib(String libelle) throws LibelleVideException, LibelleNullException, ObjetInexistantException {
 		return daoFacade.consulterCompByLib(libelle);
 	}
 

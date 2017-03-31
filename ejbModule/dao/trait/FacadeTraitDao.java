@@ -32,13 +32,16 @@ public class FacadeTraitDao {
 	
 	// Attributs de classe
 	@EJB
-	private Admin 			daoAdmin;	
+	private Admin 						daoAdmin;	
 	@EJB
-	private Consult 		daoConsult;
+	private Consult 					daoConsult;
 	
-	private Trait  			traitOut;
-	private Traits 			listeTraitOut;	
-	private Comportement	compOut;
+	private Trait  						traitOut;
+	private Traits 						listeTraitOut;	
+	private Comportement				compOut;
+	private Comportements				listCompOut;
+	private Caracteristique 			carOut;
+	private ArrayList<Caracteristique>	listCarOut;
 
 	
 	/* ========================================== */ 
@@ -50,11 +53,8 @@ public class FacadeTraitDao {
 	/**
 	 * Persiste un trait dans DAO
 	 * @throws ObjetNullException 
-	 * @throws DoublonException 
-	 * @throws TraitNullException 
+	 * @throws DoublonException  
 	 * @throws LibelleNullException 
-	 * @throws IdNullException 
-	 * @throws DoublonTraitException 
 	 * @throws LibelleVideException 
 	 */
 	public void ajouterTrait(Trait trait) throws LibelleVideException, LibelleNullException, DoublonException, ObjetNullException {
@@ -65,12 +65,9 @@ public class FacadeTraitDao {
 	 * Modifie un trait de la DAO
 	 * @throws ObjetNullException 
 	 * @throws ObjetInexistantException 
-	 * @throws LibelleNullException 
-	 * @throws TraitNullException 
+	 * @throws LibelleNullException  
 	 * @throws LibelleVideException 
 	 * @throws IdNullException 
-	 * @throws AucunTraitException 
-	 * @throws DoublonTraitException 
 	 */
 	public void modiferTrait(Trait trait) throws ObjetInexistantException, IdNullException, LibelleNullException, ObjetNullException, LibelleVideException {
 		daoAdmin.updateTrait(trait);
@@ -80,7 +77,6 @@ public class FacadeTraitDao {
 	 * Supprime un trait de la DAO
 	 * @throws ObjetNullException 
 	 * @throws IdNullException 
-	 * @throws AucunTraitException 
 	 */
 	public void supprimerTrait(int id) throws ObjetNullException, IdNullException {
 		daoAdmin.deleteTrait(id);
@@ -100,7 +96,6 @@ public class FacadeTraitDao {
 	 * Retourne un trait via son id
 	 * @throws ObjetInexistantException 
 	 * @throws IdNullException 
-	 * @throws AucunTraitException 
 	 */
 	public Trait consulterTraitById(int id) throws IdNullException, ObjetInexistantException {
 		//Réinitialisation
@@ -121,8 +116,6 @@ public class FacadeTraitDao {
 	 * Retourne un trait via son libellé
 	 * @throws ObjetInexistantException 
 	 * @throws LibelleNullException 
-	 * @throws IdNullException 
-	 * @throws AucunTraitException 
 	 */
 	public Trait consulterTraitByLib(String libelle) throws ObjetInexistantException, LibelleNullException {	
 		//Réinitialisation
@@ -220,7 +213,11 @@ public class FacadeTraitDao {
 	 * @throws ObjetInexistantException 
 	 */
 	public Comportement consulterCompById(int id) throws IdNullException, ObjetInexistantException {
-		return daoConsult.getCompById(id);
+		compOut = null;
+		
+		compOut = daoConsult.getCompById(id);
+		
+		return compOut;
 	}
 
 	/**
@@ -229,12 +226,15 @@ public class FacadeTraitDao {
 	 * @return
 	 * @throws IdNullException
 	 * @throws LibelleVideException 
+	 * @throws LibelleNullException 
+	 * @throws ObjetInexistantException 
 	 */
-	public Comportement consulterCompByLib(String libelle) throws IdNullException, LibelleVideException {
-		try {
-			compOut = daoConsult.getCompByLib(libelle);
-		} catch (ObjetInexistantException e) {
-		}
+	public Comportement consulterCompByLib(String libelle) throws LibelleVideException, LibelleNullException, ObjetInexistantException {
+		compOut = null;
+
+		compOut = daoConsult.getCompByLib(libelle);
+
+		
 		return compOut;
 	}
 
@@ -243,7 +243,11 @@ public class FacadeTraitDao {
 	 * @return
 	 */
 	public Comportements consulterListComp() {
-		return daoConsult.getAllComp();
+		listCompOut = new Comportements();
+		
+		listCompOut = daoConsult.getAllComp();
+		
+		return listCompOut;
 	}
 	
 	
@@ -260,7 +264,11 @@ public class FacadeTraitDao {
 	 * @throws ObjetInexistantException 
 	 */
 	public Caracteristique getCarByLib(int id) throws IdNullException, ObjetInexistantException {
-		return daoConsult.getCarByLib(id);
+		carOut = null;
+		
+		carOut = daoConsult.getCarByLib(id);
+		
+		return carOut;
 	}
 	
 	/**
@@ -273,7 +281,11 @@ public class FacadeTraitDao {
 	 * @throws LibelleNullException 
 	 */
 	public Caracteristique getCarByLib(String nomCarac) throws ObjetInexistantException, LibelleVideException, LibelleNullException {
-		return daoConsult.getCarByLib(nomCarac);
+		carOut = null;
+		
+		carOut = daoConsult.getCarByLib(nomCarac);
+		
+		return carOut;
 	}
 	
 	/**
@@ -281,7 +293,11 @@ public class FacadeTraitDao {
 	 * @return
 	 */
 	public ArrayList<Caracteristique> getAllCar() {
-		return daoConsult.getAllCar();
+		listCarOut = new ArrayList<Caracteristique>();
+		
+		listCarOut = daoConsult.getAllCar();
+		
+		return listCarOut;
 	}
 
 }// Fin classe

@@ -112,7 +112,7 @@ public class Admin {
 											try {
 												compHib = daoConsult.getCompByLib(comp.getLibelle());
 											} 
-											catch (ObjetInexistantException | IdNullException e) {
+											catch (ObjetInexistantException | LibelleNullException | LibelleVideException e) {
 												System.out.println(e + " " + e.getType());
 											}
 				
@@ -247,7 +247,7 @@ public class Admin {
 												// On cherche si le comportement existe déjà
 												try {
 													compHib = daoConsult.getCompByLib(comp.getLibelle());
-												} catch (ObjetInexistantException | IdNullException e2) {
+												} catch (ObjetInexistantException | LibelleNullException | LibelleVideException e2) {
 													System.out.println(e2 + " " + e2.getType());
 												}
 
@@ -267,7 +267,7 @@ public class Admin {
 													try {
 														compHib = daoConsult.getCompByLib(comp.getLibelle());
 													} 
-													catch (ObjetInexistantException | IdNullException e) {
+													catch (ObjetInexistantException | LibelleNullException | LibelleVideException e) {
 														System.out.println(e + " " + e.getType());
 													}
 
@@ -408,7 +408,7 @@ public class Admin {
 				if (comportement.getLibelle().isEmpty() != true) {
 					try {
 						compHib = daoConsult.getCompByLib(comportement.getLibelle());
-					} catch (ObjetInexistantException | IdNullException e) {
+					} catch (ObjetInexistantException | LibelleNullException | LibelleVideException e) {
 						System.out.println(e + " " + e.getType());
 					}
 	

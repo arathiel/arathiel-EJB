@@ -257,10 +257,12 @@ public class FacadeTraitServ {
 		
 		try {
 			compOut = servConsult.consulterCompByLib(libelle);
-		} catch (IdNullException | LibelleVideException e) {
-			if (e instanceof IdNullException)		throw new UserException(Erreur.COMP_LIBNULL.getMessage());
-			if (e instanceof LibelleVideException)	throw new UserException(Erreur.COMP_LIBVIDE.getMessage());
+		} catch (LibelleVideException | LibelleNullException | ObjetInexistantException e) {
+			if (e instanceof LibelleNullException)		throw new UserException(Erreur.COMP_LIBNULL.getMessage());
+			if (e instanceof LibelleVideException)		throw new UserException(Erreur.COMP_LIBVIDE.getMessage());
+			if (e instanceof ObjetInexistantException)	throw new UserException(Erreur.COMP_INEXISTANT.getMessage());			
 		}
+		
 		return compOut;
 	}
 

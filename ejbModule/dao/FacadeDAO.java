@@ -246,8 +246,10 @@ public class FacadeDAO {
 	 * @return
 	 * @throws IdNullException 
 	 * @throws LibelleVideException 
+	 * @throws ObjetInexistantException 
+	 * @throws LibelleNullException 
 	 */
-	public Comportement consulterCompByLib(String libelle) throws IdNullException, LibelleVideException  {
+	public Comportement consulterCompByLib(String libelle) throws LibelleVideException, LibelleNullException, ObjetInexistantException {
 		return daoTrait.consulterCompByLib(libelle);
 	}
 	

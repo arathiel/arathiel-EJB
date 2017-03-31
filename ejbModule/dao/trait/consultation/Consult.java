@@ -33,9 +33,11 @@ public class Consult {
 	@PersistenceContext(unitName = Parameter.UNITNAME_JUNONARATHIEL)
 	private EntityManager em;
 	
-	private Traits 			listTraitHib;
-	private Trait 			traitHib;
-	private Comportement	compHib;
+	private Traits 						listTraitHib;
+	private Trait 						traitHib;
+	private Comportement				compHib;
+	private Caracteristique 			carHib;
+	private ArrayList<Caracteristique>	listCarHib;
 
 	
 	/* ========================================== */ 
@@ -171,8 +173,9 @@ public class Consult {
 	 * @throws ObjetInexistantException 
 	 * @throws IdNullException 
 	 * @throws LibelleVideException 
+	 * @throws LibelleNullException 
 	 */
-	public Comportement getCompByLib(String libelle) throws ObjetInexistantException, IdNullException, LibelleVideException {
+	public Comportement getCompByLib(String libelle) throws ObjetInexistantException, LibelleVideException, LibelleNullException {
 		//Réinitialisation
 		compHib = null;
 		
@@ -192,7 +195,7 @@ public class Consult {
 			}
 		}
 		else {
-			throw new IdNullException(Erreur.COMP);
+			throw new LibelleNullException(Erreur.COMP);
 		}
 		
 		return compHib;
@@ -228,20 +231,20 @@ public class Consult {
 	 * @throws ObjetInexistantException 
 	 */
 	public Caracteristique getCarByLib(int id) throws IdNullException, ObjetInexistantException{
-		Caracteristique car = null;
+		carHib = null;
 		
 		//On recher après vérification de la nullité de l'ID envoyé
-		if (id != 0) car = (Caracteristique) em.find(Caracteristique.class, id);
+		if (id != 0) carHib = (Caracteristique) em.find(Caracteristique.class, id);
 		
 		//Si null, on lève une exception
 		else {
 			throw new IdNullException(Erreur.CAR);
 		}
 		
-		if (car == null) throw new ObjetInexistantException(Erreur.CAR); 
+		if (carHib == null) throw new ObjetInexistantException(Erreur.CAR); 
 		
 			
-		return car;
+		return carHib;
 	}
 	
 	/**
@@ -254,14 +257,14 @@ public class Consult {
 	 * @throws LibelleNullException 
 	 */
 	public Caracteristique getCarByLib(String nomCarac) throws ObjetInexistantException, LibelleVideException, LibelleNullException{
-		Caracteristique car = null;
+		carHib = null;
 		
 		//Vérification valeur du libellé
 		if (nomCarac != null) {
 			if (nomCarac.isEmpty() != true) {
 				
 				try {
-					car = (Caracteristique) em.createNamedQuery("getCarByLib")
+					carHib = (Caracteristique) em.createNamedQuery("getCarByLib")
 	  	  	  				  .setParameter("lib", nomCarac)
 	  	  	  				  .getSingleResult(); 
 				}
@@ -281,7 +284,7 @@ public class Consult {
 			throw new LibelleNullException(Erreur.CAR);
 		}
 			
-		return car;
+		return carHib;
 	}
 	
 	
@@ -290,12 +293,12 @@ public class Consult {
 	 * @return
 	 */
 	public ArrayList<Caracteristique> getAllCar() {
-		ArrayList<Caracteristique> list = new ArrayList<Caracteristique>();
+		listCarHib = new ArrayList<Caracteristique>();
 		
 		for (Object o : em.createNamedQuery("getAllCar").getResultList()) {   
-			if (o instanceof Caracteristique) list.add((Caracteristique)o);
+			if (o instanceof Caracteristique) listCarHib.add((Caracteristique)o);
 		}
-		return list;
+		return listCarHib;
 	}
 	
 }// Fin classe

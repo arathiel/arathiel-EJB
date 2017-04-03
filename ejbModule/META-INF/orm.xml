@@ -25,11 +25,11 @@
 <!-- REQUETES COMPORTEMENT --> 
 
 	<named-query name = "getCompByLib">
-		<query> select c from Comportement c where lower(trim(c.libelle)) = lower(trim(:lib)) </query>				
+		<query> select c from Comportement c where lower(trim(c.libelle)) = lower(trim(:lib)) order by c.libelle </query>				
 	</named-query>
 
 	<named-query name = "getAllComp">
-		<query> select c from Comportement c order by c.id </query>
+		<query> select c from Comportement c order by c.libelle </query>
 	</named-query>
 	
 	<named-query name = "deleteAllComp">

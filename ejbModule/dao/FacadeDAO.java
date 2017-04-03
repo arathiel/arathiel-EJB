@@ -324,6 +324,10 @@ public class FacadeDAO {
 		return dComp.listeToutesComp();
 	}
 	
+	public Competence rechCompParId(int id){
+		return dComp.rechCompParId(id);
+	}
+	
 	/* ========================================== */ 
 	/*  			CARACTERISTIQUE				  */
 	/* ========================================== */

@@ -1,6 +1,8 @@
 package clientServeur;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
 //import entity.magie.MDPFondamental;

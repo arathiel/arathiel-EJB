@@ -30,7 +30,7 @@ public class DaoGestion {
 	@EJB
 	DaoInventaire daoInventaire;
 	
-	@PersistenceContext(unitName="Arathiel_Armurerie")
+	@PersistenceContext(unitName="Ahibernate")
 	EntityManager em;
 
 	private List<Race> races;

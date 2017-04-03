@@ -19,7 +19,7 @@ import entity.race_bonus_carac.race.Race;
 @LocalBean
 public class DaoInventaire {
 
-	@PersistenceContext(unitName="Arathiel_Armurerie")
+	@PersistenceContext(unitName="Ahibernate")
 	EntityManager em;
 
 	private List<Arme> armes;

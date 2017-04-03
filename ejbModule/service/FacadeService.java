@@ -442,52 +442,52 @@ public class FacadeService implements IFacadeService {
 	/*  			ARME				  		  */
 	/* ========================================== */
 	
-	@Override
+
 	public void createArme(IArme arme, List<String> raceArme) throws ServiceOlivBException {
 		serviceArme.createArme(arme, raceArme);
 		
 	}
 
-	@Override
+
 	public void createArmeJoueur(ArmeJoueur armeJoueurDto) throws ServiceOlivBException {
 		serviceArme.createArmeJoueur(armeJoueurDto);
 		
 	}
 	
-	@Override
+
 	public void modifArme(IArme arme, List<String> raceArme) throws ServiceOlivBException {
 		serviceArme.modifArme(arme, raceArme);
 		
 	}
 	
-	@Override
+
 	public void supprArme(IArme arme) throws ServiceOlivBException {
 		serviceArme.supprArme(arme);
 		
 	}
 	
-	@Override
+
 	public Arme getArme(String nom) {
 		return serviceArme.getArme(nom);
 	}
 
-	@Override
+
 	public List<Race> listerRaces() throws ServiceOlivBException {
 		return serviceArme.listerRaces();
 	}
 
-	@Override
+
 	public List<Arme> listerArmes() throws ServiceOlivBException {
 		return serviceArme.listerArmes();
 	}
 
 
-	@Override
+
 	public List<Arme> listerArmesRace() throws ServiceOlivBException {
 		return serviceArme.listerArmesRace();
 	}
 
-	@Override
+
 	public List<Joueur> listerJoueurs() throws ServiceOlivBException {
 		return serviceArme.listerJoueurs();
 	}

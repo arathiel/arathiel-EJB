@@ -3,12 +3,8 @@ package clientServeur;
 import java.util.ArrayList;
 import java.util.List;
 
-import armurerie.Exception.ServiceOlivBException;
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
-import entity.armurerie.Arme;
-import entity.armurerie.ArmeJoueur;
-import entity.armurerie.Joueur;
 //import entity.magie.MDPFondamental;
 //import entity.magie.MDPNormal;
 //import entity.passion.Passion;
@@ -190,6 +186,7 @@ public interface IFacadeService {
 	public ArrayList<Caracteristique> listeCarac();
 	
 	public ArrayList<Competence> listeToutesComp();
+	public Competence rechCompParId(int id);
 	
 	
 	
@@ -274,28 +271,9 @@ public interface IFacadeService {
 //
 //		public MDPNormal getMDPNormal(String nom) throws ServiceException;
 
-//--------------------------------------------------------------------------------------------OlivB
-	/* ========================================== */ 
-	/*  				Armurerie				  */
-	/* ========================================== */
 
-	public void createArme(IArme arme, List<String> raceArme) throws ServiceOlivBException;
-	
-	public List<Race> listerRaces() throws ServiceOlivBException;
-	
-	public List<Arme> listerArmes() throws ServiceOlivBException;
-	
-	public void modifArme(IArme arme, List<String> raceArme) throws ServiceOlivBException;
-	
-	public void supprArme(IArme arme) throws ServiceOlivBException;
-	
-	public Arme getArme(String nom);
-	
-	public List<Arme> listerArmesRace() throws ServiceOlivBException;
-	
-	public List<Joueur> listerJoueurs() throws ServiceOlivBException;
-	
-	public void createArmeJoueur(ArmeJoueur armeJoueurDto) throws ServiceOlivBException;
+
+
 
 
 }// Fin classe

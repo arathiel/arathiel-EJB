@@ -34,4 +34,7 @@ public class FacadeDaoCompetence {
 		return cd.listeToutesComp();
 	}
 
+	public Competence rechCompParId(int id){
+		return cd.rechCompParId(id);
+	}
 }

@@ -34,4 +34,8 @@ public class FacadeServiceCompetence {
 	public ArrayList<Competence> listeToutesComp(){
 		return consult.listeToutesComp();
 	}
+	
+	public Competence rechCompParId(int id){
+		return consult.rechCompParId(id);
+	}
 }

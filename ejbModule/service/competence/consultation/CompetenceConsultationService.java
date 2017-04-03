@@ -31,4 +31,7 @@ public class CompetenceConsultationService {
 		return dao.listeToutesComp();
 	}
 	
+	public Competence rechCompParId(int id){
+		return dao.rechCompParId(id);
+	}
 }

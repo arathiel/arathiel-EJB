@@ -47,4 +47,15 @@ public class CompetenceConsultationDAO {
 		}
 		return liste;		
 	}
+	
+	/**
+	 * Recherche d'une Competence par son id
+	 * Methode créée rapidement pour les besoins de la fonction Bonus	 
+	 * 
+	 * @author François Georgel
+	 * @return Competence
+	 */
+	public Competence rechCompParId(int id){
+		 return  em.find(Competence.class, id);
+	}
 }

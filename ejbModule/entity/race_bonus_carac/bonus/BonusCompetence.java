@@ -33,6 +33,7 @@ public class BonusCompetence extends Bonus{
 	
 	public BonusCompetence(Competence comp, int valeur, boolean acad){
 		this.compAssociee = comp;
+		this.setValeurBonus(valeur);
 		this.academique = acad;
 		this.calculerCoutXp();
 	}

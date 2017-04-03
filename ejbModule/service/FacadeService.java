@@ -383,6 +383,10 @@ public class FacadeService implements IFacadeService {
 		return servComp.listeToutesComp();
 	}
 	
+	public Competence rechCompParId(int id){
+		return servComp.rechCompParId(id);
+	}
+	
 	/* ========================================== */ 
 	/*  			CARACTERISTIQUE				  */
 	/* ========================================== */

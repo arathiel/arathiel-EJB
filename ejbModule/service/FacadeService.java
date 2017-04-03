@@ -1,20 +1,27 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import armurerie.Exception.ServiceOlivBException;
+import clientServeur.IArme;
 import clientServeur.IFacadeService;
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
+import entity.armurerie.Arme;
+import entity.armurerie.ArmeJoueur;
+import entity.armurerie.Joueur;
 import entity.competence.Competence;
 import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.race_bonus_carac.race.Race;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
+import service.armurerie.ServiceArme;
 import service.competence.FacadeServiceCompetence;
 import service.race_bonus_carac.FacadeServiceRBC;
 import service.trait.FacadeTraitServ;
@@ -47,6 +54,10 @@ public class FacadeService implements IFacadeService {
 	//--------------------------------------- Francois
 	@EJB
 	private FacadeServiceRBC		servRBC;
+	
+	//----------------------------------------OlivB
+	@EJB
+	private ServiceArme 			serviceArme;
 	
 	
 //-------------------------------------------------------------------------------------------- Jonathan
@@ -418,7 +429,64 @@ public class FacadeService implements IFacadeService {
 	public ArrayList<Caracteristique> listeCarac() {
 		return servRBC.listeCarac();
 	}
+
+
 	
+	//-------------------------------------------------------------------------------------------- OlivB
 	
-	//-------------------------------------------------------------------------------------------- Suivant
+	/* ========================================== */ 
+	/*  			ARME				  		  */
+	/* ========================================== */
+	
+	@Override
+	public void createArme(IArme arme, List<String> raceArme) throws ServiceOlivBException {
+		serviceArme.createArme(arme, raceArme);
+		
+	}
+
+	@Override
+	public void createArmeJoueur(ArmeJoueur armeJoueurDto) throws ServiceOlivBException {
+		serviceArme.createArmeJoueur(armeJoueurDto);
+		
+	}
+	
+	@Override
+	public void modifArme(IArme arme, List<String> raceArme) throws ServiceOlivBException {
+		serviceArme.modifArme(arme, raceArme);
+		
+	}
+	
+	@Override
+	public void supprArme(IArme arme) throws ServiceOlivBException {
+		serviceArme.supprArme(arme);
+		
+	}
+	
+	@Override
+	public Arme getArme(String nom) {
+		return serviceArme.getArme(nom);
+	}
+
+	@Override
+	public List<Race> listerRaces() throws ServiceOlivBException {
+		return serviceArme.listerRaces();
+	}
+
+	@Override
+	public List<Arme> listerArmes() throws ServiceOlivBException {
+		return serviceArme.listerArmes();
+	}
+
+
+	@Override
+	public List<Arme> listerArmesRace() throws ServiceOlivBException {
+		return serviceArme.listerArmesRace();
+	}
+
+	@Override
+	public List<Joueur> listerJoueurs() throws ServiceOlivBException {
+		return serviceArme.listerJoueurs();
+	}
+
+	
 }

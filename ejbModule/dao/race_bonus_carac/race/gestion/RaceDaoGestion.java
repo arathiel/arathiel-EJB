@@ -54,6 +54,8 @@ public class RaceDaoGestion {
 		//On teste d'abord si le nom communiqué est valide
 		raceNomValide(race);
 		
+		System.out.println("insertrace"+race.toString());
+		
 		//On teste ensuite si parmis les bonus certains n'existent pas. On les insère d'abord.
 		for (Bonus b : race.getListeBonus()){
 			daoBonus.verifBonusPresent(b);

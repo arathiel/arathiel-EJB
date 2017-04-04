@@ -29,7 +29,7 @@ public class Race implements IPackable, Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="seq_id_race")
-	@SequenceGenerator(name="seq_id_race", sequenceName="ID_RACE_SEQ", initialValue=1, allocationSize=30)
+	@SequenceGenerator(name="seq_id_race", sequenceName="ID_RACE_SEQ", initialValue=1, allocationSize=1)
 	private int id;
 	
 	@Column(name="nom_race", unique=true, nullable=false,  length=40)

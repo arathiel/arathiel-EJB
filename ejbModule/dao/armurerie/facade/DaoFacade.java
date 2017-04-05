@@ -12,6 +12,7 @@ import clientServeur.IArme;
 import dao.armurerie.exception.DaoOlivBException;
 import dao.armurerie.gestion.DaoGestion;
 import dao.armurerie.inventaire.DaoInventaire;
+import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;
@@ -35,7 +36,7 @@ public class DaoFacade {
 
 	private List<Arme> armes;
 
-	public void insert(IArme arme, List<String> raceArme) throws DaoOlivBException {
+	public void insert(IArme arme, List<String> raceArme) throws DaoOlivBException, DaoExceptionRBC {
 		daoGestion.insert(arme, raceArme );
 
 	}
@@ -56,7 +57,7 @@ public class DaoFacade {
 		return armes;
 	}
 
-	public void update(IArme arme, List<String> raceArme) throws DaoOlivBException {
+	public void update(IArme arme, List<String> raceArme) throws DaoOlivBException, DaoExceptionRBC {
 		daoGestion.update(arme, raceArme);
 	}
 

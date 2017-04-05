@@ -46,6 +46,11 @@ public class DaoCarac {
 		}
 		return liste;			
 	}
+	
+	public Caracteristique rechCaracParId(String id){
+		return em.find(Caracteristique.class, id);
+		
+	}
 
 
 }

@@ -115,5 +115,9 @@ public class FacadeServiceRBC{
 	public ArrayList<Caracteristique> listeCarac() {
 		return sCarac.listeCarac();
 	}   
+	
+	public Caracteristique rechCaracParId(String id) {
+		return sCarac.rechCaracParId(id);
+	}
     
 }

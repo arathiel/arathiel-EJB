@@ -434,7 +434,15 @@ public class FacadeService implements IFacadeService {
 		return servRBC.listeCarac();
 	}
 
-
+	
+	/**
+	 * Cherche une Caracteristique par son id
+	 * 
+	 * @return une caracteristique
+	 */
+	public Caracteristique rechCaracParId(String id) {
+		return servRBC.rechCaracParId(id);
+	}
 	
 	//-------------------------------------------------------------------------------------------- OlivB
 	

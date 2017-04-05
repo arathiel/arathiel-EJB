@@ -175,7 +175,7 @@ public interface IFacadeService {
 	public void insertBonus (Bonus bonus) throws UserExceptionRBC;
 	public ArrayList<Bonus> listeTousBonus();
 	public void deleteBonus(Bonus bonus) throws UserExceptionRBC;
-	
+	public Caracteristique rechCaracParId(String id);
 		
 	
 	/* ========================================== */ 

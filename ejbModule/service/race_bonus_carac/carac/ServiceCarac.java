@@ -40,5 +40,9 @@ public class ServiceCarac {
 	
 		return fDao.listeCarac();
 	}
+	
+	public Caracteristique rechCaracParId(String id) {
+		return fDao.rechCaracParId(id);
+	}
 
 }

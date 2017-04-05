@@ -343,6 +343,10 @@ public class FacadeDAO {
 		return dCarac.listeCarac();
 	}
 	
+	public Caracteristique rechCaracParId(String id) {
+		return dCarac.rechCaracParId(id);
+	}
+	
 	/* ========================================== */ 
 	/*  				RACE					  */
 	/* ========================================== */

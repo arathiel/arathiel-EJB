@@ -11,6 +11,8 @@ import javax.persistence.PersistenceException;
 
 import armurerie.Exception.ExceptionMessageErreurOlivB;
 import dao.armurerie.exception.DaoOlivBException;
+import dao.armurerie.param.ArmurerieParam;
+import dao.util.Parameter;
 import entity.armurerie.Arme;
 import entity.armurerie.Joueur;
 import entity.race_bonus_carac.race.Race;
@@ -19,7 +21,7 @@ import entity.race_bonus_carac.race.Race;
 @LocalBean
 public class DaoInventaire {
 
-	@PersistenceContext(unitName="Ahibernate")
+	@PersistenceContext(unitName=Parameter.UNITNAME_JUNONARATHIEL)
 	EntityManager em;
 
 	private List<Arme> 		armes;
@@ -31,7 +33,7 @@ public class DaoInventaire {
 	public List<Arme> selectArmesWhereRace() throws DaoOlivBException {
 		armes = new ArrayList<Arme>();
 		try {
-			for (Object obj : em.createQuery("select a from Arme a").getResultList()){
+			for (Object obj : em.createQuery(ArmurerieParam.SELECT_ARME.getRequete()).getResultList()){
 				if (obj instanceof Arme) {
 					armes.add((Arme) obj);
 				}
@@ -46,7 +48,7 @@ public class DaoInventaire {
 	public List<Arme> selectArmes() throws DaoOlivBException {
 		armes = new ArrayList<Arme>();
 		try {
-			for (Object obj : em.createQuery("select a from Arme a order by a.idArme asc").getResultList()){
+			for (Object obj : em.createQuery(ArmurerieParam.SELECT_ARME.getRequete()).getResultList()){
 				if (obj instanceof Arme) {
 					armes.add((Arme) obj);
 				}
@@ -61,7 +63,7 @@ public class DaoInventaire {
 	public List<Race> selectRaces() throws DaoOlivBException {
 		races = new ArrayList<Race>();
 		try {
-			for (Object obj :  em.createQuery("select r from Race r").getResultList()) {
+			for (Object obj :  em.createQuery(ArmurerieParam.SELECT_RACE.getRequete()).getResultList()) {
 				if (obj instanceof Race) {
 					races.add((Race) obj);
 				}
@@ -74,7 +76,7 @@ public class DaoInventaire {
 	}
 
 	public Arme rechArme(String nom) {
-		Arme armeTransition = (Arme) em.createQuery("select a from Arme a where a.nom = ?1").setParameter(1, nom).getSingleResult();
+		Arme armeTransition = (Arme) em.createQuery(ArmurerieParam.SELECT_ARME_NOM.getRequete()).setParameter(1, nom).getSingleResult();
 		return armeTransition;
 	}
 
@@ -83,7 +85,7 @@ public class DaoInventaire {
 		races = new ArrayList<Race>();
 		for (String value : raceArme) {
 			try {
-				Race race = (Race) em.createQuery("select r from Race r where r.nomRace = ?1")
+				Race race = (Race) em.createQuery(ArmurerieParam.SELECT_RACE_NOM.getRequete())
 						.setParameter(1,value).getSingleResult();
 				races.add(race);
 			}
@@ -97,7 +99,7 @@ public class DaoInventaire {
 	public List<Joueur> selectJoueurs() throws DaoOlivBException {
 		joueurs = new ArrayList<Joueur>();
 		try {
-			for (Object obj :  em.createQuery("select j from Joueur j order by j.idJoueur asc").getResultList()) {
+			for (Object obj :  em.createQuery(ArmurerieParam.SELECT_JOUEUR.getRequete()).getResultList()) {
 				if (obj instanceof Joueur) {
 					joueurs.add((Joueur) obj);
 				}

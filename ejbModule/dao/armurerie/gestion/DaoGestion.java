@@ -14,6 +14,7 @@ import armurerie.Exception.ExceptionMessageErreurOlivB;
 import clientServeur.IArme;
 import dao.armurerie.exception.DaoOlivBException;
 import dao.armurerie.inventaire.DaoInventaire;
+import dao.util.Parameter;
 import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;
@@ -32,7 +33,7 @@ public class DaoGestion {
 	@EJB
 	DaoInventaire daoInventaire;
 
-	@PersistenceContext(unitName="Ahibernate")
+	@PersistenceContext(unitName=Parameter.UNITNAME_JUNONARATHIEL)
 	EntityManager em;
 
 	private List<Race> 	races;

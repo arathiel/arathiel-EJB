@@ -63,7 +63,8 @@ public abstract class Bonus implements Serializable {
 			System.out.println(this.getIdBonus()+" "+this.getValeurBonus());
 		}
 		if (this instanceof BonusTrait){
-			bonus = fabBonus.creerBonus(((BonusTrait)this).getTraitAssocie(), this.getValeurBonus());
+			
+			bonus = fabBonus.creerBonus(((BonusTrait)this).getTraitAssocie().getDto(), this.getValeurBonus());
 		}
 		return bonus;
 	}

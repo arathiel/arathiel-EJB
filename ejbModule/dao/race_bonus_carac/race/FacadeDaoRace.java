@@ -66,7 +66,7 @@ public class FacadeDaoRace {
 		Race race = null;
 		
 		try {
-			raceHib = rdconsult.RechRaceParNom(nom);
+			raceHib = rdconsult.rechRaceParNom(nom);
 			race = raceHib.dto();
 			
 		} catch (DaoExceptionRBC e) {

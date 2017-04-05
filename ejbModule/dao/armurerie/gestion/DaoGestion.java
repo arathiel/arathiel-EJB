@@ -14,6 +14,7 @@ import armurerie.Exception.ExceptionMessageErreurOlivB;
 import clientServeur.IArme;
 import dao.armurerie.exception.DaoOlivBException;
 import dao.armurerie.inventaire.DaoInventaire;
+import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import dao.util.Parameter;
 import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
@@ -31,10 +32,11 @@ import util.armurerie.Etat;
 public class DaoGestion {
 
 	@EJB
-	DaoInventaire daoInventaire;
+	DaoInventaire 		daoInventaire;
+
 
 	@PersistenceContext(unitName=Parameter.UNITNAME_JUNONARATHIEL)
-	EntityManager em;
+	EntityManager 		em;
 
 	private List<Race> 	races;
 	private IArme 		armeTransit;
@@ -42,11 +44,13 @@ public class DaoGestion {
 	private Joueur		joueur;
 
 	//Insertion d'une nouvelle arme avec sa liste de Races associées
-	public void insert(IArme arme, List<String> raceArme) throws DaoOlivBException {
+	public void insert(IArme arme, List<String> raceArme) throws DaoOlivBException, DaoExceptionRBC {
+		System.out.println("************methode insertArme() OK ****************");
 		if (arme == null) throw new DaoOlivBException(ExceptionMessageErreurOlivB.ARME_NULL);
 		if (raceArme.isEmpty()) throw new DaoOlivBException(ExceptionMessageErreurOlivB.RACE_INEXISTANTE);
 		races = daoInventaire.findRacesAssociees(raceArme);
 		arme.setRaces(races);
+		System.out.println("**********tentative de persistance ******************");
 		try {
 			em.persist(arme);
 		}
@@ -68,7 +72,7 @@ public class DaoGestion {
 	}
 
 	//méthode de modification de l'arme ainsi que sa liste de races
-	public void update(IArme arme, List<String> raceArme) throws DaoOlivBException {
+	public void update(IArme arme, List<String> raceArme) throws DaoOlivBException, DaoExceptionRBC {
 		if (arme == null) throw new DaoOlivBException(ExceptionMessageErreurOlivB.ARME_NULL);
 		if (raceArme.isEmpty()) throw new DaoOlivBException(ExceptionMessageErreurOlivB.RACE_INEXISTANTE);
 		races = daoInventaire.findRacesAssociees(raceArme);

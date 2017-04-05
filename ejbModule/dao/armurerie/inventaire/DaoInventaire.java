@@ -3,6 +3,7 @@ package dao.armurerie.inventaire;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -12,6 +13,8 @@ import javax.persistence.PersistenceException;
 import armurerie.Exception.ExceptionMessageErreurOlivB;
 import dao.armurerie.exception.DaoOlivBException;
 import dao.armurerie.param.ArmurerieParam;
+import dao.race_bonus_carac.exception.DaoExceptionRBC;
+import dao.race_bonus_carac.race.consultation.RaceDaoConsultation;
 import dao.util.Parameter;
 import entity.armurerie.Arme;
 import entity.armurerie.Joueur;
@@ -21,8 +24,13 @@ import entity.race_bonus_carac.race.Race;
 @LocalBean
 public class DaoInventaire {
 
+	
+	@EJB
+	RaceDaoConsultation raceDaoConsultation;
+	
 	@PersistenceContext(unitName=Parameter.UNITNAME_JUNONARATHIEL)
 	EntityManager em;
+
 
 	private List<Arme> 		armes;
 	private List<Race> 		races;
@@ -80,13 +88,12 @@ public class DaoInventaire {
 		return armeTransition;
 	}
 
-	public List<Race> findRacesAssociees(List<String> raceArme) throws DaoOlivBException {
+	public List<Race> findRacesAssociees(List<String> raceArme) throws DaoOlivBException, DaoExceptionRBC {
 		if (raceArme.isEmpty()) throw new DaoOlivBException(ExceptionMessageErreurOlivB.RACE_INEXISTANTE);
 		races = new ArrayList<Race>();
 		for (String value : raceArme) {
 			try {
-				Race race = (Race) em.createQuery(ArmurerieParam.SELECT_RACE_NOM.getRequete())
-						.setParameter(1,value).getSingleResult();
+				Race race = raceDaoConsultation.rechRaceParNom(value);
 				races.add(race);
 			}
 			catch(PersistenceException e) {

@@ -71,7 +71,7 @@ public class RaceDaoConsultation {
 	 * @return Race
 	 * @throws DaoExceptionRBC
 	 */
-	public Race RechRaceParNom(String nom) throws DaoExceptionRBC {
+	public Race rechRaceParNom(String nom) throws DaoExceptionRBC {
 		Race raceHib = null;
 		
 		if (nom!=null) {

@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 import clientServeur.race_bonus_carac.interfaces.IPackable;
+import entity.armurerie.Arme;
 import entity.race_bonus_carac.bonus.Bonus;
 import parametres.race_bonus_carac.bonus.ParamIPackable;
 
@@ -46,8 +47,12 @@ public class Race implements IPackable, Serializable {
 				joinColumns = @JoinColumn(name = "idRace"),
 				inverseJoinColumns = @JoinColumn(name= "idBonus"))
 	private Collection<Bonus> listeBonus = new ArrayList<Bonus>(); 
-	
-	
+
+	//--------------------------------OlivB---------------------------
+	//Mappe la table association ArmeRace
+	@ManyToMany(mappedBy="races", fetch = FetchType.EAGER)
+	private Collection <Arme> armes = new ArrayList<Arme>();
+	//-----------------------------------------------------------------	
 	//Constructeurs
 	public Race(){
 	}

@@ -91,7 +91,7 @@ public class RaceDaoGestion {
 		if (raceHib != null) {
 			//parcours de la table bonus_race pour y supprimer toutes les réferences à cette race
 			//le cascadeType.remove posée sur la liste de bonus de la race ne fonctionne pas car il cherche également à supprimer le bonus (qui peut être lié à d'autres races)
-			em.createNativeQuery(Requetes.DELETE_BONUS_RACE.getMsg()).setParameter(1, race.getId());
+			//em.createNativeQuery(Requetes.DELETE_BONUS_RACE.getMsg()).setParameter(1, race.getId());
 			
 			//puis on supprime la race selectionnée		
 			em.remove(raceHib);

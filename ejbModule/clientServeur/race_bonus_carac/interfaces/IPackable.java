@@ -14,7 +14,7 @@ public interface IPackable {
 	
 	public int getId();
 	public String getNom();
-	public boolean getDispo();
+	public boolean isDispo();
 	public int getCoutXp();
 	public Collection<Bonus> getListeBonus();
 	

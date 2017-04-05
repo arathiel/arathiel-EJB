@@ -103,7 +103,7 @@ public class Race implements IPackable, Serializable {
 	}
 
 	@Override
-	public boolean getDispo() {
+	public boolean isDispo() {
 		return dispo;
 	}
 
@@ -147,7 +147,7 @@ public class Race implements IPackable, Serializable {
 	//Methode qui reconstruit un objet à partir d'un objet hibernate
 	public Race dto() {
 		
-		Race raceDto = new Race(this.getId(), this.getNom(), this.getDispo());
+		Race raceDto = new Race(this.getId(), this.getNom(), this.isDispo());
 	
 		//On ajoute les bonus à la raceDto
 		if (this.getListeBonus() != null) {

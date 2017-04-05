@@ -32,6 +32,7 @@ public class ServiceArme {
 	private Etat etatEtat;
 
 	public void createArme(IArme arme, List<String> raceArme) throws ServiceOlivBException   {
+		System.out.println("**************createArme() OK ******************");
 		if (arme == null) throw new ServiceOlivBException(ExceptionMessageErreurOlivB.ARME_NULL);
 		if (raceArme.isEmpty()) throw new ServiceOlivBException(ExceptionMessageErreurOlivB.RACE_INEXISTANTE);
 		try {

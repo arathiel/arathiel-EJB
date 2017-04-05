@@ -14,6 +14,7 @@ import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;
 import entity.race_bonus_carac.race.Race;
+import util.armurerie.Etat;
 
 /**
  * Classe de Service entre la partie présentation et la partie Serveur. Cette
@@ -27,6 +28,8 @@ public class ServiceArme {
 
 	@EJB
 	DaoFacade daoFacade;
+	
+	private Etat etatEtat;
 
 	public void createArme(IArme arme, List<String> raceArme) throws ServiceOlivBException   {
 		if (arme == null) throw new ServiceOlivBException(ExceptionMessageErreurOlivB.ARME_NULL);
@@ -40,10 +43,11 @@ public class ServiceArme {
 
 	}
 	
-	public void createArmeJoueur(ArmeJoueur armeJoueurDto) throws ServiceOlivBException {
+	public void createArmeJoueur(ArmeJoueur armeJoueurDto, int joueurId, int armeId, String etat) throws ServiceOlivBException {
 		if (armeJoueurDto == null) throw new ServiceOlivBException(ExceptionMessageErreurOlivB.ARMEJOUR_NULL);
+		etatEtat = Etat.getEnum(etat);
 		try {
-			daoFacade.persistArmeJoueur(armeJoueurDto);
+			daoFacade.persistArmeJoueur(armeJoueurDto, joueurId, armeId, etatEtat);
 		}
 		catch (Exception e) {
 			throw new ServiceOlivBException(ExceptionMessageErreurOlivB.DOUBLON_ARMEJOUEUR);

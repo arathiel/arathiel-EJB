@@ -1,7 +1,7 @@
 package clientServeur;
 
 /**
- * Interface lien entre la couche présenattion et Service pour la création des objets
+ * Interface lien entre la couche présentation et Service pour la création des objets
  * @author OlivB
  *
  */

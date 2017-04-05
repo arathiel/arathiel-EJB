@@ -33,40 +33,40 @@ public class Arme implements IArme, Serializable{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_ARME")
 	@SequenceGenerator(name = "SEQUENCE_ARME", sequenceName = "SEQUENCE_ARME", allocationSize = 1, initialValue = 1)
 	private int idArme;
-	
+
 	@Column(name="nom", length=20, unique=true, nullable=false)
 	private String nom;
 
 	@Column(name="encomb", length=2, nullable=false)
 	private int encombrement;
-	
+
 	@Column(name="prix", length=3, nullable=false)
 	private int prix;
-	
+
 	@Column(name="monnaie", length=10, nullable=false)
 	private String monnaie;
-	
+
 	@ManyToMany(cascade= {CascadeType.REFRESH, CascadeType.MERGE})
 	@JoinTable(	name="armerace", 
 				joinColumns = @JoinColumn(name="idArme"),
 				inverseJoinColumns = @JoinColumn(name="idRace"))
 	private Collection<Race> races = new ArrayList<Race>();
-	
-	@OneToMany(mappedBy = "arme", cascade = {CascadeType.REMOVE}, fetch = FetchType.EAGER)
-	private Collection<ArmeJoueur> armeJoueur = new ArrayList<ArmeJoueur>();
-	
 
-	
-//Constructeurs de la classe	
+	@OneToMany(mappedBy = "arme", cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY)
+	private Collection<ArmeJoueur> armeJoueur = new ArrayList<ArmeJoueur>();
+
+
+
+	//Constructeurs de la classe	
 	public Arme() {
 		super();
 	}
-	
+
 	public Arme(String nom) {
 		super();
 		this.nom = nom;
 	}
-	
+
 	public Arme(String nom, int encombrement, int prix, String monnaie) {
 		super();
 		this.nom = nom;
@@ -120,7 +120,7 @@ public class Arme implements IArme, Serializable{
 	public int getIdArme() {
 		return idArme;
 	}
-	
+
 	public void setIdArme(int idArme) {
 		this.idArme = idArme;
 	}

@@ -16,7 +16,9 @@ import dao.armurerie.exception.DaoOlivBException;
 import dao.armurerie.inventaire.DaoInventaire;
 import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
+import entity.armurerie.Joueur;
 import entity.race_bonus_carac.race.Race;
+import util.armurerie.Etat;
 
 /**
  * Couhe DAO : requetes vers le Contexte de Persistance
@@ -29,12 +31,14 @@ public class DaoGestion {
 
 	@EJB
 	DaoInventaire daoInventaire;
-	
+
 	@PersistenceContext(unitName="Ahibernate")
 	EntityManager em;
 
-	private List<Race> races;
-	private IArme armeTransit;
+	private List<Race> 	races;
+	private IArme 		armeTransit;
+	private Arme 		arme;
+	private Joueur		joueur;
 
 	//Insertion d'une nouvelle arme avec sa liste de Races associées
 	public void insert(IArme arme, List<String> raceArme) throws DaoOlivBException {
@@ -49,12 +53,17 @@ public class DaoGestion {
 			throw new DaoOlivBException(ExceptionMessageErreurOlivB.DOUBLON_ARME);
 		}
 	}
-	
-	public void persistArmeJoueur(ArmeJoueur armeJoueurDto) throws DaoOlivBException {
-		if (armeJoueurDto == null) throw new DaoOlivBException(ExceptionMessageErreurOlivB.ARMEJOUR_NULL);
-		System.out.println(armeJoueurDto.getArme().getIdArme() + " " +  armeJoueurDto.getEtat() + " " + armeJoueurDto.getJoueur().getIdJoueur());
-		
-		
+
+	public void persistArmeJoueur(ArmeJoueur armeJoueurDto, int joueurId, int armeId, Etat etatEtat) {
+
+		joueur 	= daoInventaire.findJoueur(joueurId);
+		arme 	= daoInventaire.findArme(armeId);
+		armeJoueurDto.setArme(arme);
+		armeJoueurDto.setJoueur(joueur);
+		armeJoueurDto.setEtat(etatEtat);
+
+		em.persist(armeJoueurDto);
+
 	}
 
 	//méthode de modification de l'arme ainsi que sa liste de races
@@ -62,7 +71,6 @@ public class DaoGestion {
 		if (arme == null) throw new DaoOlivBException(ExceptionMessageErreurOlivB.ARME_NULL);
 		if (raceArme.isEmpty()) throw new DaoOlivBException(ExceptionMessageErreurOlivB.RACE_INEXISTANTE);
 		races = daoInventaire.findRacesAssociees(raceArme);
-		//		em.createNativeQuery("delete from armerace where idRace = ?1").setParameter(1, armeFind.getIdArme());
 		try {
 			armeTransit = em.find(Arme.class, arme.getIdArme());
 			armeTransit.setNom(arme.getNom());
@@ -81,8 +89,8 @@ public class DaoGestion {
 	public void delete(IArme arme) throws DaoOlivBException {
 		if (arme == null) throw new DaoOlivBException(ExceptionMessageErreurOlivB.ARME_NULL);
 		try {
-		armeTransit = em.find(Arme.class, arme.getIdArme());
-		em.remove(armeTransit);
+			armeTransit = em.find(Arme.class, arme.getIdArme());
+			em.remove(armeTransit);
 		}
 		catch (PersistenceException e) {
 			throw new DaoOlivBException(ExceptionMessageErreurOlivB.ARME_INEXISTANTE);

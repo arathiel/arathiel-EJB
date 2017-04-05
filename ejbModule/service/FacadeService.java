@@ -450,52 +450,54 @@ public class FacadeService implements IFacadeService {
 	/*  			ARME				  		  */
 	/* ========================================== */
 	
-
+	//creation d'une arme avec sa liste de Races (Race obligatoire car multiplicité 1,*)
+	@Override
 	public void createArme(IArme arme, List<String> raceArme) throws ServiceOlivBException {
 		serviceArme.createArme(arme, raceArme);
 		
 	}
 
-
-	public void createArmeJoueur(ArmeJoueur armeJoueurDto) throws ServiceOlivBException {
-		serviceArme.createArmeJoueur(armeJoueurDto);
+	//association d'un joueur avec une arme et un état de l'arme
+	@Override
+	public void createArmeJoueur(ArmeJoueur armeJoueurDto, int joueurId, int armeId, String etat) throws ServiceOlivBException {
+		serviceArme.createArmeJoueur(armeJoueurDto, joueurId, armeId, etat);
 		
 	}
-	
-
+	//modification de l'arme
+	@Override
 	public void modifArme(IArme arme, List<String> raceArme) throws ServiceOlivBException {
 		serviceArme.modifArme(arme, raceArme);
 		
 	}
-	
-
+	//suppression d'une arme
+	@Override
 	public void supprArme(IArme arme) throws ServiceOlivBException {
 		serviceArme.supprArme(arme);
 		
 	}
-	
-
+	//obtenir une arme par son nom
+	@Override
 	public Arme getArme(String nom) {
 		return serviceArme.getArme(nom);
 	}
-
-
+	//lister les races pour l'affichage du formulaire de création
+	@Override
 	public List<Race> listerRaces() throws ServiceOlivBException {
 		return serviceArme.listerRaces();
 	}
-
-
+	//lister les armes pour l'affichage de la liste des armes
+	@Override
 	public List<Arme> listerArmes() throws ServiceOlivBException {
 		return serviceArme.listerArmes();
 	}
 
-
-
+	//lister les armes selon la race
+	@Override
 	public List<Arme> listerArmesRace() throws ServiceOlivBException {
 		return serviceArme.listerArmesRace();
 	}
-
-
+	//lister les joueurs pour l'affichage
+	@Override
 	public List<Joueur> listerJoueurs() throws ServiceOlivBException {
 		return serviceArme.listerJoueurs();
 	}

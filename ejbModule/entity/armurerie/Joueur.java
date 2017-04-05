@@ -11,7 +11,12 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+/**
+ * Classe Joueur : un script SQL est dispo pour la création de joueurs - pas de création dynamique au sein de l'application
+ * Relation ManyToMany avec Arme - décomposé en OneToMany avec Entity ArmeJoueur
+ * @author OlivB
+ *
+ */
 
 @Entity
 @Table(name="joueur")
@@ -25,7 +30,7 @@ public class Joueur implements Serializable{
 	@Column (length = 20, nullable=false)
 	private String nomJoueur;
 	
-	@OneToMany(mappedBy = "joueur", cascade = {CascadeType.REMOVE}, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "joueur", cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY)
 	private Collection<ArmeJoueur> armeJoueur = new ArrayList<ArmeJoueur>();
 	
 	public Joueur() {

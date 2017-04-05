@@ -22,9 +22,11 @@ public class DaoInventaire {
 	@PersistenceContext(unitName="Ahibernate")
 	EntityManager em;
 
-	private List<Arme> armes;
-	private List<Race> races;
-	private List<Joueur> joueurs;
+	private List<Arme> 		armes;
+	private List<Race> 		races;
+	private List<Joueur> 	joueurs;
+	private Joueur			joueur;
+	private Arme			arme;
 
 	public List<Arme> selectArmesWhereRace() throws DaoOlivBException {
 		armes = new ArrayList<Arme>();
@@ -105,5 +107,17 @@ public class DaoInventaire {
 			throw new DaoOlivBException(ExceptionMessageErreurOlivB.NO_JOUEUR);
 		}
 		return joueurs;
+	}
+	
+	public Joueur findJoueur(int joueurId) {
+		joueur = em.find(Joueur.class, joueurId);
+		System.out.println(joueur);
+		return joueur;
+	}
+
+	public Arme findArme(int armeId) {
+		arme = em.find(Arme.class, armeId);
+		System.out.println(arme);
+		return arme;
 	}
 }

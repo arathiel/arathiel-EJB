@@ -16,6 +16,7 @@ import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;
 import entity.race_bonus_carac.race.Race;
+import util.armurerie.Etat;
 
 /**
  * Facade entre la couche service et la couche DAO
@@ -39,8 +40,8 @@ public class DaoFacade {
 
 	}
 
-	public void persistArmeJoueur(ArmeJoueur armeJoueurDto) throws DaoOlivBException{
-		daoGestion.persistArmeJoueur(armeJoueurDto);
+	public void persistArmeJoueur(ArmeJoueur armeJoueurDto, int joueurId, int armeId, Etat etatEtat) {
+		daoGestion.persistArmeJoueur(armeJoueurDto, joueurId, armeId, etatEtat);
 		
 	}
 	public List<Race> selectRaces() throws DaoOlivBException {

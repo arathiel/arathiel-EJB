@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
-import armurerie.Exception.ExceptionMessageErreurOlivB;
 import dao.armurerie.exception.DaoOlivBException;
 import dao.armurerie.param.ArmurerieParam;
 import dao.race_bonus_carac.exception.DaoExceptionRBC;
@@ -19,6 +18,7 @@ import dao.util.Parameter;
 import entity.armurerie.Arme;
 import entity.armurerie.Joueur;
 import entity.race_bonus_carac.race.Race;
+import util.armurerie.ExceptionMessageErreurOlivB;
 
 @Singleton
 @LocalBean

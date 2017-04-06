@@ -7,7 +7,6 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-import armurerie.Exception.ServiceOlivBException;
 import clientServeur.IArme;
 import clientServeur.IFacadeService;
 import clientServeur.exception.UserException;
@@ -22,6 +21,7 @@ import entity.race_bonus_carac.race.Race;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import service.armurerie.ServiceArme;
+import service.armurerie.exception.ServiceOlivBException;
 import service.competence.FacadeServiceCompetence;
 import service.race_bonus_carac.FacadeServiceRBC;
 import service.trait.FacadeTraitServ;

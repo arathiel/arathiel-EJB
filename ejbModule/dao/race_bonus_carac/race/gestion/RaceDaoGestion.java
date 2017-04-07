@@ -62,9 +62,6 @@ public class RaceDaoGestion {
 				throw new DaoExceptionRBC(DaoExceptionRBCMsg.DOUBLON_NOM_RACE);
 			}
 		}
-
-		
-System.out.println("insertrace"+race.toString());
 		
 		//On teste ensuite si parmis les bonus certains n'existent pas. On les insère d'abord.
 		for (Bonus b : race.getListeBonus()){
@@ -127,27 +124,31 @@ System.out.println("insertrace"+race.toString());
 	 * @throws DaoExceptionRBC
 	 */
 	public void updateRace(Race race) throws DaoExceptionRBC{
-		//On cherche si le nom de la race à modifier est correct
-		raceNomValide(race);
-		
-		//On verifie ensuite s'il n'est pas déjà présent dans la base (le nom peut être changé, c'est l'id qui sert de référence)
-		ArrayList<Race> liste = rDaoConsult.listeToutesRaces();
-		for (Race r: liste) {											
-			if ((race.getNom()).equalsIgnoreCase(r.getNom())) {
-				throw new DaoExceptionRBC(DaoExceptionRBCMsg.DOUBLON_NOM_RACE);
-			}
-		}
-		
 		//On cherche si la race à modifier existe bien dans la base
 		@SuppressWarnings("unused")
 		Race raceHib;
 		try {
 			raceHib = rDaoConsult.RechRaceParId(race.getId());
 		} catch (DaoExceptionRBC e) {
-			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) { throw new DaoExceptionRBC(e.getMessage());}
+			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {throw new DaoExceptionRBC(DaoExceptionRBCMsg.RACE_NO_EXIST);}
 			else {throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_UPDATE_RACE);}
 		}
 			
+		
+		//On cherche si le nom de la race à modifier est correct
+		raceNomValide(race);
+		
+		//On verifie ensuite s'il n'est pas déjà présent dans la base (le nom peut être changé, c'est l'id qui sert de référence)
+		//Si le nom est déjà présent on verifie qu'il correspond bien à l'Id de la race qu'on veut changer
+		ArrayList<Race> liste = rDaoConsult.listeToutesRaces();
+		for (Race r: liste) {											
+			if ((race.getNom()).equalsIgnoreCase(r.getNom())) {
+				if(race.getId()!=r.getId()) {
+					throw new DaoExceptionRBC(DaoExceptionRBCMsg.DOUBLON_NOM_RACE);
+				}	
+			}
+		}
+		
 		//On retire auparavant les bonus correspondant à la race avant le merge (sinon la table garde ceux qui ont été retirés)
 		em.createNativeQuery(Requetes.DELETE_BONUS_RACE.getMsg()).setParameter(1, race.getId());
 		

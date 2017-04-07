@@ -526,12 +526,12 @@ public class FacadeService implements IFacadeService {
 
 	// Gestion Passion
 	@Override
-	public void addPassion(Passion passion) throws ExceptionService, DaoExceptionRBC {
+	public void addPassion(Passion passion) throws ExceptionService, UserExceptionRBC {
 		facPassion.addPassion(passion);
 	}
 
 	@Override
-	public void updatePassion(Passion passion) throws ExceptionService, DaoExceptionRBC {
+	public void updatePassion(Passion passion) throws ExceptionService, UserExceptionRBC {
 		facPassion.updatePassion(passion);
 	}
 

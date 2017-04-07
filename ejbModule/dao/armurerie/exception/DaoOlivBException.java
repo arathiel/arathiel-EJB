@@ -1,6 +1,6 @@
 package dao.armurerie.exception;
 
-import armurerie.Exception.ExceptionMessageErreurOlivB;
+import util.armurerie.ExceptionMessageErreurOlivB;
 
 public class DaoOlivBException extends Exception{
 

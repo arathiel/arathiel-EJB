@@ -7,22 +7,29 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-import armurerie.Exception.ServiceOlivBException;
 import clientServeur.IArme;
 import clientServeur.IFacadeService;
+import clientServeur.exception.ExceptionService;
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
+import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;
 import entity.competence.Competence;
+import entity.magie.MDPFondamental;
+import entity.magie.MDPNormal;
+import entity.passion.Passion;
 import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.race_bonus_carac.race.Race;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import service.armurerie.ServiceArme;
+import service.armurerie.exception.ServiceOlivBException;
 import service.competence.FacadeServiceCompetence;
+import service.magie.FacadeMagie;
+import service.passion.FacadePassion;
 import service.race_bonus_carac.FacadeServiceRBC;
 import service.trait.FacadeTraitServ;
 import technic.trait.Comportements;
@@ -59,6 +66,13 @@ public class FacadeService implements IFacadeService {
 	@EJB
 	private ServiceArme 			serviceArme;
 	
+	//----------------------------------------Anaïs
+	@EJB
+	private FacadeMagie facMagie;
+
+	@EJB
+	private FacadePassion facPassion;
+
 	
 //-------------------------------------------------------------------------------------------- Jonathan
 	
@@ -516,6 +530,192 @@ public class FacadeService implements IFacadeService {
 	@Override
 	public List<Joueur> listerJoueurs() throws ServiceOlivBException {
 		return serviceArme.listerJoueurs();
+	}
+
+	
+	//-------------------------------------------------------------------------------------------- Anaïs
+	
+			/* ========================================== */ 
+			/*  				PASSION					  */
+			/* ========================================== */
+
+
+	// Gestion Passion
+	@Override
+	public void addPassion(Passion passion) throws ExceptionService, UserExceptionRBC {
+		facPassion.addPassion(passion);
+	}
+
+	@Override
+	public void updatePassion(Passion passion) throws ExceptionService, UserExceptionRBC {
+		facPassion.updatePassion(passion);
+	}
+
+	@Override
+	public void delPassions() {
+		facPassion.delPassions();
+	}
+
+	@Override
+	public void delPassion(int refPassion) throws ExceptionService {
+		facPassion.delPassion(refPassion);
+	}
+
+	@Override
+	public void delPassion(String passion) throws ExceptionService {
+		facPassion.delPassion(passion);
+	}
+
+	// Consultation passions
+
+	@Override
+	public List<Passion> getPassionsTrieNom() {
+		return facPassion.getPassionsTrieNom();
+	}
+
+	@Override
+	public List<Passion> getPassionsTrieRef() {
+		return facPassion.getPassionsTrieRef();
+	}
+
+	@Override
+	public Passion getPassion(int refPassion) throws ExceptionService {
+		return facPassion.getPassion(refPassion);
+	}
+
+	@Override
+	public Passion getPassion(String nom) throws ExceptionService {
+		return facPassion.getPassion(nom);
+	}
+
+	@Override
+	public List<Passion> getPassionsByLettres(String lettres) {
+		
+		return facPassion.getPassionsByLettres(lettres);
+	}
+		
+	@Override
+	public List<Race> getRaceLibre() {
+		return facPassion.getRaceLibre();
+	}
+	
+	/* ========================================== */ 
+	/*  				MAGIE					  */
+	/* ========================================== */
+
+	// Gestion Mot de pouvoir fondamental
+
+	@Override
+	public void addMDPFond(MDPFondamental mDPvoirFond) throws ExceptionService {
+		facMagie.addMDPFond(mDPvoirFond);
+	}
+
+	@Override
+	public void updateMDPFond(MDPFondamental mDPvoirfond) throws ExceptionService {
+		facMagie.updateMDPFond(mDPvoirfond);
+	}
+
+	@Override
+	public void delMDPFonds() {
+		facMagie.delMDPFonds();
+	}
+
+	@Override
+	public void delMDPFond(int refMDPvoirFond) throws ExceptionService {
+		facMagie.delMDPFond(refMDPvoirFond);
+	}
+
+	@Override
+	public void delMDPFond(MDPFondamental mDPvoirfond) throws ExceptionService {
+		facMagie.delMDPFond(mDPvoirfond);
+	}
+
+
+	@Override
+	public void delMDPFond(String nom) throws ExceptionService {
+		facMagie.delMDPFond(nom);
+		
+	}
+	
+	// Gestion mot de pouvoir Normal
+
+	@Override
+	public void addMDPNorm(MDPNormal mDPvoirNorm) throws ExceptionService {
+		facMagie.addMDPNorm(mDPvoirNorm);
+	}
+
+	@Override
+	public void updateMDPNorm(MDPNormal mDPvoirNorm) throws ExceptionService {
+		facMagie.updateMDPNorm(mDPvoirNorm);
+	}
+
+	@Override
+	public void delMDPNorms() {
+		facMagie.delMDPNorms();
+	}
+
+	@Override
+	public void delMDPNorm(int refMDPvoirNorm) throws ExceptionService {
+		facMagie.delMDPNorm(refMDPvoirNorm);
+	}
+
+	@Override
+	public void delMDPNorm(MDPNormal mDPvoirNorm) throws ExceptionService {
+		facMagie.delMDPNorm(mDPvoirNorm);
+	}
+
+	@Override
+	public void delMDPNorm(String nom) throws ExceptionService {
+		facMagie.delMDPNorm(nom);
+	}
+
+	// Lister les concepts magie
+	@Override
+	public List<MDPNormal> getMDPNormalTrieNom() {
+
+		return facMagie.getMDPNormalTrieNom();
+	}
+
+	@Override
+	public List<MDPNormal> getMDPNormalTrieRef() {
+
+		return facMagie.getMDPNormalTrieRef();
+	}
+
+	@Override
+	public List<MDPFondamental> getMDPFondamentalTrieNom() {
+
+		return facMagie.getMDPFondamentalTrieNom();
+	}
+
+	@Override
+	public List<MDPFondamental> getMDPFondamentalTrieRef() {
+
+		return facMagie.getMDPFondamentalTrieRef();
+	}
+
+	@Override
+	public MDPFondamental getMDPFondamental(int refMDPvoirFond) throws ExceptionService {
+
+		return facMagie.getMDPFondamental(refMDPvoirFond);
+	}
+
+	@Override
+	public MDPFondamental getMDPFondamental(String nom) throws ExceptionService {
+
+			return facMagie.getMDPFondamental(nom);
+	}
+
+	@Override
+	public MDPNormal getMDPNormal(int refMDPvoirNorm) throws ExceptionService {
+
+		return facMagie.getMDPNormal(refMDPvoirNorm);
+	}
+
+	@Override
+	public MDPNormal getMDPNormal(String nom) throws ExceptionService {
+
+		return facMagie.getMDPNormal(nom);
 	}
 
 	

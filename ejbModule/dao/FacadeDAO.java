@@ -1,19 +1,20 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
-
 import clientServeur.exception.UserException;
 import dao.competence.FacadeDaoCompetence;
+import dao.passionMagie.exception.DaoException;
+import dao.passionMagie.magie.FacadeDaoMagie;
+import dao.passionMagie.passion.FacadeDaoPassion;
 import dao.race_bonus_carac.bonus.DaoBonus;
 import dao.race_bonus_carac.carac.DaoCarac;
 import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import dao.race_bonus_carac.race.FacadeDaoRace;
-//import dao.magie.FacadeDaoMagie;
-//import dao.passion.FacadeDaoPassion;
 import dao.trait.FacadeTraitDao;
 import dao.trait.exception.DoublonException;
 import dao.trait.exception.IdNullException;
@@ -23,6 +24,9 @@ import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
 import dao.trait.exception.ObjetUtiliseException;
 import entity.competence.Competence;
+import entity.magie.MDPFondamental;
+import entity.magie.MDPNormal;
+import entity.passion.Passion;
 import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.race_bonus_carac.race.Race;
@@ -55,10 +59,7 @@ public class FacadeDAO {
 	//--------------------------------------- ???
 	@EJB
 	private FacadeDaoCompetence 	daoComp;
-//	@EJB
-//	private FacadeDaoMagie 			facDaoMagie;
-//	@EJB
-//	private FacadeDaoPassion 		facDaoPassion;
+
 	
 	//--------------------------------------- Francois
 	@EJB
@@ -72,6 +73,14 @@ public class FacadeDAO {
 	
 	@EJB
 	private FacadeDaoCompetence dComp;
+	
+	
+	//--------------------------------------- Anaïs
+	@EJB
+	private FacadeDaoMagie facDaoMagie;
+
+	@EJB
+	private FacadeDaoPassion facDaoPassion;
 	
 	
 	/* ========================================== */ 
@@ -403,4 +412,185 @@ public class FacadeDAO {
 	public Race RechRaceParId(int id) throws DaoExceptionRBC {
 		return fDaoRace.RechRaceParId(id);
 	}	
+	
+	
+	//--------------------------------------------------------------------------------- Anaïs
+	
+		/* ========================================== */ 
+		/*  				PASSION					  */
+		/* ========================================== */
+
+	public void addPassion(Passion passion) throws DaoException, DaoExceptionRBC {
+
+		facDaoPassion.addPassion(passion);
+	}
+
+	public void addMDPFond(MDPFondamental mDPvoirFond) throws DaoException {
+
+		facDaoMagie.addMDPFond(mDPvoirFond);
+
+	}
+
+	public void addMDPNorm(MDPNormal mDPvoirNorm) throws DaoException {
+
+		facDaoMagie.addMDPNorm(mDPvoirNorm);
+
+	}
+
+
+	public void updatePassion(Passion passion) throws DaoException, DaoExceptionRBC {
+
+		facDaoPassion.updatePassion(passion);
+
+	}
+
+	public void updateMDPFond(MDPFondamental mDPvoirfond) throws DaoException {
+
+		facDaoMagie.updateMDPFond(mDPvoirfond);
+
+	}
+
+	public void updateMDPNorm(MDPNormal mDPvoirNorm) throws DaoException {
+
+		facDaoMagie.updateMDPNorm(mDPvoirNorm);
+
+	}
+
+
+	public void delPassions() {
+
+		facDaoPassion.delPassions();
+	}
+
+	public void delPassion(int refPassion) throws DaoException {
+
+		facDaoPassion.delPassion(refPassion);
+	}
+
+	public void delPassion(String passion) throws DaoException {
+
+		facDaoPassion.delPassion(passion);
+
+	}
+
+	public void delMDPFonds() {
+		// TODO FAIRE METHODE!
+		facDaoMagie.delMDPFonds();
+	}
+
+	public void delMDPFond(int refMDPvoirFond) throws DaoException {
+
+		facDaoMagie.delMDPFond(refMDPvoirFond);
+	}
+
+	public void delMDPFond(MDPFondamental mDPvoirfond) throws DaoException {
+
+		facDaoMagie.delMDPFond(mDPvoirfond);
+
+	}
+	
+	public void delMDPFond(String nom) throws DaoException {
+		
+		facDaoMagie.delMDPFond(nom);
+		
+	}
+
+	public void delMDPNorms() {
+		facDaoMagie.delMDPNorms();
+	}
+
+	public void delMDPNorm(int refMDPvoirNorm) throws DaoException {
+
+		facDaoMagie.delMDPNorm(refMDPvoirNorm);
+
+	}
+
+	public void delMDPNorm(MDPNormal mDPvoirNorm) throws DaoException {
+
+		facDaoMagie.delMDPNorm(mDPvoirNorm);
+
+	}
+
+	public void delMDPNorm(String nom) throws DaoException {
+		facDaoMagie.delMDPNorm(nom);
+		
+	}
+	
+
+	public List<Passion> getPassionsTrieNom() {
+
+		return facDaoPassion.getPassionsTrieNom();
+	}
+
+	public List<Passion> getPassionsTrieRef() {
+
+		return facDaoPassion.getPassionsTrieRef();
+	}
+
+	public List<Passion> getPassionsByLettres(String lettres) {
+		return facDaoPassion.getPassionsByLettres(lettres);
+	}	
+	
+	public List<MDPNormal> getMDPNormalTrieNom() {
+
+		return facDaoMagie.getMDPNormalTrieNom();
+	}
+
+	public List<MDPNormal> getMDPNormalTrieRef() {
+
+		return facDaoMagie.getMDPNormalTrieRef();
+	}
+
+	public List<MDPFondamental> getMDPFondamentalTrieNom() {
+
+		return facDaoMagie.getMDPFondamentalTrieNom();
+	}
+
+	public List<MDPFondamental> getMDPFondamentalTrieRef() {
+
+		return facDaoMagie.getMDPFondamentalTrieRef();
+	}
+
+	public Passion getPassion(int refPassion) throws DaoException {
+
+		return facDaoPassion.getPassion(refPassion);
+	}
+
+	public Passion getPassion(String nom) throws DaoException {
+
+		return facDaoPassion.getPassion(nom);
+	}
+
+	public MDPFondamental getMDPFondamental(int refMDPvoirFond) throws DaoException {
+
+		return facDaoMagie.getMDPFondamental(refMDPvoirFond);
+
+	}
+
+	public MDPFondamental getMDPFondamental(String nom) throws DaoException {
+
+		return facDaoMagie.getMDPFondamental(nom);
+	}
+
+	public MDPNormal getMDPNormal(int refMDPvoirNorm) throws DaoException {
+
+		return facDaoMagie.getMDPNormal(refMDPvoirNorm);
+	}
+
+	public MDPNormal getMDPNormal(String nom) throws DaoException {
+
+		return facDaoMagie.getMDPNormal(nom);
+	}
+
+	public List<Race> getRaceLibre() {
+
+		return facDaoPassion.getRaceLibre();
+	}
+	
+	
+	
+	
+	
+	
+	
 }

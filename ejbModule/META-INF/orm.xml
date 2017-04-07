@@ -55,4 +55,82 @@
 		<query> select c from Caracteristique c order by c.nomCarac </query>
 	</named-query>
 
+<!-- ********************************************************************************************************* Anaïs -->
+
+<!-- REQUETES MAGIE (Mot de pouvoir) --> 
+<named-query name="Recherche mot de pouvoir fond par nom">
+		<query>select m from MDPFondamental m where libelle = ?1</query>
+	</named-query>
+
+	<named-query name="Recherche mot de pouvoir normal par nom">
+		<query>select m from MDPNormal m where libelle = ?1</query>
+	</named-query>
+	
+	<named-query name="Lister mots normaux par nom">
+		<query>select m from MDPNormal m order by libelle</query>
+	</named-query>
+	
+	<named-query name="Lister mots normaux par ref">
+		<query>select m from MDPNormal m order by id</query>
+	</named-query>
+	
+	<named-query name="Lister mots fondamentaux par nom">
+		<query>select m from MDPFondamental m order by libelle</query>
+	</named-query>
+	
+	<named-query name="Lister mots fondamentaux par ref">
+		<query>select m from MDPFondamental m order by id</query>
+	</named-query>
+
+	<named-query name="Effacer tous les mots de pouvoir fondamentaux">
+		<query>delete from MDPFondamental</query>
+	</named-query>
+	
+	<named-query name="Effacer tous les mots de pouvoir normaux">
+		<query>delete from MDPNormal</query>
+	</named-query>
+		
+	<named-query name="Liste mots de pouvoir normaux pour un mot de pouvoir fond">
+		<query>select m from MDPNormal m where m.motDPvoirFond.id = ?1</query>
+	</named-query>
+
+
+<!-- REQUETES PASSION --> 
+
+	<named-query  name="Recherche race par nom">
+		<query>select r from Race r where r.nom = ?1</query>
+	</named-query>
+
+	<named-query name="Recherche passion par nom">
+		<query>select p from Passion p where nom = ?1</query>
+	</named-query>
+
+	<named-query name="Lister passions par nom">
+		<query>select p from Passion p order by nom</query>
+	</named-query>
+	
+	<named-query name="Lister passions par ref">
+		<query>select p from Passion p order by id</query>
+	</named-query>
+
+	<named-query name="Effacer toutes les passions">
+		<query>delete from Passion</query>
+	</named-query>
+	
+	<named-query name="Supprimer une passion par nom">
+		<query>delete from Passion p where p.nom = ?1</query>
+	</named-query>
+
+	<named-query name="Modifier la passion">
+		<query>update Passion p SET p.nom = ?1, p.description = ?2, p.race = ?3 where p.id = ?4 </query>
+	</named-query>
+	
+	<named-query name="Lister les races non affectées à une passion">
+ 		<query>select r from Race r where r.id not in (select p.race from Passion p)</query>
+	</named-query>
+
+	<named-query name = "Lister les passions par lettres">
+		<query>select p from Passion p where lower(trim(p.nom)) LIKE lower(trim(:lettres)) </query>				
+	</named-query>
+
 </entity-mappings>

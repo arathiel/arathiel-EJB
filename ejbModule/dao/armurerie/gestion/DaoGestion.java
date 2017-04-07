@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
-import armurerie.Exception.ExceptionMessageErreurOlivB;
 import clientServeur.IArme;
 import dao.armurerie.exception.DaoOlivBException;
 import dao.armurerie.inventaire.DaoInventaire;
@@ -21,6 +20,7 @@ import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;
 import entity.race_bonus_carac.race.Race;
 import util.armurerie.Etat;
+import util.armurerie.ExceptionMessageErreurOlivB;
 
 /**
  * Couhe DAO : requetes vers le Contexte de Persistance

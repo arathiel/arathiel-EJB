@@ -1,5 +1,6 @@
-package armurerie.Exception;
+package service.armurerie.exception;
 
+import util.armurerie.ExceptionMessageErreurOlivB;
 
 public class ServiceOlivBException extends Exception{
 

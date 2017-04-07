@@ -60,6 +60,7 @@ public class RaceDaoConsultation {
 	 */
 	public ArrayList<Race> listeRacesJouables() {
 		//TODO
+		//Cette requete reste a construire pour une itération future
 		return null;		
 	}
 
@@ -103,6 +104,7 @@ public class RaceDaoConsultation {
 		raceHib = (Race) em.find(Race.class, id);	
 
 		if (raceHib == null) {
+			System.out.println("envoi d'une race no exist exception");
 			throw new DaoExceptionRBC(DaoExceptionRBCMsg.RACE_NO_EXIST);
 		}
 		

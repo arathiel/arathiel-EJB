@@ -69,10 +69,8 @@ public class RaceServiceConsultation {
 			
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {
-				System.out.println("race no exist dans raceServiceConsult");
 				throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NO_EXIST);
 			} else {
-				System.out.println("autre erreur dans raceServiceConsult");
 				throw new UserExceptionRBC(UserExceptionRBCMsg.PB_RECH_RACE);
 			}
 		}
@@ -89,8 +87,7 @@ public class RaceServiceConsultation {
 	 * @throws UserExceptionRBC
 	 */
 	public Race RechRaceParId(int id) throws UserExceptionRBC {
-		System.out.println("RaceServiceConsult rechRaceParId");
-		
+	
 		Race race = null;
 		try {
 			race = fDao.RechRaceParId(id);

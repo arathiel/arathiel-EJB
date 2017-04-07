@@ -3,7 +3,6 @@ package clientServeur;
 import java.util.ArrayList;
 import java.util.List;
 
-import armurerie.Exception.ServiceOlivBException;
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
 import entity.armurerie.Arme;
@@ -18,6 +17,7 @@ import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.race_bonus_carac.race.Race;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
+import service.armurerie.exception.ServiceOlivBException;
 import technic.trait.Comportements;
 import technic.trait.Traits;
 

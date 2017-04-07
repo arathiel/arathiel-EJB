@@ -6,15 +6,15 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import armurerie.Exception.ExceptionMessageErreurOlivB;
-import armurerie.Exception.ServiceOlivBException;
 import clientServeur.IArme;
 import dao.armurerie.facade.DaoFacade;
 import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;
 import entity.race_bonus_carac.race.Race;
+import service.armurerie.exception.ServiceOlivBException;
 import util.armurerie.Etat;
+import util.armurerie.ExceptionMessageErreurOlivB;
 
 /**
  * Classe de Service entre la partie présentation et la partie Serveur. Cette

@@ -29,7 +29,7 @@ public class FacadePassion {
 		passionGest.addPassion(passion);
 	}
 
-	public void updatePassion(Passion passion) throws ExceptionService {
+	public void updatePassion(Passion passion) throws ExceptionService, DaoExceptionRBC {
 	
 		passionGest.updatePassion(passion);
 	}

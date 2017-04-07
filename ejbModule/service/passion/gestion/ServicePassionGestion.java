@@ -73,7 +73,7 @@ public class ServicePassionGestion {
 
 	}
 
-	public void updatePassion(Passion passion) throws ExceptionService {
+	public void updatePassion(Passion passion) throws ExceptionService, DaoExceptionRBC {
 		// TODO faire les controles avant d'envoyer en DAO
 		
 		if (passion == null || passion.getNom() == null) {

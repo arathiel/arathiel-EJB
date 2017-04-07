@@ -531,7 +531,7 @@ public class FacadeService implements IFacadeService {
 	}
 
 	@Override
-	public void updatePassion(Passion passion) throws ExceptionService {
+	public void updatePassion(Passion passion) throws ExceptionService, DaoExceptionRBC {
 		facPassion.updatePassion(passion);
 	}
 

@@ -417,7 +417,7 @@ public class FacadeDAO {
 	}
 
 
-	public void updatePassion(Passion passion) throws DaoException {
+	public void updatePassion(Passion passion) throws DaoException, DaoExceptionRBC {
 
 		facDaoPassion.updatePassion(passion);
 

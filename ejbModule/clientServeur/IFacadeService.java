@@ -212,7 +212,7 @@ public interface IFacadeService {
 	public void addPassion(Passion passion) throws ExceptionService, DaoExceptionRBC;
 
 	// modification
-	public void updatePassion(Passion passion) throws ExceptionService;
+	public void updatePassion(Passion passion) throws ExceptionService, DaoExceptionRBC;
 
 	// suppression
 	public void delPassions();

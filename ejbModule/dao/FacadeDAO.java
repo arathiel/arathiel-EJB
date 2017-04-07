@@ -21,6 +21,7 @@ import dao.trait.exception.LibelleNullException;
 import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
+import dao.trait.exception.ObjetUtiliseException;
 import entity.competence.Competence;
 import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
@@ -115,17 +116,19 @@ public class FacadeDAO {
 	 * @throws UserException
 	 * @throws ObjetNullException
 	 * @throws IdNullException
+	 * @throws ObjetUtiliseException 
 	 */
-	public void supprimerTrait(int id) throws ObjetNullException, IdNullException {
+	public void supprimerTrait(int id) throws ObjetNullException, IdNullException, ObjetUtiliseException {
 		daoTrait.supprimerTrait(id);
 	}
 	
 	/**
 	 * Vide la table de trait de la BDD
+	 * @throws ObjetUtiliseException 
 	 * 
 	 * @throws UserException
 	 */
-	public void reinitialiserTrait() {
+	public void reinitialiserTrait() throws ObjetUtiliseException {
 		daoTrait.reinitialiserTrait();
 	}
 	
@@ -260,6 +263,24 @@ public class FacadeDAO {
 	 */
 	public Comportements consulterListComp() {
 		return daoTrait.consulterListComp();
+	}
+	
+	/**
+	 * Retourne la liste complète des CompCaracteristique
+	 * 
+	 * @return
+	 */
+	public Comportements consulterListCompCar() {
+		return daoTrait.consulterListCompCar();
+	}
+	
+	/**
+	 * Retourne la liste complète des CompRoleplay
+	 * 
+	 * @return
+	 */
+	public Comportements consulterListCompRP() {
+		return daoTrait.consulterListCompRP();
 	}
 	
 	

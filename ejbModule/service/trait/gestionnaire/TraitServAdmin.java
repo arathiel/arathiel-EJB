@@ -11,6 +11,7 @@ import dao.trait.exception.LibelleNullException;
 import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
+import dao.trait.exception.ObjetUtiliseException;
 import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 
@@ -66,18 +67,20 @@ public class TraitServAdmin {
 	 * Supprime un trait de la DAO
 	 * @throws ObjetNullException 
 	 * @throws IdNullException 
+	 * @throws ObjetUtiliseException 
 	 * @throws AucunTraitException 
 	 */
-	public void supprimerTrait(int id) throws ObjetNullException, IdNullException {
+	public void supprimerTrait(int id) throws ObjetNullException, IdNullException, ObjetUtiliseException {
 		daoFacade.supprimerTrait(id);
 
 	}
 	
 	/**
 	 * Vide la table de Trait
+	 * @throws ObjetUtiliseException 
 	 * @throws AucunTraitException 
 	 */
-	public void reinitialiserTrait() {
+	public void reinitialiserTrait() throws ObjetUtiliseException {
 		daoFacade.reinitialiserTrait();
 	}
 	

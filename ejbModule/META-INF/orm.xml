@@ -32,6 +32,14 @@
 		<query> select c from Comportement c order by c.libelle </query>
 	</named-query>
 	
+	<named-query name = "getAllCompCar">
+		<query> select c from CompCaracteristique c </query>
+	</named-query>
+
+	<named-query name = "getAllCompRP">
+		<query> select c from CompRoleplay c</query>
+	</named-query>
+	
 	<named-query name = "deleteAllComp">
 		<query> delete from Comportement </query>
 	</named-query>

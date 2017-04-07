@@ -1,5 +1,6 @@
 package dao.race_bonus_carac.race.gestion;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import javax.ejb.EJB;
@@ -54,7 +55,16 @@ public class RaceDaoGestion {
 		//On teste d'abord si le nom communiqué est valide
 		raceNomValide(race);
 		
-		System.out.println("insertrace"+race.toString());
+		//On verifie ensuite s'il n'est pas déjà présent dans la base avec une casse différente
+		ArrayList<Race> liste = rDaoConsult.listeToutesRaces();
+		for (Race r: liste) {											
+			if ((race.getNom()).equalsIgnoreCase(r.getNom())) {
+				throw new DaoExceptionRBC(DaoExceptionRBCMsg.DOUBLON_NOM_RACE);
+			}
+		}
+
+		
+System.out.println("insertrace"+race.toString());
 		
 		//On teste ensuite si parmis les bonus certains n'existent pas. On les insère d'abord.
 		for (Bonus b : race.getListeBonus()){
@@ -89,10 +99,16 @@ public class RaceDaoGestion {
 		}
 		
 		if (raceHib != null) {
-			//parcours de la table bonus_race pour y supprimer toutes les réferences à cette race
-			//le cascadeType.remove posée sur la liste de bonus de la race ne fonctionne pas car il cherche également à supprimer le bonus (qui peut être lié à d'autres races)
-			//em.createNativeQuery(Requetes.DELETE_BONUS_RACE.getMsg()).setParameter(1, race.getId());
+			//parcours de la table armerace pour y supprimer toutes les réferences à cette race
+			//cette table crée par OlivierB pour gérer le ManyToMany de l'arme sur les races rend la suppression d'une race impossible 
+			//si celle -ci est liée à une arme. Il faudra améliorer cette fonctionalité dans l'avenir mais pour le moment, les lignes sont supprimées à la main
+			try{
+				em.createNativeQuery(Requetes.DELETE_ARME_RACE.getMsg()).setParameter(1, raceHib.getId());
+			}	catch (Exception e){
+				System.out.println(raceHib.getId());
 			
+				throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_DELETE_RACE);
+			}
 			//puis on supprime la race selectionnée		
 			em.remove(raceHib);
 			em.flush();
@@ -114,6 +130,14 @@ public class RaceDaoGestion {
 		//On cherche si le nom de la race à modifier est correct
 		raceNomValide(race);
 		
+		//On verifie ensuite s'il n'est pas déjà présent dans la base (le nom peut être changé, c'est l'id qui sert de référence)
+		ArrayList<Race> liste = rDaoConsult.listeToutesRaces();
+		for (Race r: liste) {											
+			if ((race.getNom()).equalsIgnoreCase(r.getNom())) {
+				throw new DaoExceptionRBC(DaoExceptionRBCMsg.DOUBLON_NOM_RACE);
+			}
+		}
+		
 		//On cherche si la race à modifier existe bien dans la base
 		@SuppressWarnings("unused")
 		Race raceHib;
@@ -124,7 +148,7 @@ public class RaceDaoGestion {
 			else {throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_UPDATE_RACE);}
 		}
 			
-		//On retire auparavant les bonus correspondant à la race avant le merge
+		//On retire auparavant les bonus correspondant à la race avant le merge (sinon la table garde ceux qui ont été retirés)
 		em.createNativeQuery(Requetes.DELETE_BONUS_RACE.getMsg()).setParameter(1, race.getId());
 		
 		//Puis on insère les nouveaux (en passant par une verification)
@@ -147,9 +171,9 @@ public class RaceDaoGestion {
 	
 		boolean b = Pattern.matches("[[a-z] ' \\- () éèêëâàäïîôûüç]*", race.getNom().trim().toLowerCase());
 		
-		if (race.getNom().isEmpty() || race.getNom() == null || b==false || race.getNom().length() > 40){
+		if ((race.getNom().trim()).isEmpty() || race.getNom().trim() == null || b==false || race.getNom().length() > 40){
 			throw new DaoExceptionRBC(DaoExceptionRBCMsg.RACE_NOM_INVALIDE);
-		}	
+		}
 	}
 	
 }

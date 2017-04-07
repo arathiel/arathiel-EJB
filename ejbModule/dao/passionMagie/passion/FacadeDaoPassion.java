@@ -28,7 +28,7 @@ public class FacadeDaoPassion {
 		passionDaoGestion.addPassion(passion);
 	}
 
-	public void updatePassion(Passion passion) throws DaoException {
+	public void updatePassion(Passion passion) throws DaoException, DaoExceptionRBC {
 		
 		passionDaoGestion.updatePassion(passion);
 	}

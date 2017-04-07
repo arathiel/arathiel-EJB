@@ -29,6 +29,7 @@ public enum Erreur {
 	TR_IDNULL		("ID du trait est null"),
 	TR_LIBNULL		("Le libellé du trait est null"),
 	TR_LIBVIDE		("Le libellé du trait est vide"),
+	TR_UTILISE		("Le trait est actuellement utilisé dans un bonus, suppression impossible."),
 
 	
 	

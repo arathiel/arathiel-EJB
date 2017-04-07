@@ -243,6 +243,22 @@ public class FacadeService implements IFacadeService {
 	public Comportements consulterListComp() {
 		return servTrait.consulterListComp();
 	}
+	
+	/**
+	 * Retourne la liste des CompCaracteristique
+	 */
+	@Override
+	public Comportements consulterListCompCar() {
+		return servTrait.consulterListCompCar();
+	}
+
+	/**
+	 * Retourne la liste des CompRoleplay
+	 */
+	@Override
+	public Comportements consulterListCompRP() {		
+		return servTrait.consulterListCompRP();
+	}
 
 	/* ========================================== */ 
 	/*  			CARACTERISTIQUE				  */

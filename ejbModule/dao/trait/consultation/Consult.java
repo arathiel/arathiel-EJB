@@ -16,6 +16,8 @@ import dao.trait.ressources.Erreur;
 import dao.util.Parameter;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.trait.Trait;
+import entity.trait.comportement.CompCaracteristique;
+import entity.trait.comportement.CompRoleplay;
 import entity.trait.comportement.Comportement;
 import technic.trait.Comportements;
 import technic.trait.Traits;
@@ -35,6 +37,7 @@ public class Consult {
 	
 	private Traits 						listTraitHib;
 	private Trait 						traitHib;
+	private Comportements				listComphib;
 	private Comportement				compHib;
 	private Caracteristique 			carHib;
 	private ArrayList<Caracteristique>	listCarHib;
@@ -202,16 +205,42 @@ public class Consult {
 	}
 	
 	/**
-	 * Retourne la liste complète des comportements ordonnée par id
+	 * Retourne la liste complète des comportements ordonnée par libellé
 	 * @return
 	 */
 	public Comportements getAllComp() {
-		Comportements list = new Comportements();
+		listComphib = new Comportements();
 		
 		for (Object o : em.createNamedQuery("getAllComp").getResultList()) {   
-			if (o instanceof Comportement) list.add((Comportement)o);
+			if (o instanceof Comportement) listComphib.add((Comportement)o);
 		}
-		return list;
+		return listComphib;
+	}
+	
+	/**
+	 * Retourne la liste complète des CompCaracteristique ordonnée par libellé
+	 * @return
+	 */
+	public Comportements getAllCompCar() {
+		listComphib = new Comportements();
+		
+		for (Object o : em.createNamedQuery("getAllCompCar").getResultList()) {   
+			if (o instanceof CompCaracteristique) listComphib.add((CompCaracteristique)o);
+		}
+		return listComphib;
+	}
+	
+	/**
+	 * Retourne la liste complète des CompRoleplay ordonnée par libellé
+	 * @return
+	 */
+	public Comportements getAllComRP() {
+		listComphib = new Comportements();
+		
+		for (Object o : em.createNamedQuery("getAllCompRP").getResultList()) {   
+			if (o instanceof CompRoleplay) listComphib.add((CompRoleplay)o);
+		}
+		return listComphib;
 	}
 	
 	/* ========================================== */ 

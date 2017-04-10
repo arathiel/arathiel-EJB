@@ -48,11 +48,7 @@ public class Race implements IPackable, Serializable {
 				inverseJoinColumns = @JoinColumn(name= "idBonus"))
 	private Collection<Bonus> listeBonus = new ArrayList<Bonus>(); 
 
-//	//--------------------------------OlivB---------------------------
-//	//Mappe la table association ArmeRace
-//	@ManyToMany(mappedBy="races", fetch = FetchType.EAGER)
-//	private Collection <Arme> armes = new ArrayList<Arme>();
-//	//-----------------------------------------------------------------	
+
 	
 	//Constructeurs
 	public Race(){

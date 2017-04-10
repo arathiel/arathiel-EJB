@@ -95,7 +95,6 @@ public class RaceServiceConsultation {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NO_EXIST);}
 			else {throw new UserExceptionRBC(UserExceptionRBCMsg.PB_RECH_RACE);}
 		}
-		
 		return race;
 	}
 }

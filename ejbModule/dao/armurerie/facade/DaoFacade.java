@@ -71,6 +71,9 @@ public class DaoFacade {
 		armeTransit.getPersistBag();
 		return armeTransit;
 	}
+	public Arme findArme(int idArme) {
+		return daoInventaire.findArme(idArme);
+	}
 
 	public List<Arme> selectArmesWhereRace() throws DaoOlivBException {
 		armes = new ArrayList<Arme>();
@@ -83,6 +86,8 @@ public class DaoFacade {
 	public List<Joueur> selectJoueurs() throws DaoOlivBException {
 		return daoInventaire.selectJoueurs();
 	}
+
+
 
 
 }

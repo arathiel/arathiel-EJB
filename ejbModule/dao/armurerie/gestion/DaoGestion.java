@@ -45,12 +45,10 @@ public class DaoGestion {
 
 	//Insertion d'une nouvelle arme avec sa liste de Races associées
 	public void insert(IArme arme, List<String> raceArme) throws DaoOlivBException, DaoExceptionRBC {
-		System.out.println("************methode insertArme() OK ****************");
 		if (arme == null) throw new DaoOlivBException(ExceptionMessageErreurOlivB.ARME_NULL);
 		if (raceArme.isEmpty()) throw new DaoOlivBException(ExceptionMessageErreurOlivB.RACE_INEXISTANTE);
 		races = daoInventaire.findRacesAssociees(raceArme);
 		arme.setRaces(races);
-		System.out.println("**********tentative de persistance ******************");
 		try {
 			em.persist(arme);
 		}

@@ -1,3 +1,5 @@
+package dao.util.passionMagie;
+
 
 public class Parametres {
 

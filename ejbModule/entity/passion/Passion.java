@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import dao.util.passionMagie.Parametres;
 import entity.magie.MDPFondamental;
 import entity.race_bonus_carac.race.Race;
 

@@ -14,10 +14,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernateMain"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jUnitHamcrest"/>
-<<<<<<< HEAD
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/log4j"/>
-=======
->>>>>>> branch 'master' of https://github.com/arathiel/arathiel-EJB.git
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/wildFlyClientLog4J"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

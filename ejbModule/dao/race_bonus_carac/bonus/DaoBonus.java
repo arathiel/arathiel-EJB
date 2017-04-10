@@ -66,7 +66,7 @@ public class DaoBonus{
 
 	/**
 	 * Methode de suppression d'un bonus
-	 * Appelée lors de la suppression d'un {@link}IPackable
+	 * Appelée lors de la suppression d'un {@link IPackable}
 	 * 
 	 * @param bonus
 	 * @throws DaoExceptionRBC
@@ -92,7 +92,7 @@ public class DaoBonus{
 	 * Methode qui verifie si un bonus est présent dans la base.
 	 * Si le bonus n'existe pas, il est inséré
 	 * 
-	 * Cette méthode n'est appelée que lors de la création d'un {@link}IPackable
+	 * Cette méthode n'est appelée que lors de la création d'un {@link IPackable}
 	 * 
 	 * @param bonus
 	 * @throws DaoExceptionRBC
@@ -112,7 +112,7 @@ public class DaoBonus{
 	
 	/**
 	 * Methode qui verifie la validité d'un bonus 
-	 * (pour le moment verifie uniquement si un bonus de type caracteristique a une valeur non nulle)
+	 * (pour le moment verifie uniquement si un bonus de type {@link Caracteristique} a une valeur non nulle)
 	 * 
 	 * @param bonus
 	 * @throws DaoExceptionRBC

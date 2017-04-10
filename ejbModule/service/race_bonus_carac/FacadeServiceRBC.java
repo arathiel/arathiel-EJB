@@ -71,12 +71,12 @@ public class FacadeServiceRBC{
 		return sRaceConsult.listeRacesJouables();
 	}
 
-	public Race RechRaceParNom(String nom) throws UserExceptionRBC {
-		return sRaceConsult.RechRaceParNom(nom);
+	public Race rechRaceParNom(String nom) throws UserExceptionRBC {
+		return sRaceConsult.rechRaceParNom(nom);
 	}
 
-	public Race RechRaceParId(int id) throws UserExceptionRBC {
-		return sRaceConsult.RechRaceParId(id);
+	public Race rechRaceParId(int id) throws UserExceptionRBC {
+		return sRaceConsult.rechRaceParId(id);
 	}
 
 	//Méthodes de Gestion et Consultation des Bonus

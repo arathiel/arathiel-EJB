@@ -92,7 +92,7 @@ public class RaceDaoGestion {
 		Race raceHib = null;
 		
 		if (race != null) {
-			raceHib = rDaoConsult.RechRaceParId(race.getId());
+			raceHib = rDaoConsult.rechRaceParId(race.getId());
 		}
 		
 		if (raceHib != null) {
@@ -126,7 +126,7 @@ public class RaceDaoGestion {
 		@SuppressWarnings("unused")
 		Race raceHib;
 		try {
-			raceHib = rDaoConsult.RechRaceParId(race.getId());
+			raceHib = rDaoConsult.rechRaceParId(race.getId());
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {throw new DaoExceptionRBC(DaoExceptionRBCMsg.RACE_NO_EXIST);}
 			else {throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_UPDATE_RACE);}

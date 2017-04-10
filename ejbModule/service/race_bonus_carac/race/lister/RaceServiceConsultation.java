@@ -61,11 +61,11 @@ public class RaceServiceConsultation {
 	 * @return Race
 	 * @throws UserExceptionRBC
 	 */
-	public Race RechRaceParNom(String nom) throws UserExceptionRBC  {
+	public Race rechRaceParNom(String nom) throws UserExceptionRBC  {
 		
 		Race race = null;
 		try {
-			race = fDao.RechRaceParNom(nom);
+			race = fDao.rechRaceParNom(nom);
 			
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {
@@ -86,11 +86,11 @@ public class RaceServiceConsultation {
 	 * @return Race
 	 * @throws UserExceptionRBC
 	 */
-	public Race RechRaceParId(int id) throws UserExceptionRBC {
+	public Race rechRaceParId(int id) throws UserExceptionRBC {
 	
 		Race race = null;
 		try {
-			race = fDao.RechRaceParId(id);
+			race = fDao.rechRaceParId(id);
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NO_EXIST);}
 			else {throw new UserExceptionRBC(UserExceptionRBCMsg.PB_RECH_RACE);}

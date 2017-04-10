@@ -6,7 +6,6 @@ import java.util.List;
 import clientServeur.exception.ExceptionService;
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
-import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;

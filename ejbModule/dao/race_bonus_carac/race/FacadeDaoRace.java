@@ -71,7 +71,6 @@ public class FacadeDaoRace {
 			
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {
-				System.out.println("Remontée de l'exception race non existante dans raceDaoFacade/rechParNom");
 				throw new DaoExceptionRBC(DaoExceptionRBCMsg.RACE_NO_EXIST);
 			}
 		}
@@ -90,7 +89,6 @@ public class FacadeDaoRace {
 			
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {
-				System.out.println("Remontée de l'exception race non existante dans raceDaoFacade/rechParId");
 				throw new DaoExceptionRBC(DaoExceptionRBCMsg.RACE_NO_EXIST);
 			}
 		}

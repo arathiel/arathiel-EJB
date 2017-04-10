@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import dao.util.passionMagie.Parametres;
 
 /**
  * Classe représentant le concept de mot de pouvoir fondamental
@@ -17,8 +18,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
+@Table(name=Parametres.TBL_MDP_FOND )
 @AttributeOverride(name="id_MotDePouvoir", column=@Column(name="id_MDPvoir_Fond"))
-@Table(name ="MDPvoir_Fond")
 public class MDPFondamental extends MotDePouvoir{
 
 	private static final long serialVersionUID = 1L;

@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import clientServeur.exception.ExceptionService;
+import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
 import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import entity.passion.Passion;
 import entity.race_bonus_carac.race.Race;
@@ -24,12 +25,12 @@ public class FacadePassion {
 	@EJB
 	ServicePassionConsultation passionConsult;
 	
-	public void addPassion(Passion passion) throws ExceptionService, DaoExceptionRBC {
+	public void addPassion(Passion passion) throws ExceptionService, UserExceptionRBC{
 
 		passionGest.addPassion(passion);
 	}
 
-	public void updatePassion(Passion passion) throws ExceptionService {
+	public void updatePassion(Passion passion) throws ExceptionService, UserExceptionRBC {
 	
 		passionGest.updatePassion(passion);
 	}

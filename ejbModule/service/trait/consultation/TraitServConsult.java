@@ -103,6 +103,22 @@ public class TraitServConsult {
 	public Comportements consulterListComp() {
 		return daoFacade.consulterListComp();
 	}
+	
+	/**
+	 * Retourne la liste complète des CompCaracteristique de la BDD
+	 * @return
+	 */
+	public Comportements consulterListCompCar() {
+		return daoFacade.consulterListCompCar();
+	}
+	
+	/**
+	 * Retourne la liste complète des CompRoleplay de la BDD
+	 * @return
+	 */
+	public Comportements consulterListCompRP() {
+		return daoFacade.consulterListCompRP();
+	}
 
 	
 	/* ========================================== */ 

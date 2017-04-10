@@ -55,7 +55,11 @@ public class FacadeServiceRBC{
 	}
 
 	public void modifierRace(Race race) throws UserExceptionRBC {
-		sRaceGestion.modifierRace(race);
+		try {
+			sRaceGestion.modifierRace(race);
+		} catch (UserExceptionRBC e) {
+			throw new UserExceptionRBC(e.getMessage());
+		}
 	}
 
 	//Méthodes de consultation des Races
@@ -68,7 +72,6 @@ public class FacadeServiceRBC{
 	}
 
 	public Race RechRaceParNom(String nom) throws UserExceptionRBC {
-		System.out.println("rechrace par nom facade service Rbc");
 		return sRaceConsult.RechRaceParNom(nom);
 	}
 

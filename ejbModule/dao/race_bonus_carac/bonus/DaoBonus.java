@@ -15,7 +15,7 @@ import entity.race_bonus_carac.bonus.Bonus;
 import entity.race_bonus_carac.bonus.BonusCarac;
 
 /**
- * Classe qui va gérer la dao des bonus
+ * Classe qui va gérer la dao de l'entity {@link Bonus}
  * 
  * 
  * @author Francois Georgel

@@ -160,7 +160,6 @@ public class Race implements IPackable, Serializable {
 			ArrayList<Bonus> listeDto = new ArrayList<Bonus>();
 			for (Bonus b : this.getListeBonus()) {
 				Bonus bonus = b.dto();
-				System.out.println("bonus ajouté à la liste: "+bonus.toString());
 				listeDto.add(bonus);
 			}
 			raceDto.setListeBonus(listeDto);

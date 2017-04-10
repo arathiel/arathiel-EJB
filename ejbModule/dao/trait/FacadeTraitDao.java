@@ -13,6 +13,7 @@ import dao.trait.exception.LibelleNullException;
 import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
+import dao.trait.exception.ObjetUtiliseException;
 import dao.trait.gestionnaire.Admin;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.trait.Trait;
@@ -77,17 +78,19 @@ public class FacadeTraitDao {
 	 * Supprime un trait de la DAO
 	 * @throws ObjetNullException 
 	 * @throws IdNullException 
+	 * @throws ObjetUtiliseException 
 	 */
-	public void supprimerTrait(int id) throws ObjetNullException, IdNullException {
+	public void supprimerTrait(int id) throws ObjetNullException, IdNullException, ObjetUtiliseException {
 		daoAdmin.deleteTrait(id);
 
 	}
 	
 	/**
 	 * Vide la table de Trait
+	 * @throws ObjetUtiliseException 
 	 * @throws AucunTraitException 
 	 */
-	public void reinitialiserTrait() {
+	public void reinitialiserTrait() throws ObjetUtiliseException {
 		daoAdmin.deleteAllTrait();
 	}
 
@@ -246,6 +249,30 @@ public class FacadeTraitDao {
 		listCompOut = new Comportements();
 		
 		listCompOut = daoConsult.getAllComp();
+		
+		return listCompOut;
+	}
+	
+	/**
+	 * Retourne la liste complète des CompCaracteristique de la BDD
+	 * @return
+	 */
+	public Comportements consulterListCompCar() {
+		listCompOut = new Comportements();
+		
+		listCompOut = daoConsult.getAllCompCar();
+		
+		return listCompOut;
+	}
+	
+	/**
+	 * Retourne la liste complète des CompRoleplay de la BDD
+	 * @return
+	 */
+	public Comportements consulterListCompRP() {
+		listCompOut = new Comportements();
+		
+		listCompOut = daoConsult.getAllComRP();
 		
 		return listCompOut;
 	}

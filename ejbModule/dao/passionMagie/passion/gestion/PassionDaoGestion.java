@@ -56,7 +56,7 @@ public class PassionDaoGestion {
 	 * @throws DaoExceptionRBC 
 	 */
 
-	public void addPassion(Passion passion) throws DaoException {
+	public void addPassion(Passion passion) throws DaoException, DaoExceptionRBC {
 
 		/* Liste des mots de pouvoir de la passion à insérer*/
 		Collection<MDPFondamental> liste = passion.getMagies(); 
@@ -65,7 +65,8 @@ public class PassionDaoGestion {
 		MDPFondamental motDAO; // Mot de pouvoir récupéré de la base de données
 		String nomMot; // Nom d'un mot de pouvoir donné de la passion
 		Race race = null;
-
+		Race raceHib = null;
+		
 		// Avant tout on fait un trim et un tolowerCase sur le nom
 		passion.setNom(UtilDAO.modifNom(passion.getNom()));
 		// Si le nom de la passion est null alors on lève une exception
@@ -76,10 +77,14 @@ public class PassionDaoGestion {
 			race= passion.getRace();
 			try {
 				LOGGER.info("Race de la passion : " + race.getNom());
-				Race raceHib = (Race) em.createNamedQuery("Recherche race par nom").setParameter(1, race.getNom()).getSingleResult();
+				//Race raceHib = (Race) em.createNamedQuery("Recherche race par nom").setParameter(1, race.getNom()).getSingleResult();
+				raceHib = daoFacade.RechRaceParNom(race.getNom());
 				passion.setRace(raceHib);
-			} catch (NoResultException e) {
-				em.persist(race);
+				LOGGER.info(passion);
+			} catch (DaoExceptionRBC e) {
+				
+				daoFacade.insertRace(raceHib);
+				//em.persist(race);
 				}
 			}
 		try {
@@ -140,9 +145,10 @@ public class PassionDaoGestion {
 	 * Méthode permettant de modifier une passion
 	 * 
 	 * @param passion
+	 * @throws DaoExceptionRBC 
 	 * @throws DaoException
 	 */
-	public void updatePassion(Passion passion) /* throws DaoException */ {
+	public void updatePassion(Passion passion) throws DaoExceptionRBC, DaoException {
 
 		Passion passDAO = null; 				// Passion récupérée de la base de données
 		MDPFondamental motDAO = null; 			// Mot de pouvoir récupéré de la base de1 données
@@ -158,15 +164,31 @@ public class PassionDaoGestion {
 			
 			Race race= passion.getRace();
 			LOGGER.info("La race est : " + race);
-			if (race.getNom() != null || race.getId() != 0) {
+			
+			if (passion.getRace() != null) {
+				race= passion.getRace();
 				try {
-					LOGGER.info("La race est : " + race);
-					raceHib = (Race) em.createNamedQuery("Recherche race par nom").setParameter(1, race.getNom()).getSingleResult();
+					LOGGER.info("Race de la passion : " + race.getNom());
+					//Race raceHib = (Race) em.createNamedQuery("Recherche race par nom").setParameter(1, race.getNom()).getSingleResult();
+					raceHib = daoFacade.RechRaceParNom(race.getNom());
 					passion.setRace(raceHib);
-				} catch (NoResultException e) {
-					em.persist(race);
+				} catch ( /*NoResultException |*/ DaoExceptionRBC e) {
+					daoFacade.insertRace(raceHib);
+					//em.persist(race);
 					}
 				}
+			
+			
+			
+//			if (race != null || race.getNom() != null || race.getId() != 0) {
+//				try {
+//					LOGGER.info("La race est : " + race);
+//					raceHib = (Race) em.createNamedQuery("Recherche race par nom").setParameter(1, race.getNom()).getSingleResult();
+//					passion.setRace(raceHib);
+//				} catch (NoResultException e) {
+//					em.persist(race);
+//					}
+//				}
 			
 			/* On supprime toutes les associations correspondant à cette passion
 			 Sinon au moment de la modification de la passion on risque

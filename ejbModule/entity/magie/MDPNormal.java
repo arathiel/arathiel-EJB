@@ -8,10 +8,12 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import dao.util.passionMagie.Parametres;
+
 
 @Entity
 @AttributeOverride(name="id_MotDePouvoir", column=@Column(name="id_MDPvoir_Norm"))
-@Table(name ="MDPvoir_Normal")
+@Table(name = Parametres.TBL_MDP_NORM)
 public class MDPNormal extends MotDePouvoir{
 
 	/**

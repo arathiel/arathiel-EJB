@@ -85,7 +85,7 @@ public class RaceServiceGestion {
 		try {
 			fDao.updateRace(race);
 		} catch (DaoExceptionRBC e) {
-			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST))				{ throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NO_EXIST);}
+			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg()))		{ throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NO_EXIST);}
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NOM_INVALIDE.getMsg()))	{ throw new UserExceptionRBC(UserExceptionRBCMsg.RACE_NOM_INVALIDE);}
 			if (e.getMessage().equals(DaoExceptionRBCMsg.DOUBLON_ID_RACE.getMsg()))		{ throw new UserExceptionRBC(UserExceptionRBCMsg.DOUBLON_ID_RACE);}
 			if (e.getMessage().equals(DaoExceptionRBCMsg.DOUBLON_NOM_RACE.getMsg()))	{ throw new UserExceptionRBC(UserExceptionRBCMsg.DOUBLON_NOM_RACE);}

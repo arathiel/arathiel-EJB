@@ -1,10 +1,13 @@
 package dao.trait.gestionnaire;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 
 import dao.trait.consultation.Consult;
 import dao.trait.exception.DoublonException;
@@ -13,6 +16,7 @@ import dao.trait.exception.LibelleNullException;
 import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
+import dao.trait.exception.ObjetUtiliseException;
 import dao.trait.ressources.Erreur;
 import dao.util.Parameter;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
@@ -340,8 +344,9 @@ public class Admin {
 	 * @throws ObjetNullException 
 	 * @throws AucunTraitException 
 	 * @throws IdNullException 
+	 * @throws ObjetUtiliseException 
 	 */
-	public void deleteTrait(int id) throws ObjetNullException, IdNullException {
+	public void deleteTrait(int id) throws ObjetNullException, IdNullException, ObjetUtiliseException {
 		// Réinitialisation des variables
 		traitHib = null;
 		
@@ -349,9 +354,25 @@ public class Admin {
 			traitHib = em.find(Trait.class, id);
 			
 			if (traitHib != null){
-				em.remove(traitHib);
-				em.flush();
-			}
+				
+				//Le trait peut-être utilisé dans un bonus, ce qui lève une SQLIntegrityConstraintViolationException (Merci pour la méthode de recherche)
+				try {
+					em.remove(traitHib);
+					em.flush();
+				}
+				catch (PersistenceException e) {	
+					// recherche de la cause
+					Throwable t = e.getCause();
+					while ((t != null) && !(t instanceof SQLIntegrityConstraintViolationException)) {
+						t = t.getCause();
+					}
+					// si c'est une ConstraintViolationException
+					if (t instanceof SQLIntegrityConstraintViolationException) {
+						throw new ObjetUtiliseException(Erreur.TRAIT);
+					}
+				}
+				
+			}// Fin if (traitHib != null)
 			else {
 				throw new ObjetNullException(Erreur.TRAIT);
 			}
@@ -363,9 +384,10 @@ public class Admin {
 	
 	/**
 	 * Vide la table de trait
+	 * @throws ObjetUtiliseException 
 	 * @throws AucunTraitException 
 	 */
-	public void deleteAllTrait() {
+	public void deleteAllTrait() throws ObjetUtiliseException {
 	
 		listTrait = daoConsult.getAllTrait();
 		

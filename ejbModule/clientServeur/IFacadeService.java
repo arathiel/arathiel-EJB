@@ -161,7 +161,19 @@ public interface IFacadeService {
 	 * Retourne la liste complète des comportements
 	 * @return
 	 */
-	public Comportements consulterListComp	();
+	public Comportements consulterListComp();
+	
+	/**
+	 * Retourne la liste complète des CompCaracteristique
+	 * @return
+	 */
+	public Comportements consulterListCompCar();
+	
+	/**
+	 * Retourne la liste complète des CompRoleplay
+	 * @return
+	 */
+	public Comportements consulterListCompRP();
 	
 	
 	//--------------------------------------------------------------------------------------------  Francois
@@ -209,10 +221,10 @@ public interface IFacadeService {
 	/* ========================================== */
 
 	// ajout
-	public void addPassion(Passion passion) throws ExceptionService, DaoExceptionRBC;
+	public void addPassion(Passion passion) throws ExceptionService, UserExceptionRBC;
 
 	// modification
-	public void updatePassion(Passion passion) throws ExceptionService;
+	public void updatePassion(Passion passion) throws ExceptionService, UserExceptionRBC;
 
 	// suppression
 	public void delPassions();

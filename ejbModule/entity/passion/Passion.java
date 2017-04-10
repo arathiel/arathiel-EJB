@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import dao.util.passionMagie.Parametres;
 import entity.magie.MDPFondamental;
 import entity.race_bonus_carac.race.Race;
 
@@ -30,7 +31,7 @@ import entity.race_bonus_carac.race.Race;
  *
  */
 @Entity
-@Table(name = "Passion")
+@Table(name= Parametres.TBL_PASSION)
 public class Passion implements Serializable {
 
 	/**

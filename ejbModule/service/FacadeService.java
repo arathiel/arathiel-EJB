@@ -243,6 +243,22 @@ public class FacadeService implements IFacadeService {
 	public Comportements consulterListComp() {
 		return servTrait.consulterListComp();
 	}
+	
+	/**
+	 * Retourne la liste des CompCaracteristique
+	 */
+	@Override
+	public Comportements consulterListCompCar() {
+		return servTrait.consulterListCompCar();
+	}
+
+	/**
+	 * Retourne la liste des CompRoleplay
+	 */
+	@Override
+	public Comportements consulterListCompRP() {		
+		return servTrait.consulterListCompRP();
+	}
 
 	/* ========================================== */ 
 	/*  			CARACTERISTIQUE				  */
@@ -526,12 +542,12 @@ public class FacadeService implements IFacadeService {
 
 	// Gestion Passion
 	@Override
-	public void addPassion(Passion passion) throws ExceptionService, DaoExceptionRBC {
+	public void addPassion(Passion passion) throws ExceptionService, UserExceptionRBC {
 		facPassion.addPassion(passion);
 	}
 
 	@Override
-	public void updatePassion(Passion passion) throws ExceptionService {
+	public void updatePassion(Passion passion) throws ExceptionService, UserExceptionRBC {
 		facPassion.updatePassion(passion);
 	}
 

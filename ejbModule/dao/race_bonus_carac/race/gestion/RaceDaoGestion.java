@@ -100,14 +100,19 @@ public class RaceDaoGestion {
 			//cette table crée par OlivierB pour gérer le ManyToMany de l'arme sur les races rend la suppression d'une race impossible 
 			//si celle -ci est liée à une arme. Il faudra améliorer cette fonctionalité dans l'avenir mais pour le moment, les lignes sont supprimées à la main
 			try{
-				em.createNativeQuery(Requetes.DELETE_ARME_RACE.getMsg()).setParameter(1, raceHib.getId());
+				em.createNativeQuery(Requetes.DELETE_ARME_RACE.getMsg()).setParameter(1, raceHib.getId()).executeUpdate();
 			}	catch (Exception e){
 				throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_DELETE_RACE);
 			}
-			//puis on supprime la race selectionnée		
-			em.remove(raceHib);
-			em.flush();
 			
+			//puis on supprime la race selectionnée	
+			try {
+				em.remove(raceHib);
+				em.flush();
+			} catch (Exception e) {
+				throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_DELETE_RACE);
+			}
+		
 		} else {	
 			throw new DaoExceptionRBC(DaoExceptionRBCMsg.RACE_NO_EXIST);	
 		}	

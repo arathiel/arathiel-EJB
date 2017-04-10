@@ -101,6 +101,9 @@ public class ServiceArme {
 	public Arme getArme(String nom) {
 		return daoFacade.rechArme(nom);
 	}
+	public Arme rechArme(int idArme) {
+		return daoFacade.findArme(idArme);
+	}
 
 	public List<Arme> listerArmesRace() throws ServiceOlivBException {
 		try {
@@ -119,6 +122,8 @@ public class ServiceArme {
 			throw new ServiceOlivBException(ExceptionMessageErreurOlivB.NO_LISTE_JOUEUR);
 		}
 	}
+
+
 
 
 }

@@ -152,10 +152,7 @@ public class RaceDaoGestion {
 			}
 		}
 		
-		//On retire auparavant les bonus correspondant à la race avant le merge (sinon la table garde ceux qui ont été retirés)
-		em.createNativeQuery(Requetes.DELETE_BONUS_RACE.getMsg()).setParameter(1, race.getId());
-		
-		//Puis on insère les nouveaux (en passant par une verification)
+		//Puis on insère les nouveaux bonus (en passant par une verification)
 		for (Bonus b : race.getListeBonus()){
 			try {
 				daoBonus.verifBonusPresent(b);
@@ -166,8 +163,13 @@ public class RaceDaoGestion {
 			}
 		}	
 		
-		em.merge(race);
-		em.flush();		
+		try {
+			em.merge(race);
+			em.flush();		
+		} catch (Exception e) {
+			throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_INSERT_RACE);
+		}
+		
 	}
 		
 	//Methode qui va vérifier la validité du nom d'une race (ne contient pas de signes non autorisés et n'est pas null) 

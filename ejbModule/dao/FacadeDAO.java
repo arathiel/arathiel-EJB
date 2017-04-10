@@ -404,13 +404,13 @@ public class FacadeDAO {
 	}
 
 
-	public Race RechRaceParNom(String nom) throws DaoExceptionRBC {
-		return fDaoRace.RechRaceParNom(nom);
+	public Race rechRaceParNom(String nom) throws DaoExceptionRBC {
+		return fDaoRace.rechRaceParNom(nom);
 	}
 
 
-	public Race RechRaceParId(int id) throws DaoExceptionRBC {
-		return fDaoRace.RechRaceParId(id);
+	public Race rechRaceParId(int id) throws DaoExceptionRBC {
+		return fDaoRace.rechRaceParId(id);
 	}	
 	
 	

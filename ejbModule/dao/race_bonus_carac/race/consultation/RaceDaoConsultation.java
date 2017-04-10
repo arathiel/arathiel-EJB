@@ -98,7 +98,7 @@ public class RaceDaoConsultation {
 	 * @return Race
 	 * @throws DaoExceptionRBC
 	 */
-	public Race RechRaceParId(int id) throws DaoExceptionRBC {
+	public Race rechRaceParId(int id) throws DaoExceptionRBC {
 		Race raceHib = null;
 		
 		raceHib = (Race) em.find(Race.class, id);	

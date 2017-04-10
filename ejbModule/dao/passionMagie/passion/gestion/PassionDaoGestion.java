@@ -78,7 +78,7 @@ public class PassionDaoGestion {
 			try {
 				LOGGER.info("Race de la passion : " + race.getNom());
 				//Race raceHib = (Race) em.createNamedQuery("Recherche race par nom").setParameter(1, race.getNom()).getSingleResult();
-				raceHib = daoFacade.RechRaceParNom(race.getNom());
+				raceHib = daoFacade.rechRaceParNom(race.getNom());
 				passion.setRace(raceHib);
 				LOGGER.info(passion);
 			} catch (DaoExceptionRBC e) {
@@ -170,7 +170,7 @@ public class PassionDaoGestion {
 				try {
 					LOGGER.info("Race de la passion : " + race.getNom());
 					//Race raceHib = (Race) em.createNamedQuery("Recherche race par nom").setParameter(1, race.getNom()).getSingleResult();
-					raceHib = daoFacade.RechRaceParNom(race.getNom());
+					raceHib = daoFacade.rechRaceParNom(race.getNom());
 					passion.setRace(raceHib);
 				} catch ( /*NoResultException |*/ DaoExceptionRBC e) {
 					daoFacade.insertRace(raceHib);

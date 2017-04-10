@@ -80,7 +80,9 @@ public class PassionDaoGestion {
 				//Race raceHib = (Race) em.createNamedQuery("Recherche race par nom").setParameter(1, race.getNom()).getSingleResult();
 				raceHib = daoFacade.RechRaceParNom(race.getNom());
 				passion.setRace(raceHib);
-			} catch ( /*NoResultException |*/ DaoExceptionRBC e) {
+				LOGGER.info(passion);
+			} catch (DaoExceptionRBC e) {
+				
 				daoFacade.insertRace(raceHib);
 				//em.persist(race);
 				}

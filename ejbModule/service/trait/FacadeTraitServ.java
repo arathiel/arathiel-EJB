@@ -13,6 +13,7 @@ import dao.trait.exception.LibelleNullException;
 import dao.trait.exception.LibelleVideException;
 import dao.trait.exception.ObjetInexistantException;
 import dao.trait.exception.ObjetNullException;
+import dao.trait.exception.ObjetUtiliseException;
 import dao.trait.ressources.Erreur;
 import entity.race_bonus_carac.caracteristique.Caracteristique;
 import entity.trait.Trait;
@@ -116,6 +117,7 @@ public class FacadeTraitServ {
 	/**
 	 * Supprime un trait de la DAO
 	 * @throws UserException 
+	 * @throws ObjetUtiliseException 
 	 */
 	public void supprimerTrait(int id) throws UserException {
 		
@@ -123,19 +125,25 @@ public class FacadeTraitServ {
 			
 			servAdmin.supprimerTrait(id);
 			
-		} catch (ObjetNullException | IdNullException e) {
+		} catch (ObjetNullException | IdNullException | ObjetUtiliseException e) {
 			//Personalisation des messages d'erreur Utilisateur
 			if (e instanceof ObjetNullException) 		throw new UserException(Erreur.TR_NULL.getMessage());
 			if (e instanceof IdNullException)			throw new UserException(Erreur.TR_IDNULL.getMessage());
+			if (e instanceof ObjetUtiliseException)		throw new UserException(Erreur.TR_UTILISE.getMessage());
 		}
 	}
 	
 	/**
 	 * Vide la table de Trait
+	 * @throws ObjetUtiliseException 
 	 * @throws UserException 
 	 */
-	public void reinitialiserTrait() {
-		servAdmin.reinitialiserTrait();
+	public void reinitialiserTrait() throws UserException {
+		try {
+			servAdmin.reinitialiserTrait();
+		} catch (ObjetUtiliseException e) {
+			if (e instanceof ObjetUtiliseException)	throw new UserException(Erreur.TR_UTILISE.getMessage());
+		}	
 	}
 
 	
@@ -203,6 +211,11 @@ public class FacadeTraitServ {
 	/*  			COMPORTEMENT				  */
 	/* ========================================== */
 	
+	/**
+	 * Ajoute un comportement
+	 * @param comportement
+	 * @throws UserException
+	 */
 	public void ajouterComp(Comportement comportement) throws UserException {
 		try {
 			servAdmin.ajouterComp(comportement);
@@ -213,6 +226,11 @@ public class FacadeTraitServ {
 		}
 	}
 
+	/**
+	 * Modifie un comportement
+	 * @param comportement
+	 * @throws UserException
+	 */
 	public void modifierComp(Comportement comportement) throws UserException {
 		try {
 			servAdmin.modifierComp(comportement);
@@ -222,6 +240,11 @@ public class FacadeTraitServ {
 		}
 	}
 
+	/**
+	 * Supprime un comportement via son ID
+	 * @param id
+	 * @throws UserException
+	 */
 	public void supprimerComp(int id) throws UserException {
 		try {
 			servAdmin.supprimerComp(id);
@@ -231,6 +254,10 @@ public class FacadeTraitServ {
 		}
 	}
 	
+	/**
+	 * Supprime tous les comportements
+	 * @throws UserException
+	 */
 	public void reinitialiserComp() throws UserException {
 		try {
 			servAdmin.reinitialiserComp();
@@ -239,6 +266,12 @@ public class FacadeTraitServ {
 		}
 	}
 
+	/**
+	 * Retourne un comportement via ID
+	 * @param id
+	 * @return
+	 * @throws UserException
+	 */
 	public Comportement consulterCompById(int id) throws UserException {
 		compOut = null;
 		
@@ -252,6 +285,12 @@ public class FacadeTraitServ {
 		return compOut;
 	}
 
+	/**
+	 * Retourne un comportement via recherche par libellé
+	 * @param libelle
+	 * @return
+	 * @throws UserException
+	 */
 	public Comportement consulterCompByLib(String libelle) throws UserException {
 		compOut = null;
 		
@@ -266,8 +305,28 @@ public class FacadeTraitServ {
 		return compOut;
 	}
 
+	/**
+	 * Retourne la liste complète des comportements
+	 * @return
+	 */
 	public Comportements consulterListComp() {
 		return servConsult.consulterListComp();
+	}
+	
+	/**
+	 * Retourne la liste complète des CompCaracteristique
+	 * @return
+	 */
+	public Comportements consulterListCompCar() {
+		return servConsult.consulterListCompCar();
+	}
+	
+	/**
+	 * Retourne la liste complète des CompRoleplay
+	 * @return
+	 */
+	public Comportements consulterListCompRP() {
+		return servConsult.consulterListCompRP();
 	}
 	
 	

@@ -102,8 +102,6 @@ public class RaceDaoGestion {
 			try{
 				em.createNativeQuery(Requetes.DELETE_ARME_RACE.getMsg()).setParameter(1, raceHib.getId());
 			}	catch (Exception e){
-				System.out.println(raceHib.getId());
-			
 				throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_DELETE_RACE);
 			}
 			//puis on supprime la race selectionnée		

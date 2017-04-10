@@ -510,6 +510,9 @@ public class FacadeService implements IFacadeService {
 	public Arme getArme(String nom) {
 		return serviceArme.getArme(nom);
 	}
+	public Arme rechArme(int idArme) {
+		return serviceArme.rechArme(idArme);
+	}
 	//lister les races pour l'affichage du formulaire de création
 	@Override
 	public List<Race> listerRaces() throws ServiceOlivBException {

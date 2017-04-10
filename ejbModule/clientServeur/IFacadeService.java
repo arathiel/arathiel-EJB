@@ -6,7 +6,6 @@ import java.util.List;
 import clientServeur.exception.ExceptionService;
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
-import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;
@@ -186,8 +185,8 @@ public interface IFacadeService {
 	public void modifierRace(Race race) throws UserExceptionRBC;
 	public ArrayList<Race> listeToutesRaces();
 	public ArrayList<Race> listeRacesJouables();
-	public Race RechRaceParNom(String nom) throws UserExceptionRBC;
-	public Race RechRaceParId(int id) throws UserExceptionRBC;
+	public Race rechRaceParNom(String nom) throws UserExceptionRBC;
+	public Race rechRaceParId(int id) throws UserExceptionRBC;
 	
 	
 	/* ========================================== */ 
@@ -319,6 +318,7 @@ public interface IFacadeService {
 	
 	//Recherche
 	public Arme getArme(String nom);
+	public Arme rechArme(int idArme);
 	
 	//Listes
 	public List<Arme> listerArmesRace() throws ServiceOlivBException;
@@ -328,6 +328,7 @@ public interface IFacadeService {
 	public List<Race> listerRaces() throws ServiceOlivBException;
 	
 	public List<Arme> listerArmes() throws ServiceOlivBException;
+	
 	
 	
 

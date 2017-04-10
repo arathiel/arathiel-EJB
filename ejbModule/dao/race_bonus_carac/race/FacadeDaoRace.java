@@ -61,7 +61,7 @@ public class FacadeDaoRace {
 	}
 
 
-	public Race RechRaceParNom(String nom) throws DaoExceptionRBC {
+	public Race rechRaceParNom(String nom) throws DaoExceptionRBC {
 		Race raceHib;
 		Race race = null;
 		
@@ -79,12 +79,12 @@ public class FacadeDaoRace {
 	}
 
 
-	public Race RechRaceParId(int id) throws DaoExceptionRBC {
+	public Race rechRaceParId(int id) throws DaoExceptionRBC {
 		Race raceHib;
 		Race race = null; 
 		
 		try {
-			raceHib = rdconsult.RechRaceParId(id);
+			raceHib = rdconsult.rechRaceParId(id);
 			race = raceHib.dto();
 			
 		} catch (DaoExceptionRBC e) {

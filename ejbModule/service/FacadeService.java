@@ -361,8 +361,8 @@ public class FacadeService implements IFacadeService {
 	 * @return race correspondant au nom choisi en parametre
 	 */
 	@Override
-	public Race RechRaceParNom(String nom) throws UserExceptionRBC {
-		return servRBC.RechRaceParNom(nom);
+	public Race rechRaceParNom(String nom) throws UserExceptionRBC {
+		return servRBC.rechRaceParNom(nom);
 	}
 
 	/**
@@ -372,8 +372,8 @@ public class FacadeService implements IFacadeService {
 	 * @return race correspondant à l'identifiant choisi en parametre
 	 */
 	@Override
-	public Race RechRaceParId(int id) throws UserExceptionRBC {
-		return servRBC.RechRaceParId(id);
+	public Race rechRaceParId(int id) throws UserExceptionRBC {
+		return servRBC.rechRaceParId(id);
 	}
 
 	
@@ -509,6 +509,9 @@ public class FacadeService implements IFacadeService {
 	@Override
 	public Arme getArme(String nom) {
 		return serviceArme.getArme(nom);
+	}
+	public Arme rechArme(int idArme) {
+		return serviceArme.rechArme(idArme);
 	}
 	//lister les races pour l'affichage du formulaire de création
 	@Override

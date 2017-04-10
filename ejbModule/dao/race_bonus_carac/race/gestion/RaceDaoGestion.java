@@ -92,7 +92,7 @@ public class RaceDaoGestion {
 		Race raceHib = null;
 		
 		if (race != null) {
-			raceHib = rDaoConsult.RechRaceParId(race.getId());
+			raceHib = rDaoConsult.rechRaceParId(race.getId());
 		}
 		
 		if (raceHib != null) {
@@ -100,14 +100,26 @@ public class RaceDaoGestion {
 			//cette table crée par OlivierB pour gérer le ManyToMany de l'arme sur les races rend la suppression d'une race impossible 
 			//si celle -ci est liée à une arme. Il faudra améliorer cette fonctionalité dans l'avenir mais pour le moment, les lignes sont supprimées à la main
 			try{
-				em.createNativeQuery(Requetes.DELETE_ARME_RACE.getMsg()).setParameter(1, raceHib.getId());
+				em.createNativeQuery(Requetes.DELETE_ARME_RACE.getMsg()).setParameter(1, raceHib.getId()).executeUpdate();
 			}	catch (Exception e){
 				throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_DELETE_RACE);
 			}
-			//puis on supprime la race selectionnée		
-			em.remove(raceHib);
-			em.flush();
 			
+			//On fait la même chose avec la colonne qui reference cette race dans la table passion
+			try{
+				em.createNativeQuery(Requetes.DELETE_PASSION_RACE.getMsg()).setParameter(1, raceHib.getId()).executeUpdate();
+			}	catch (Exception e){
+				throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_DELETE_RACE);
+			}
+			
+			//puis on supprime la race selectionnée	
+			try {
+				em.remove(raceHib);
+				em.flush();
+			} catch (Exception e) {
+				throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_DELETE_RACE);
+			}
+		
 		} else {	
 			throw new DaoExceptionRBC(DaoExceptionRBCMsg.RACE_NO_EXIST);	
 		}	
@@ -126,7 +138,7 @@ public class RaceDaoGestion {
 		@SuppressWarnings("unused")
 		Race raceHib;
 		try {
-			raceHib = rDaoConsult.RechRaceParId(race.getId());
+			raceHib = rDaoConsult.rechRaceParId(race.getId());
 		} catch (DaoExceptionRBC e) {
 			if (e.getMessage().equals(DaoExceptionRBCMsg.RACE_NO_EXIST.getMsg())) {throw new DaoExceptionRBC(DaoExceptionRBCMsg.RACE_NO_EXIST);}
 			else {throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_UPDATE_RACE);}
@@ -147,10 +159,7 @@ public class RaceDaoGestion {
 			}
 		}
 		
-		//On retire auparavant les bonus correspondant à la race avant le merge (sinon la table garde ceux qui ont été retirés)
-		em.createNativeQuery(Requetes.DELETE_BONUS_RACE.getMsg()).setParameter(1, race.getId());
-		
-		//Puis on insère les nouveaux (en passant par une verification)
+		//Puis on insère les nouveaux bonus (en passant par une verification)
 		for (Bonus b : race.getListeBonus()){
 			try {
 				daoBonus.verifBonusPresent(b);
@@ -161,8 +170,13 @@ public class RaceDaoGestion {
 			}
 		}	
 		
-		em.merge(race);
-		em.flush();		
+		try {
+			em.merge(race);
+			em.flush();		
+		} catch (Exception e) {
+			throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_INSERT_RACE);
+		}
+		
 	}
 		
 	//Methode qui va vérifier la validité du nom d'une race (ne contient pas de signes non autorisés et n'est pas null) 

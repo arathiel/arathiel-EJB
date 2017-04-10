@@ -25,7 +25,7 @@ public class ForgeArme implements IForge{
 		return new Arme(nom, encombrement, prix, monnaie);
 	}
 	@Override
-	public IArme creerArme(int idArme, String nom, int encombrement, int prix, String monnaie) {
+	public IArme creerArme(int idArme, String nom, int encombrement,  int prix, String monnaie) {
 		return new Arme(idArme, nom, encombrement, prix, monnaie);
 	}
 

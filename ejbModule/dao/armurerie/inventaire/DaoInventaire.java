@@ -120,13 +120,11 @@ public class DaoInventaire {
 	
 	public Joueur findJoueur(int joueurId) {
 		joueur = em.find(Joueur.class, joueurId);
-		System.out.println(joueur);
 		return joueur;
 	}
 
 	public Arme findArme(int armeId) {
 		arme = em.find(Arme.class, armeId);
-		System.out.println(arme);
 		return arme;
 	}
 }

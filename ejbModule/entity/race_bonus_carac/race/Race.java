@@ -20,6 +20,12 @@ import entity.armurerie.Arme;
 import entity.race_bonus_carac.bonus.Bonus;
 import parametres.race_bonus_carac.bonus.ParamIPackable;
 
+/**
+ * Entity qui reflète les races du jeu
+ * 
+ * @author francois Georgel
+ *
+ */
 @Entity
 public class Race implements IPackable, Serializable {
 	
@@ -48,11 +54,7 @@ public class Race implements IPackable, Serializable {
 				inverseJoinColumns = @JoinColumn(name= "idBonus"))
 	private Collection<Bonus> listeBonus = new ArrayList<Bonus>(); 
 
-//	//--------------------------------OlivB---------------------------
-//	//Mappe la table association ArmeRace
-//	@ManyToMany(mappedBy="races", fetch = FetchType.EAGER)
-//	private Collection <Arme> armes = new ArrayList<Arme>();
-//	//-----------------------------------------------------------------	
+
 	
 	//Constructeurs
 	public Race(){
@@ -123,7 +125,10 @@ public class Race implements IPackable, Serializable {
 		return this.listeBonus;
 	}
 
-	//Methode de calcul du montant d'xp rendu par cette race en fonction de la liste de ses bonus
+	/**Methode de calcul du montant d'xp rendu par cette race en fonction de la liste de ses bonus
+	 * 
+	 * @return renduXp valeur des point d'xp rendus
+	 */
 	@Override
 	public int calculRenduXp() {
 		int renduXp = this.getCoutXp();
@@ -149,8 +154,12 @@ public class Race implements IPackable, Serializable {
 		return ("Id: "+this.getId()+" Nom: "+this.getNom()+" Dispo: "+this.isDispo()+" Nb Bonus: "+this.getListeBonus().size());
 	}
 	
-	
-	//Methode qui reconstruit un objet à partir d'un objet hibernate
+/**
+ * Methode qui reconstruit un objet Race avec une arrayList de bonus
+ * à partir d'un objet Race hibernate
+ * 
+ * @return raceDto : objet Race reconstruit
+ */
 	public Race dto() {
 		
 		Race raceDto = new Race(this.getId(), this.getNom(), this.isDispo());

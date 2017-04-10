@@ -319,6 +319,7 @@ public interface IFacadeService {
 	
 	//Recherche
 	public Arme getArme(String nom);
+	public Arme rechArme(int idArme);
 	
 	//Listes
 	public List<Arme> listerArmesRace() throws ServiceOlivBException;
@@ -328,6 +329,7 @@ public interface IFacadeService {
 	public List<Race> listerRaces() throws ServiceOlivBException;
 	
 	public List<Arme> listerArmes() throws ServiceOlivBException;
+	
 	
 	
 

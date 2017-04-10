@@ -105,6 +105,13 @@ public class RaceDaoGestion {
 				throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_DELETE_RACE);
 			}
 			
+			//On fait la même chose avec la colonne qui reference cette race dans la table passion
+			try{
+				em.createNativeQuery(Requetes.DELETE_PASSION_RACE.getMsg()).setParameter(1, raceHib.getId()).executeUpdate();
+			}	catch (Exception e){
+				throw new DaoExceptionRBC(DaoExceptionRBCMsg.PB_DELETE_RACE);
+			}
+			
 			//puis on supprime la race selectionnée	
 			try {
 				em.remove(raceHib);

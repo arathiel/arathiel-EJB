@@ -8,7 +8,8 @@ public enum Requetes {
 	DELETE_BONUS_RACE ("delete from bonus_race where idrace = ?1"),
 	TOUS_BONUS ("select b from Bonus b order by b.id asc"),
 	TOUTES_CARAC ("select c from Caracteristique c order by c.idCarac asc"),
-	TOUTES_COMP ("select c from Competence c order by c.nom asc");
+	TOUTES_COMP ("select c from Competence c order by c.nom asc"),
+	DELETE_PASSION_RACE ("update passion set idrace=null where idrace= ?1");
 	
 	
 	String msg;

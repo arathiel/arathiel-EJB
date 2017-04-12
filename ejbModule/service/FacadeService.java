@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 
 import clientServeur.IArme;
 import clientServeur.IFacadeService;
+import clientServeur.carriere.userException.UserExceptionCarriere;
 import clientServeur.exception.ExceptionService;
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
@@ -16,6 +17,9 @@ import dao.race_bonus_carac.exception.DaoExceptionRBC;
 import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;
+import entity.carriere.Carriere;
+import entity.carriere.CategorieCarriere;
+import entity.carriere.matiere.Matiere;
 import entity.competence.Competence;
 import entity.magie.MDPFondamental;
 import entity.magie.MDPNormal;
@@ -27,6 +31,12 @@ import entity.trait.Trait;
 import entity.trait.comportement.Comportement;
 import service.armurerie.ServiceArme;
 import service.armurerie.exception.ServiceOlivBException;
+import service.carriere.carriere.catalogue.CarriereServCatalogue;
+import service.carriere.carriere.gestion.CarriereServGestion;
+import service.carriere.categorie.catalogue.CategorieServCatalogue;
+import service.carriere.categorie.gestion.CategorieServGestion;
+import service.carriere.matiere.catalogue.MatiereServCatalogue;
+import service.carriere.matiere.gestion.MatiereServGestion;
 import service.competence.FacadeServiceCompetence;
 import service.magie.FacadeMagie;
 import service.passion.FacadePassion;
@@ -72,6 +82,21 @@ public class FacadeService implements IFacadeService {
 
 	@EJB
 	private FacadePassion facPassion;
+	
+	// --------------------------------------- Ismaël
+	
+	@EJB
+	private CarriereServGestion carServGestion;
+	@EJB
+	private CarriereServCatalogue carServCatalogue;
+	@EJB
+	private CategorieServGestion categorieServGestion;
+	@EJB
+	private CategorieServCatalogue categorieServCatalogue;
+	@EJB
+	private MatiereServGestion matiereServGestion;
+	@EJB
+	private MatiereServCatalogue matiereServCatalogue;
 
 	
 //-------------------------------------------------------------------------------------------- Jonathan
@@ -721,5 +746,172 @@ public class FacadeService implements IFacadeService {
 		return facMagie.getMDPNormal(nom);
 	}
 
+	// ----------------------------------------------------------------------------------- Ismaël
+	
+	@Override
+	public Carriere ajouterCarriere(Carriere carriere) throws UserExceptionCarriere
+	{
+		if(carriere != null)
+		{
+		carServGestion.ajouterCarriere(carriere);
+		carriere = carriere.dto();
+		}
+		return carriere;
+	}
+
+	@Override
+	public Carriere modifierCarriere(Carriere carriere) throws UserExceptionCarriere
+	{
+		if(carriere != null)
+		{
+			carServGestion.modifierCarriere(carriere);
+			carriere = carriere.dto();
+		}
+		return carriere;
+	}
+
+	@Override
+	public void supprimerCarriere(Carriere carriere) throws UserExceptionCarriere
+	{	
+			carServGestion.delCarriere(carriere);
+	}
+
+	@Override
+	public void supprimerCarriereParId(int id) throws UserExceptionCarriere
+	{
+		carServGestion.delCarriereParId(id);
+	}
+
+	@Override
+	public void supprimerCarriereParParNom(String nom) throws UserExceptionCarriere
+	{
+		carServGestion.delCarriereParNom(nom);
+	}
+
+	@Override
+	public ArrayList<Carriere> lstCarrieres() 
+	{
+		return carServCatalogue.lstCarrieres();
+	}
+
+	@Override
+	public Carriere recherCarParNom(String nom) throws UserExceptionCarriere
+	{
+		return carServCatalogue.recherCarParNom(nom);
+	}
+
+	@Override
+	public Carriere recherCarParId(int idCarriere) throws UserExceptionCarriere
+	{
+		return carServCatalogue.recherCarParId(idCarriere);
+	}
+
+	@Override
+	public CategorieCarriere ajouterCategorieCarriere(CategorieCarriere categorie) throws UserExceptionCarriere
+	{
+		if(categorie != null)
+		{
+		categorieServGestion.ajouterCategorie(categorie);
+		categorie = categorie.getDto();
+		}
+		return categorie;
+	}
+
+	@Override
+	public CategorieCarriere modifierCategorieCarriere(CategorieCarriere categorie) throws UserExceptionCarriere
+	{
+		if(categorie != null)
+		{
+		categorieServGestion.modifiereCategorie(categorie);
+		categorie = categorie.getDto();
+		}
+		return categorie;
+	}
+
+	@Override
+	public void supprimerCategorieCarriere(CategorieCarriere categorie) throws UserExceptionCarriere
+	{
+		categorieServGestion.delCategorie(categorie);
+	}
+
+	@Override
+	public void supprimerCategorieCarriereParNom(String nom) throws UserExceptionCarriere
+	{
+		categorieServGestion.delCategorieParNom(nom);
+	}
+
+	@Override
+	public ArrayList<CategorieCarriere> lstCategorieCarrieres() 
+	{
+		return categorieServCatalogue.lstCategories();
+	}
+
+	@Override
+	public CategorieCarriere recherchCategorieParId(int idCategorieCarriere) throws UserExceptionCarriere
+	{
+		return categorieServCatalogue.recherchCategorieParId(idCategorieCarriere);
+	}
+
+	@Override
+	public CategorieCarriere recherchCategorieParNom(String nom) throws UserExceptionCarriere
+	{
+		return categorieServCatalogue.recherchCategorieParNom(nom);
+	}
+
+	@Override
+	public Matiere ajouterMatiere(Matiere matiere) throws UserExceptionCarriere
+	{
+		if(matiere != null)
+		{
+			matiereServGestion.ajouterMatiere(matiere);
+			matiere = matiere.getDto();
+		}
+		return matiere;
+	}
+
+	@Override
+	public Matiere modifierMatiere(Matiere matiere) throws UserExceptionCarriere
+	{
+		if(matiere != null)
+		{
+			matiereServGestion.modifierMatiere(matiere);
+			matiere = matiere.getDto();
+		}
+		return matiere;
+	}
+
+	@Override
+	public void supprimerMatiere(Matiere matiere) throws UserExceptionCarriere
+	{
+		matiereServGestion.delMatiere(matiere);
+	}
+
+	@Override
+	public void supprimerMatiereParNom(String nomMatiere) throws UserExceptionCarriere
+	{
+		matiereServGestion.delMatiereParNom(nomMatiere);
+	}
+
+	@Override
+	public ArrayList<Matiere> lstMatieres() 
+	{
+		return matiereServCatalogue.lstMatieres();
+	}
+
+	@Override
+	public Matiere recherchMatiereParNom(String nomMatiere) throws UserExceptionCarriere
+	{
+		Matiere matiere = null;
+		matiere = matiereServCatalogue.recherchMatiereParNom(nomMatiere);
+		return matiere;
+	}
+
+	@Override
+	public Matiere recherchMatierParID(int id) throws UserExceptionCarriere
+	{
+		Matiere matiere = null;
+		matiere = matiereServCatalogue.recherchMatiereParId(id);
+		return matiere;
+	}
 	
 }

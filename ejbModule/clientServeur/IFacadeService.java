@@ -3,12 +3,16 @@ package clientServeur;
 import java.util.ArrayList;
 import java.util.List;
 
+import clientServeur.carriere.userException.UserExceptionCarriere;
 import clientServeur.exception.ExceptionService;
 import clientServeur.exception.UserException;
 import clientServeur.race_bonus_carac.userException.UserExceptionRBC;
 import entity.armurerie.Arme;
 import entity.armurerie.ArmeJoueur;
 import entity.armurerie.Joueur;
+import entity.carriere.Carriere;
+import entity.carriere.CategorieCarriere;
+import entity.carriere.matiere.Matiere;
 //import entity.magie.MDPFondamental;
 //import entity.magie.MDPNormal;
 //import entity.passion.Passion;
@@ -330,6 +334,51 @@ public interface IFacadeService {
 	public List<Arme> listerArmes() throws ServiceOlivBException;
 	
 	
+	// -------------------------------------------------------------------------- Ismaël
+	
+
+	/* ================================================= */
+	/* 		Methode pour la gestion des categories		 */
+	/* ================================================= */
+	public Carriere ajouterCarriere(Carriere carriere) throws UserExceptionCarriere;
+	public Carriere modifierCarriere(Carriere carriere)throws UserExceptionCarriere;
+	public void supprimerCarriere(Carriere carriere) throws UserExceptionCarriere;
+	public void supprimerCarriereParId(int id) throws UserExceptionCarriere;
+	public void supprimerCarriereParParNom(String nom) throws UserExceptionCarriere;
+	
+	public ArrayList<Carriere> lstCarrieres();
+	
+	public Carriere recherCarParNom(String nom) throws UserExceptionCarriere;
+	public Carriere recherCarParId(int idCarriere) throws UserExceptionCarriere;
+	
+
+	/* ================================================= */
+	/* 		Methode pour la gestion des categories		 */
+	/* ================================================= */	
+	public CategorieCarriere ajouterCategorieCarriere(CategorieCarriere categorie) throws UserExceptionCarriere;
+	public CategorieCarriere modifierCategorieCarriere(CategorieCarriere categorie) throws UserExceptionCarriere;
+	public void supprimerCategorieCarriere(CategorieCarriere categorie) throws UserExceptionCarriere;
+	public void supprimerCategorieCarriereParNom(String nom) throws UserExceptionCarriere;
+	
+	public ArrayList<CategorieCarriere> lstCategorieCarrieres();
+	
+	public CategorieCarriere recherchCategorieParId(int idCategorieCarriere) throws UserExceptionCarriere;
+	public CategorieCarriere recherchCategorieParNom(String nom) throws UserExceptionCarriere;
+	
+	
+	/* ================================================= */
+	/* 		Methode pour la gestion de la matiere		 */
+	/* ================================================= */
+	
+	public Matiere ajouterMatiere(Matiere matiere) throws UserExceptionCarriere;
+	public Matiere modifierMatiere(Matiere matiere) throws UserExceptionCarriere;
+	public void supprimerMatiere(Matiere matiere) throws UserExceptionCarriere;
+	public void supprimerMatiereParNom(String nomMatiere) throws UserExceptionCarriere;
+	
+	public ArrayList<Matiere> lstMatieres();
+	
+	public Matiere recherchMatiereParNom(String nomMatiere) throws UserExceptionCarriere;
+	public Matiere recherchMatierParID(int id) throws UserExceptionCarriere;
 	
 
 
